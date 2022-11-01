@@ -23,7 +23,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@core/*": ["./src/app/core/*"],
+      "@youtube/*": ["./src/app/youtube/*"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@auth/*": ["./src/app/auth/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
