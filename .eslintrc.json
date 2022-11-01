@@ -1,0 +1,67 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true,
+        "tsconfigRootDir": "./"
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "airbnb-typescript/base",
+        "prettier",
+        "plugin:prettier/recommended"
+      ],
+      "plugins": ["@typescript-eslint", "eslint-plugin-import"],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "import/prefer-default-export": "off",
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "indent": "off",
+        // "linebreak-style": ["error", "unix"],
+        "max-len": ["warn", { "code": 90 }],
+        "no-debugger": "warn",
+        "no-param-reassign": ["error", { "props": false }],
+        "no-shadow": "off",
+        // "quotes": ["error", "single"],
+        "@typescript-eslint/no-shadow": ["error"],
+        "lines-between-class-members": [
+          "error",
+          "always",
+          {
+            "exceptAfterSingleLine": true
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/explicit-function-return-type": 2,
+        "prettier/prettier": "error",
+        "no-console": "warn"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}
