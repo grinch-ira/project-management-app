@@ -7,5 +7,5 @@ export interface ClientError extends CustomHttpError {
 }
 
 export interface ServerError extends CustomHttpError {
-  statusCode: `4${number}${number}`;
+  statusCode: `5${number}${number}`;
 }
