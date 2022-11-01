@@ -1,15 +1,15 @@
 import { User } from './users.model';
 
-export interface SignInRequest {
+export interface SignInBody {
   login: string;
   password: string;
 }
 
-export interface SignInResponse {
+export interface SignInResponseBody {
   token: string;
 }
 
-export interface SignUpRequest extends SignInRequest {
+export interface SignUpBody extends SignInBody {
   name: string;
 }
 
