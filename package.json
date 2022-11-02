@@ -24,7 +24,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "rxjs": "~7.5.0",
     "stylelint": "^14.14.0",
-    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-rational-order": "^0.0.4",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.3.0",
