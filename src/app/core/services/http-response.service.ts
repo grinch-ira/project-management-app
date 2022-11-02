@@ -41,13 +41,6 @@ export class HttpResponseService {
 
   headers = {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  };
-
-  headersWithoutToken = {
-    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   };
 
@@ -126,35 +119,27 @@ export class HttpResponseService {
   }
 
   public signUp(params: SignUpBody): Observable<SignUpResponse | Errors> {
-    return this.http
-      .post<SignUpResponse>(this.url + this.signUpPath, params, {
-        headers: this.headersWithoutToken,
-      })
-      .pipe(
-        map(value => {
-          this.isLogIn$.next(true);
-          localStorage.setItem('isLogIn', '1');
-          localStorage.setItem('id', value._id);
-          return value;
-        }),
-        catchError(err => this.catchErrorDetailed(err))
-      );
+    return this.http.post<SignUpResponse>(this.url + this.signUpPath, params).pipe(
+      map(value => {
+        this.isLogIn$.next(true);
+        localStorage.setItem('isLogIn', '1');
+        localStorage.setItem('id', value._id);
+        return value;
+      }),
+      catchError(err => this.catchErrorDetailed(err))
+    );
   }
 
   public logIn(params: SignInBody): Observable<SignInResponseBody | Errors> {
-    return this.http
-      .post<SignInResponseBody>(this.url + this.logInPath, params, {
-        headers: this.headersWithoutToken,
-      })
-      .pipe(
-        map(value => {
-          this.isLogIn$.next(true);
-          localStorage.setItem('isLogIn', '1');
-          localStorage.setItem('token', value.token);
-          return value;
-        }),
-        catchError(err => this.catchErrorDetailed(err))
-      );
+    return this.http.post<SignInResponseBody>(this.url + this.logInPath, params).pipe(
+      map(value => {
+        this.isLogIn$.next(true);
+        localStorage.setItem('isLogIn', '1');
+        localStorage.setItem('token', value.token);
+        return value;
+      }),
+      catchError(err => this.catchErrorDetailed(err))
+    );
   }
 
   public getAllBoards(): Observable<Board[] | Errors> {
