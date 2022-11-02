@@ -11,3 +11,14 @@ export interface ClientError extends CustomHttpError {
 export interface ServerError extends CustomHttpError {
   statusCode: `5${Decimal}${Decimal}`;
 }
+
+export interface Errors {
+  unAuthorized?: boolean;
+  notFound?: boolean;
+  anotherError?: boolean;
+  noConnection?: true;
+  notExist?: true;
+  badRequest?: true;
+  isAlreadyExist?: true;
+  serverError?: true;
+}

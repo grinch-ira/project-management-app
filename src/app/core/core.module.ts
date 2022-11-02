@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { HttpResponseService } from './services/http-response.service';
 
 @NgModule({
   declarations: [
@@ -15,5 +16,6 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     WelcomeComponent,
   ],
   imports: [CommonModule],
+  providers: [HttpResponseService],
 })
 export class CoreModule {}
