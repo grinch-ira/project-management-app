@@ -23,7 +23,15 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@auth/*": ["./src/app/auth/*"],
+      "@board/*": ["./src/app/board/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@main/*": ["./src/app/main/*"],
+      "@material/*": ["./src/app/material/*"],
+      "@shared/*": ["./src/app/shared/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
