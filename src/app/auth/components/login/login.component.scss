@@ -1,0 +1,33 @@
+@use '../../../../colors.scss';
+
+form {
+  width: 280px;
+  margin: 20px auto 0;
+  padding: 5%;
+  background-color: colors.$light;
+  border-radius: 5px;
+}
+
+.mat-form-field {
+  width: 280px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.btn {
+  height: 24px;
+  width: 80px;
+}
+
+.mat-blue {
+  background-color: colors.$blue;
+  color: colors.$white;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  margin-left: 100px;
+}

@@ -13,10 +13,10 @@ import { MaterialModule } from '@material/material.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    AppRoutingModule,
   ],
   providers: [HttpResponseService],
   bootstrap: [AppComponent],

@@ -27,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DialogModule } from '@angular/cdk/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const materialComponent: Array<object> = [
   MatButtonModule,
@@ -36,6 +37,7 @@ const materialComponent: Array<object> = [
   MatDialogModule,
   MatIconModule,
   MatInputModule,
+  MatFormFieldModule,
   MatListModule,
   MatMenuModule,
   MatNativeDateModule,
