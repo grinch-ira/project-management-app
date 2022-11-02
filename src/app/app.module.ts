@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpResponseService } from '@core/services/http-response.service';
+import { MaterialModule } from '@material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpResponseService } from '@core/services/http-response.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MaterialModule,
   ],
   providers: [HttpResponseService],
   bootstrap: [AppComponent],
