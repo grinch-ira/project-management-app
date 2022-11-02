@@ -30,7 +30,7 @@ export class LoginComponent {
 
     this.httpResponse.logIn(data).subscribe(resp => {
       if ('token' in resp) {
-        this.router.navigateByUrl('/board');
+        this.router.navigateByUrl('/main');
       } else if ('noConnection' in resp) {
         this.addInfoAboutError('no Internet Connection, failed to log in');
       } else if ('badRequest' in resp) {
