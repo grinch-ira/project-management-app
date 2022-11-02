@@ -43,6 +43,12 @@ export class HttpResponseService {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  };
+
+  headersWithoutToken = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   };
 
   constructor(private http: HttpClient) {}
@@ -122,7 +128,7 @@ export class HttpResponseService {
   public signUp(params: SignUpBody): Observable<SignUpResponse | Errors> {
     return this.http
       .post<SignUpResponse>(this.url + this.signUpPath, params, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: this.headersWithoutToken,
       })
       .pipe(
         map(value => {
@@ -138,7 +144,7 @@ export class HttpResponseService {
   public logIn(params: SignInBody): Observable<SignInResponseBody | Errors> {
     return this.http
       .post<SignInResponseBody>(this.url + this.logInPath, params, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: this.headersWithoutToken,
       })
       .pipe(
         map(value => {
