@@ -15,5 +15,6 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     WelcomeComponent,
   ],
   imports: [CommonModule],
+  exports: [ModalWindowComponent],
 })
 export class CoreModule {}
