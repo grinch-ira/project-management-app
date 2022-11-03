@@ -7,6 +7,20 @@ import {
 } from '@core/models';
 import { Subject } from 'rxjs';
 
+//Example: how to use this service
+
+//Step 1: Send your action to service
+// this.modalService.modalHandler$.next({
+//   type: 'message',
+//   emitter: 'Board',
+//   action: 'delete',
+// });
+
+//Step 2: Get result from service
+// this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => {
+// --> Your action according to result is here
+// });
+
 @Injectable({
   providedIn: 'root',
 })
