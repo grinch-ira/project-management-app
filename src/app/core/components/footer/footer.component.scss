@@ -1,54 +1,51 @@
-@import '../../../../variables.scss';
+@import '../../../../variables';
 
 .footer-wrapper {
-  background: $light-grey;
-  min-width: 100%;
-  padding: 10px 25px;
   position: fixed;
   bottom: 0;
+  min-width: 100%;
+  padding: 10px 25px;
+  background: $light-grey;
 }
 
-.footer-author_container {
-  display: flex;
-  width: 320px;
+.footer-author-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 320px;
   margin: 0 auto;
   margin-bottom: 5px;
 }
 
-.footer__author-link-container {
+.footer-author-link-containe {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.footer__author-title {
+.footer-author-title {
   font-weight: 800;
 }
 
-.footer__author-link {
-  text-decoration: none;
+.footer-author-link {
   display: flex;
   gap: 10px;
   align-items: center;
   color: #1d0808;
-  transition: .3s;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-.footer__author-git {
+.footer-author-git {
   width: 20px;
 }
 
-.footer__name {}
-
 .rsschool-image {
   width: 120px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-.project_year {
-  user-select: none;
+.project-year {
   text-align: center;
+  user-select: none;
 }

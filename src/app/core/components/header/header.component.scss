@@ -1,8 +1,8 @@
-@import '../../../../variables.scss';
+@import '../../../../variables';
 
 .header-wrapper {
-  background: $light-white;
   padding: 25px 35px;
+  background: $light-white;
 }
 
 .header-container {
@@ -12,22 +12,20 @@
 }
 
 .header-title {
-  font-size: 26px;
   font-weight: 700;
+  font-size: 26px;
 }
 
 .header-buttons {
-  width: 40%;
   display: flex;
   justify-content: space-between;
+  width: 40%;
 }
 
-.header-edit_profile,
-.header-add_board,
+.header-edit-profile,
+.header-add-board,
 .header-language,
 .header-logout {
   background-color: $blue;
   border: none;
 }
-
-
