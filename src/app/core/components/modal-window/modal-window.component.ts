@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalWindowData, ModalWindowHandler } from '@core/models/modal-window.model';
 import { ModalWindowService } from '@core/services';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '..';
 
 @Component({
   selector: 'app-modal-window',
