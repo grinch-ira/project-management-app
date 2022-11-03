@@ -123,7 +123,7 @@ export class HttpResponseService {
       map(value => {
         this.isLogIn$.next(true);
         localStorage.setItem('isLogIn', '1');
-        localStorage.setItem('id', value._id);
+        localStorage.setItem('userId', value._id);
         return value;
       }),
       catchError(err => this.catchErrorDetailed(err))

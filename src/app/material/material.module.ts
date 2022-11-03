@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DialogModule } from '@angular/cdk/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const materialComponent: Array<object> = [
   MatButtonModule,
@@ -36,6 +36,7 @@ const materialComponent: Array<object> = [
   MatDialogModule,
   MatIconModule,
   MatInputModule,
+  MatFormFieldModule,
   MatListModule,
   MatMenuModule,
   MatNativeDateModule,
