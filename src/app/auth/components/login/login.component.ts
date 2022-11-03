@@ -46,7 +46,6 @@ export class LoginComponent {
   }
 
   addInfoAboutError(text: string): void {
-    console.log(text);
     alert(text);
   }
 }

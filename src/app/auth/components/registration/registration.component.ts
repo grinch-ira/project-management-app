@@ -63,7 +63,6 @@ export class RegistrationComponent {
   }
 
   addInfoAboutError(text: string): void {
-    console.log(text);
     alert(text);
   }
 }
