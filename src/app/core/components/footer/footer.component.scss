@@ -1,0 +1,52 @@
+.footer-wrapper {
+  background: #828282;
+  min-width: 100%;
+  padding: 10px 25px;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-author_container {
+  display: flex;
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.footer__author-link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer__author-title {
+  font-weight: 800;
+}
+
+.footer__author-link {
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #1d0808;
+  transition: .3s;
+}
+
+.footer__author-git {
+  width: 20px;
+}
+
+.footer__name {}
+
+.rsschool-image {
+  width: 120px;
+  transition: .3s;
+}
+
+.project_year {
+  user-select: none;
+  text-align: center;
+}

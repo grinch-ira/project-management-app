@@ -1,0 +1,31 @@
+.header-wrapper {
+  background: #e5e5e5;
+  padding: 25px 35px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.header-buttons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-edit_profile,
+.header-add_board,
+.header-language,
+.header-logout {
+  background-color: #2f80ed;
+  border: none;
+}
+
+

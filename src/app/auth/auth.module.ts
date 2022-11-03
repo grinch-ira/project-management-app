@@ -10,8 +10,12 @@ import { AuthRoutingModule } from './auth-routing.module';
   declarations: [
     LoginComponent,
     RegistrationComponent,
-    AuthPageComponent
+    AuthPageComponent,
   ],
-  imports: [CommonModule, SharedModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    AuthRoutingModule,
+  ],
 })
 export class AuthModule {}

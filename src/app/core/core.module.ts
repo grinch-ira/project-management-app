@@ -6,6 +6,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HttpResponseService } from './services/http-response.service';
+import { MaterialModule } from '@material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,14 @@ import { HttpResponseService } from './services/http-response.service';
     NotFoundComponent,
     WelcomeComponent,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+  ],
   providers: [HttpResponseService],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
 export class CoreModule {}
