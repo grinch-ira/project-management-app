@@ -1,1 +1,31 @@
-// TBD
+@import '../../../../variables';
+
+.header-wrapper {
+  padding: 25px 35px;
+  background: $light-white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.header-edit-profile,
+.header-add-board,
+.header-language,
+.header-logout {
+  background-color: $blue;
+  border: none;
+}
