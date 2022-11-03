@@ -14,19 +14,21 @@
 
   <button
     mat-raised-button
+    mat-dialog-close
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'confirm'"
-    (click)="close('confirmClosing')">
+    (click)="close('confirm')">
     Yes
   </button>
 
   <button
-    mat-button
+    mat-raised-button
+    mat-dialog-close
     dialogResult="'cancel'"
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'confirm'"
     ma
-    (click)="close('skipClosing')">
+    (click)="close('skip')">
     No
   </button>
 </div>

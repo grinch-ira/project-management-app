@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalWindowProperties } from '@core/models/modal-window.model';
+import {
+  ModalWindowProperties,
+  ModalWindowResultType,
+} from '@core/models/modal-window.model';
 
 @Component({
   selector: 'app-dialog',
@@ -13,7 +16,7 @@ export class DialogComponent {
     public dialogRef: MatDialogRef<DialogComponent>
   ) {}
 
-  close(confirm: string): void {
+  close(confirm: ModalWindowResultType): void {
     this.dialogRef.close(confirm);
   }
 }

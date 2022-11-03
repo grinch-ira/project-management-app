@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalWindowData } from '@core/models/modal-window.model';
+import { ModalWindowData, ModalWindowHandler } from '@core/models/modal-window.model';
 import { ModalWindowService } from '@core/services';
-import { skip } from 'rxjs';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
@@ -18,12 +17,12 @@ export class ModalWindowComponent implements OnInit {
     description: '',
   };
 
-  modalWindowType: string = 'message';
+  modalWindowInputData!: ModalWindowHandler;
 
   ngOnInit(): void {
-    this.modalWindowService.modalHandler$.pipe(skip(1)).subscribe(data => {
+    this.modalWindowService.modalHandler$.pipe().subscribe(data => {
       this.modalWindowData = this.modalWindowService.getModalData(data);
-      this.modalWindowType = data.type;
+      this.modalWindowInputData = data;
       this.openDialog();
     });
   }
@@ -32,12 +31,13 @@ export class ModalWindowComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         data: this.modalWindowData,
-        type: this.modalWindowType,
+        type: this.modalWindowInputData.type,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.modalWindowService.modalEmitter$.next(result);
     });
   }
 }

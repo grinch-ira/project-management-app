@@ -12,10 +12,10 @@ import { CoreModule } from '@core/core.module';
     AppComponent,
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     CoreModule,
   ],
   providers: [],

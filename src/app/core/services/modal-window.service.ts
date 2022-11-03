@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ModalWindowData, ModalWindowDataObject, ModalWindowHandler } from '@core/models';
+import {
+  ModalWindowData,
+  ModalWindowDataObject,
+  ModalWindowHandler,
+  ModalWindowResultType,
+} from '@core/models';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -7,6 +12,8 @@ import { Subject } from 'rxjs';
 })
 export class ModalWindowService {
   modalHandler$: Subject<ModalWindowHandler> = new Subject<ModalWindowHandler>();
+
+  modalEmitter$: Subject<ModalWindowResultType> = new Subject<ModalWindowResultType>();
 
   private readonly windowData: ModalWindowDataObject = {
     deleteBoard: {
