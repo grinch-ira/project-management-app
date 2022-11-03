@@ -1,0 +1,33 @@
+@use '../../../../variables.scss';
+
+form {
+  width: 280px;
+  margin: 20px auto 0;
+  padding: 5%;
+  background-color: variables.$light;
+  border-radius: 5px;
+}
+
+.mat-form-field {
+  width: 280px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.btn {
+  width: 80px;
+  height: 24px;
+}
+
+.mat-blue {
+  margin-left: 100px;
+  color: variables.$white;
+  font-weight: 400;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  line-height: 24px;
+  background-color: variables.$blue;
+}

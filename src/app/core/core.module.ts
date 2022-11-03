@@ -6,6 +6,8 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { HttpResponseService } from './services/http-response.service';
+import { MaterialModule } from '@material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,17 @@ import { DialogComponent } from './components/dialog/dialog.component';
     WelcomeComponent,
     DialogComponent,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+  ],
+  providers: [HttpResponseService],
   exports: [
+    HeaderComponent,
+    FooterComponent,
     ModalWindowComponent,
     DialogComponent,
+    MaterialModule,
   ],
 })
 export class CoreModule {}

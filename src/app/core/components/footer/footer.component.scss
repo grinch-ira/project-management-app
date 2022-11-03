@@ -1,0 +1,51 @@
+@import '../../../../variables';
+
+.footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  min-width: 100%;
+  padding: 10px 25px;
+  background: $light-grey;
+}
+
+.footer-author-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.footer-author-link-containe {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-author-title {
+  font-weight: 800;
+}
+
+.footer-author-link {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #1d0808;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-author-git {
+  width: 20px;
+}
+
+.rsschool-image {
+  width: 120px;
+  transition: 0.3s;
+}
+
+.project-year {
+  text-align: center;
+  user-select: none;
+}

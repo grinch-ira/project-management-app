@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "style": "npx stylelint \"**/*.scss\"",
+    "stylelint-scss-check": "stylelint-config-prettier-scss-check"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +25,7 @@
     "@angular/router": "^14.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "rxjs": "~7.5.0",
-    "stylelint": "^14.14.0",
-    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-rational-order": "^0.0.4",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.3.0",
@@ -56,6 +57,11 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-multiline-arrays": "^1.1.1",
+    "stylelint": "^14.14.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard-scss": "^6.0.0",
+    "stylelint-prettier": "^2.0.0",
     "typescript": "~4.7.2"
   }
 }
