@@ -7,6 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MaterialModule } from '@material/material.module';
   imports: [
     CommonModule,
     MaterialModule,
+    RouterModule,
   ],
   providers: [HttpResponseService],
   exports: [

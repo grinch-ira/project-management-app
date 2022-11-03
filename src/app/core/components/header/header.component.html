@@ -4,12 +4,15 @@
       <div class="header-title">
         PMA
       </div>
+      {{ isLogIn }}
       <div class="header-buttons">
-        <button class="header-edit-profile" mat-button>
-          <mat-icon class="material-symbols-outlined">
-            person
-          </mat-icon>
-        </button>
+        <a routerLink="/login">
+          <button *ngIf="!isLogIn" class="header-edit-profile" mat-button>
+            <mat-icon class="material-symbols-outlined">
+              person
+            </mat-icon>
+          </button>
+        </a>
         <button class="header-add-board" mat-button>
           <mat-icon class="material-symbols-outlined">
             add_box
@@ -20,7 +23,7 @@
             g_translate
             </mat-icon>
         </button>
-        <button class="header-logout" mat-button>
+        <button *ngIf="isLogIn" class="header-logout" mat-button>
           <mat-icon class="material-symbols-outlined">
             logout
             </mat-icon>

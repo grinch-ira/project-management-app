@@ -136,6 +136,7 @@ export class HttpResponseService {
         this.isLogIn$.next(true);
         localStorage.setItem('isLogIn', '1');
         localStorage.setItem('token', value.token);
+        localStorage.setItem('userId', value._id);
         return value;
       }),
       catchError(err => this.catchErrorDetailed(err))
