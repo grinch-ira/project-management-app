@@ -1,10 +1,10 @@
-@use '../../../../colors.scss';
+@use '../../../../variables.scss';
 
 form {
   width: 280px;
   margin: 20px auto 0;
   padding: 5%;
-  background-color: colors.$light;
+  background-color: variables.$light;
   border-radius: 5px;
 }
 
@@ -23,11 +23,11 @@ h2 {
 
 .mat-blue {
   margin-left: 100px;
-  color: colors.$white;
+  color: variables.$white;
   font-weight: 400;
   font-size: 12px;
   font-family: Roboto, sans-serif;
   font-style: normal;
   line-height: 24px;
-  background-color: colors.$blue;
+  background-color: variables.$blue;
 }
