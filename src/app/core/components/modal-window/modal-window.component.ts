@@ -36,7 +36,6 @@ export class ModalWindowComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.modalWindowService.modalEmitter$.next(result);
     });
   }
