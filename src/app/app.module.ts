@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { MaterialModule } from '@material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '@core/core.module';
 
 @NgModule({
@@ -14,10 +15,12 @@ import { CoreModule } from '@core/core.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
     CoreModule,
   ],
   providers: [HttpResponseService],
