@@ -1,23 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalWindowData, ModalWindowProperties } from '@core/models/modal-window.model';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalWindowData } from '@core/models/modal-window.model';
 import { ModalWindowService } from '@core/services';
 import { skip } from 'rxjs';
-
-@Component({
-  selector: 'app-dialog',
-  templateUrl: 'dialog.html',
-})
-export class DialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ModalWindowProperties,
-    public dialogRef: MatDialogRef<DialogComponent>
-  ) {}
-
-  close(): void {
-    this.dialogRef.close();
-  }
-}
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-modal-window',
@@ -43,11 +29,15 @@ export class ModalWindowComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         data: this.modalWindowData,
         type: this.modalWindowType,
       },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 }

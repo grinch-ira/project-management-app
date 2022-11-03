@@ -1,28 +1,32 @@
-<h2 mat-dialog-title>{{data.data.title}}</h2>
+<h2 mat-dialog-title>{{ data.data.title }}</h2>
 
 <div mat-dialog-content>
-  <p>{{data.data.description}}</p>
+  <p>{{ data.data.description }}</p>
 </div>
 
 <div mat-dialog-actions>
   <button
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'message'"
-    (click)="close()">
+    (click)="close('close')">
     Ok
   </button>
 
   <button
+    mat-raised-button
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'confirm'"
-    [mat-dialog-close]="'confirm'">
+    (click)="close('confirmClosing')">
     Yes
   </button>
 
   <button
+    mat-button
+    dialogResult="'cancel'"
     class="mat-raised-button mat-primary"
-    [mat-dialog-close]="'cancel'"
-    *ngIf="data.type === 'confirm'">
+    *ngIf="data.type === 'confirm'"
+    ma
+    (click)="close('skipClosing')">
     No
   </button>
 </div>
