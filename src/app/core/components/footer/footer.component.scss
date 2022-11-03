@@ -1,5 +1,7 @@
+@import '../../../../variables.scss';
+
 .footer-wrapper {
-  background: #828282;
+  background: $light-grey;
   min-width: 100%;
   padding: 10px 25px;
   position: fixed;
