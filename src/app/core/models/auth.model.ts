@@ -5,7 +5,7 @@ export interface SignInBody {
   password: string;
 }
 
-export interface SignInResponseBody {
+export interface SignInResponseBody extends User {
   token: string;
 }
 

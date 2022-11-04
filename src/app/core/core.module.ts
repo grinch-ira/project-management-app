@@ -8,6 +8,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MaterialModule } from '@material/material.module';
   imports: [
     CommonModule,
     MaterialModule,
+    RouterModule,
   ],
   providers: [HttpResponseService],
   exports: [
