@@ -1,1 +1,30 @@
-<p>board-creation-form works!</p>
+<h2 class="login-form__header">Login</h2>
+
+<form [formGroup]="boardForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      type="email"
+      placeholder="Enter your name"
+      autocomplete="off"
+      name="userName"
+      formControlName="userName" />
+
+    <mat-error *ngIf="boardForm?.get('title')?.errors['required']">
+      Please enter a title
+    </mat-error>
+  </mat-form-field>
+
+  <div class="login-form__actions">
+    <button
+      type="button"
+      class="login-form__login-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="boardForm.invalid"
+      (click)="createBoard()">
+      Login
+    </button>
+  </div>
+</form>
