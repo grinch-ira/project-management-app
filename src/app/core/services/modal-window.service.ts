@@ -57,19 +57,19 @@ export class ModalWindowService {
   private readonly windowData: ModalWindowDataObject = {
     deleteBoard: {
       title: 'Delete Board',
-      description: 'Are you really want to delete the board?',
+      description: 'Do you really want to delete the board?',
     },
     deleteColumn: {
       title: 'Delete Column',
-      description: 'Are you really want to delete the column?',
+      description: 'Do you really want to delete the column?',
     },
     deleteTask: {
       title: 'Delete Task',
-      description: 'Are you really want to delete the task?',
+      description: 'Do you really want to delete the task?',
     },
     deleteUser: {
       title: 'Delete User',
-      description: 'Are you really want to delete the User?',
+      description: 'Do you really want to delete the User?',
     },
     errorHTTP: {
       title: 'HTTP Error',
