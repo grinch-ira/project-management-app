@@ -8,6 +8,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MaterialModule,
     RouterModule,
+    HttpClientModule,
   ],
   providers: [HttpResponseService],
   exports: [
