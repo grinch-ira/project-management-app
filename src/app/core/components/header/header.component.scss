@@ -25,11 +25,17 @@
 .header-edit-profile,
 .header-add-board,
 .header-language,
-.header-logout {
+.header-logout,
+.header-login {
   background-color: $blue;
   border: none;
 }
 
 .mat-button {
   color: $black;
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
 }
