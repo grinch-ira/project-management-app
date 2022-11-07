@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from '@core/models';
 import { HttpResponseService } from '@core/services/http-response.service';
-import { BoardsService } from '@shared/services';
+import { BoardsService, UsersService } from '@shared/services';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -14,13 +14,27 @@ export class BoardsPageComponent implements OnInit {
 
   constructor(
     private apiService: HttpResponseService,
-    private boardsService: BoardsService
+    private boardsService: BoardsService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
     this.boardsService.boards$.subscribe(boards => {
       this.boardItems = boards;
     });
+
+    this.apiService
+      .getUsers()
+      .pipe(
+        switchMap(res => {
+          console.log(res);
+          if (res instanceof Array) {
+            this.usersService.users$.next(res);
+          }
+          return this.usersService.users$;
+        })
+      )
+      .subscribe();
 
     this.apiService
       .getAllBoards()

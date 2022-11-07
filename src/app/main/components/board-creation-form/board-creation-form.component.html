@@ -15,6 +15,28 @@
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Users</mat-label>
+    <mat-select
+      formControlName="users"
+      multiple>
+      <mat-select-trigger>
+        {{ getFirstUser() || '' }}
+        <span
+          *ngIf="(boardForm.get('users')?.value?.length || 0) > 1"
+          class="example-additional-selection">
+          (+{{ (boardForm.get('users')?.value?.length || 0) - 1 }}
+          {{ boardForm.get('users')?.value?.length === 2 ? 'other' : 'others' }})
+        </span>
+      </mat-select-trigger>
+      <mat-option
+        *ngFor="let user of appUsers"
+        [value]="user._id"
+        >{{ user.name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
   <div class="login-form__actions">
     <button
       type="button"

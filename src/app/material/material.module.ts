@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -44,6 +45,7 @@ const materialComponent: Array<object> = [
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRadioModule,
+  MatSelectModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
