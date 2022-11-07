@@ -12,8 +12,6 @@ export class AuthService {
 
   isLogIn$ = new BehaviorSubject(this.isLogInFromStorage);
 
-  token = localStorage.getItem('token');
-
   constructor(private httpResponse: HttpResponseService, private router: Router) {}
 
   signUp(data: SignUpBody): void {
