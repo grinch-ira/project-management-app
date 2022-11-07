@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpResponseService } from '@core/services/http-response.service';
+import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,14 @@ import { HttpResponseService } from '@core/services/http-response.service';
 export class HeaderComponent {
   isLogIn = false;
 
-  isLogInBehavior = this.httpResponse.isLogIn$.subscribe(value => {
+  isLogInBehavior = this.auth.isLogIn$.subscribe(value => {
     this.isLogIn = value;
     return value;
   });
 
-  constructor(private httpResponse: HttpResponseService) {}
+  constructor(private auth: AuthService) {}
+
+  logOut(): void {
+    this.auth.logOut();
+  }
 }
