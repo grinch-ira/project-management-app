@@ -71,6 +71,10 @@ export class ModalWindowService {
       title: 'Delete User',
       description: 'Do you really want to delete the User?',
     },
+    logOut: {
+      title: 'Log Out',
+      description: 'Do you really want to log out?',
+    },
     errorHTTP: {
       title: 'HTTP Error',
       description: '',
@@ -81,6 +85,12 @@ export class ModalWindowService {
     if (data.action === 'delete' && data.emitter !== 'HTTP')
       return {
         ...this.windowData[`delete${data.emitter}`],
+        payload: data.payload as string,
+      };
+
+    if (data.action === 'logOut' && data.emitter !== 'HTTP')
+      return {
+        ...this.windowData.logOut,
         payload: data.payload as string,
       };
 

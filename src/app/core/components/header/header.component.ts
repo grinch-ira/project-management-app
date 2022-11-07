@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@auth/services/auth.service';
+import { ModalWindowService } from '@core/services';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +16,20 @@ export class HeaderComponent {
     return value;
   });
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private modalService: ModalWindowService) {}
 
   logOut(): void {
-    this.auth.logOut();
+    this.modalService.modalHandler$.next({
+      type: 'confirm',
+      emitter: 'User',
+      action: 'logOut',
+      payload: '',
+    });
+    this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => {
+      if (result === 'confirm') {
+        this.auth.logOut();
+      }
+      return;
+    });
   }
 }

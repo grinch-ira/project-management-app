@@ -16,6 +16,7 @@ export type Payload = string | ClientError | ServerError | HttpErrorResponse;
 
 export type ModalWindowEmitters = 'User' | 'Board' | 'Column' | 'Task';
 export type ModalWindowEvents = 'delete';
+export type ModalWindowActions = 'logOut';
 export type ModalWindowTypes = 'confirm' | 'message';
 
 export type ModalWindowBackendEmitter = 'HTTP';
@@ -26,7 +27,7 @@ export type ModalWindowResultType = 'confirm' | 'skip' | 'close';
 export interface ModalWindowHandler {
   type: ModalWindowTypes;
   emitter: ModalWindowEmitters | ModalWindowBackendEmitter;
-  action: ModalWindowEvents | ModalWindowBackendEvents;
+  action: ModalWindowEvents | ModalWindowBackendEvents | ModalWindowActions;
   payload: Payload;
 }
 
@@ -36,7 +37,8 @@ export interface ModalWindowResponse extends ModalWindowHandler {
 
 type ModalWindowDataObjectKeys =
   | `${ModalWindowEvents}${ModalWindowEmitters}`
-  | `${ModalWindowBackendEvents}${ModalWindowBackendEmitter}`;
+  | `${ModalWindowBackendEvents}${ModalWindowBackendEmitter}`
+  | `${ModalWindowActions}`;
 
 export type ModalWindowDataObject = {
   [key in ModalWindowDataObjectKeys]: ModalWindowData;
