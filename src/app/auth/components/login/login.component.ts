@@ -5,7 +5,9 @@ import { SignInBody } from '@core/models';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { config } from './login.constants';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
