@@ -1,1 +1,17 @@
-<p>board-item works!</p>
+<mat-card
+  class="board-item"
+  (click)="navigate()">
+  <mat-card-header>
+    <mat-card-title>
+      {{ boardData.title }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button
+      mat-mini-fab
+      type="button">
+      <mat-icon fontIcon="delete"></mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

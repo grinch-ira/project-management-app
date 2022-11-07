@@ -5,6 +5,7 @@ import { BoardsPageComponent } from './pages';
 import { BoardCreationFormComponent, BoardItemComponent } from './components';
 import { MaterialModule } from '@material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class MainModule {}

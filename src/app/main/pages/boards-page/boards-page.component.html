@@ -1,1 +1,8 @@
-<p>boards-page works!</p>
+<h2>Boards</h2>
+<app-board-creation-form></app-board-creation-form>
+<div class="boards">
+  <app-board-item
+    *ngFor="let board of boardItems"
+    [boardData]="board">
+  </app-board-item>
+</div>

@@ -1,0 +1,10 @@
+@use '../../../../styles/layout' as layout;
+
+:host {
+  @include layout.align-center(24px);
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}

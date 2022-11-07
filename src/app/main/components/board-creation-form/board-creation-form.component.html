@@ -1,17 +1,16 @@
-<h2 class="login-form__header">Login</h2>
+<h3 class="login-form__header">Create board</h3>
 
 <form [formGroup]="boardForm">
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
     <input
       matInput
-      type="email"
-      placeholder="Enter your name"
+      placeholder="Enter the board title"
       autocomplete="off"
-      name="userName"
-      formControlName="userName" />
+      name="title"
+      formControlName="title" />
 
-    <mat-error *ngIf="boardForm?.get('title')?.errors['required']">
+    <mat-error *ngIf="boardForm.get('title')?.errors?.['required']">
       Please enter a title
     </mat-error>
   </mat-form-field>
@@ -24,7 +23,7 @@
       color="primary"
       [disabled]="boardForm.invalid"
       (click)="createBoard()">
-      Login
+      Create board
     </button>
   </div>
 </form>

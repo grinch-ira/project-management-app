@@ -4,7 +4,14 @@
     <mat-form-field appearance="standard">
       <mat-label for="inputText2">Login</mat-label>
       <div [formGroup]="authForm">
-        <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin" autocomplete="new-password">
+        <input
+          matInput
+          type="text"
+          formControlName="login"
+          class="form-control"
+          id="inputText2"
+          [formControl]="controlLogin"
+          autocomplete="new-password" />
       </div>
       <p *ngIf="controlLogin?.errors?.['required']">*please enter a login email</p>
       <p *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</p>
@@ -12,13 +19,33 @@
     <mat-form-field appearance="standard">
       <mat-label for="inputPassword3">Password</mat-label>
       <div [formGroup]="authForm">
-        <input matInput formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" autocomplete="new-password">
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="inputPassword3"
+          [formControl]="controlPassword"
+          autocomplete="new-password" />
       </div>
       <p *ngIf="controlPassword?.errors?.['required']">*please enter a password</p>
-      <p *ngIf="controlPassword?.errors?.['minlength']">*your password isn't strong enough: should be longer than 8</p>
-      <p *ngIf="controlPassword?.errors?.['pattern']">*your password isn't strong enough: should be used uppercase and lowercase letters, numbers, special character</p>
+      <p *ngIf="controlPassword?.errors?.['minlength']">
+        *your password isn't strong enough: should be longer than 8
+      </p>
+      <p *ngIf="controlPassword?.errors?.['pattern']">
+        *your password isn't strong enough: should be used uppercase and lowercase
+        letters, numbers, special character
+      </p>
     </mat-form-field>
-      <button mat-raised-button color="blue" [disabled]="authForm.invalid" (click)="onLogInButton()" type="submit" class="btn btn-primary">Log In</button>
+    <button
+      mat-raised-button
+      color="blue"
+      [disabled]="authForm.invalid"
+      (click)="onLogInButton()"
+      type="submit"
+      class="btn btn-primary">
+      Log In
+    </button>
     <tr></tr>
     <a routerLink="/login/registration">Don't have an account yet? Sing Up!</a>
   </form>

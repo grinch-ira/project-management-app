@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Board } from '@core/models';
 
 @Component({
   selector: 'app-board-item',
   templateUrl: './board-item.component.html',
-  styleUrls: ['./board-item.component.scss']
+  styleUrls: ['./board-item.component.scss'],
 })
-export class BoardItemComponent implements OnInit {
+export class BoardItemComponent {
+  @Input() boardData!: Board;
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
+  navigate(): void {
+    this.router.navigate([
+      'board',
+      this.boardData._id,
+    ]);
   }
-
 }

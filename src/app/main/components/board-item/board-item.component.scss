@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  .board-item {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
