@@ -2,31 +2,31 @@
   <div class="header-wrapper">
     <div class="header-container">
       <div class="header-title">
-        <a routerLink="/welcome">PMA</a>
+        <a [routerLink]="!isLogIn ? '/welcome' : '/main'">PMA</a>
       </div>
-      <div class="header-buttons">
-        <button [disabled]="!isLogIn" class="header-edit-profile" mat-button title="Settings">
-          <mat-icon class="material-symbols-outlined">
+      <div>
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="Settings">
+          <mat-icon>
             person
           </mat-icon>
         </button>
-        <button [disabled]="!isLogIn" class="header-add-board" mat-button title="Add board">
-          <mat-icon class="material-symbols-outlined">
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="Add board">
+          <mat-icon>
             add_box
           </mat-icon>
         </button>
-        <button class="header-language" mat-button title="Language">
-          <mat-icon class="material-symbols-outlined">
+        <button color="primary" mat-raised-button title="Language">
+          <mat-icon>
             g_translate
             </mat-icon>
         </button>
-        <button *ngIf="!isLogIn" class="header-login" mat-button routerLink="/login" title="Login/Sign Up">
-          <mat-icon class="material-symbols-outlined">
+        <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="Login/Sign Up">
+          <mat-icon>
             login
           </mat-icon>
         </button>
-        <button *ngIf="isLogIn" class="header-logout" mat-button title="Logout">
-          <mat-icon class="material-symbols-outlined">
+        <button *ngIf="isLogIn" color="primary" mat-raised-button title="Logout">
+          <mat-icon>
             logout
           </mat-icon>
         </button>
