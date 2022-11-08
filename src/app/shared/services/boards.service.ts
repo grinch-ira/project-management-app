@@ -13,4 +13,9 @@ export class BoardsService {
     boards.push(board);
     this.boards$.next(boards);
   }
+
+  deleteBoard(id: string): void {
+    const boards = this.boards$.getValue();
+    this.boards$.next(boards.filter(board => board._id !== id));
+  }
 }
