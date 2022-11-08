@@ -1,0 +1,19 @@
+@use '../../../../styles/layout' as layout;
+:host {
+  @include layout.align-center(24px);
+  width: 100%;
+  max-width: 1440px;
+  .main__header {
+    text-align: center;
+  }
+
+  .main__boards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 400px;
+    gap: 24px;
+    width: 100%;
+  }
+}
