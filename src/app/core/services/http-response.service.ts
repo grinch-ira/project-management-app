@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Board,
@@ -12,8 +12,8 @@ import {
   TaskBody,
   TaskByIdBody,
 } from '@core/models';
-import { Errors } from '@core/models/http.model';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
+import { HttpErrorHandlerService } from './http-error-handler.service';
 
 @Injectable({
   providedIn: 'root',
@@ -38,161 +38,136 @@ export class HttpResponseService {
     'Access-Control-Allow-Origin': '*',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private httpError: HttpErrorHandlerService) {}
 
-  private catchErrorDetailed(err: HttpErrorResponse): Observable<Errors> {
-    if (err.status === 0) {
-      return of({ noConnection: true });
-    }
-    if (err.status === 400) {
-      return of({ badRequest: true });
-    }
-    if (err.status === 401) {
-      return of({ unAuthorized: true });
-    }
-    if (err.status === 403) {
-      return of({ notExist: true });
-    }
-    if (err.status === 404) {
-      return of({ notFound: true });
-    }
-    if (err.status === 409) {
-      return of({ isAlreadyExist: true });
-    }
-    if (err.status === 500 || err.status === 503) {
-      return of({ serverError: true });
-    }
-    return of({ anotherError: true });
-  }
-
-  public getUsers(): Observable<SignUpResponse[] | Errors> {
+  public getUsers(): Observable<SignUpResponse[] | void> {
     return this.http
       .get<SignUpResponse[]>(this.url + this.usersPath, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public getUser(userId: string): Observable<SignUpResponse | Errors> {
+  public getUser(userId: string): Observable<SignUpResponse | void> {
     return this.http
       .get<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
   public updateUser(
     userId: string,
     params: SignUpBody
-  ): Observable<SignUpResponse | Errors> {
+  ): Observable<SignUpResponse | void> {
     return this.http
       .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, params, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public deleteUser(userId: string): Observable<SignUpResponse | Errors> {
+  public deleteUser(userId: string): Observable<SignUpResponse | void> {
     return this.http
       .delete<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public signUp(params: SignUpBody): Observable<SignUpResponse | Errors> {
+  public signUp(params: SignUpBody): Observable<SignUpResponse | void> {
     return this.http.post<SignUpResponse>(this.url + this.signUpPath, params).pipe(
       map(value => value),
-      catchError(err => this.catchErrorDetailed(err))
+      catchError(async err => this.httpError.catchErrors(err))
     );
   }
 
-  public logIn(params: SignInBody): Observable<SignInResponseBody | Errors> {
+  public logIn(params: SignInBody): Observable<SignInResponseBody | void> {
     return this.http.post<SignInResponseBody>(this.url + this.logInPath, params).pipe(
       map(value => value),
-      catchError(err => this.catchErrorDetailed(err))
+      catchError(async err => this.httpError.catchErrors(err))
     );
   }
 
-  public getAllBoards(): Observable<Board[] | Errors> {
+  public getAllBoards(): Observable<Board[] | void> {
     return this.http
       .get<Board[]>(this.url + this.boardsPath, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public getBoard(boardId: string): Observable<Board | Errors> {
+  public getBoard(boardId: string): Observable<Board | void> {
     return this.http
       .get<Board>(this.url + this.boardsPath + '/' + boardId, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public createBoard(params: BoardBody): Observable<Board | Errors> {
+  public createBoard(params: BoardBody): Observable<Board | void> {
     return this.http
       .post<Board>(this.url + this.boardsPath, params, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public updateBoard(boardId: string, params: BoardBody): Observable<Board | Errors> {
+  public updateBoard(boardId: string, params: BoardBody): Observable<Board | void> {
     return this.http
       .put<Board>(this.url + this.boardsPath + '/' + boardId, params, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public deleteBoard(boardId: string): Observable<Board | Errors> {
+  public deleteBoard(boardId: string): Observable<Board | void> {
     return this.http
       .delete<Board>(this.url + this.boardsPath + '/' + boardId, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public getAllColumns(boardId: string): Observable<Column[] | Errors> {
+  public getAllColumns(boardId: string): Observable<Column[] | void> {
     return this.http
       .get<Column[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, {
         headers: this.headers,
       })
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public getColumn(boardId: string, columnId: string): Observable<Column | Errors> {
+  public getColumn(boardId: string, columnId: string): Observable<Column | void> {
     return this.http
       .put<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -200,11 +175,11 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public createColumn(boardId: string, params: ColumnBody): Observable<Column | Errors> {
+  public createColumn(boardId: string, params: ColumnBody): Observable<Column | void> {
     return this.http
       .post<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath,
@@ -213,7 +188,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
@@ -221,7 +196,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     params: ColumnBody
-  ): Observable<Column | Errors> {
+  ): Observable<Column | void> {
     return this.http
       .put<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -230,11 +205,11 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public deleteColumn(boardId: string, columnId: string): Observable<Column | Errors> {
+  public deleteColumn(boardId: string, columnId: string): Observable<Column | void> {
     return this.http
       .delete<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -242,11 +217,11 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
-  public getAllTasks(boardId: string, columnId: string): Observable<Task[] | Errors> {
+  public getAllTasks(boardId: string, columnId: string): Observable<Task[] | void> {
     return this.http
       .get<Task[]>(
         this.url +
@@ -263,7 +238,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
@@ -271,7 +246,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     taskId: string
-  ): Observable<Task | Errors> {
+  ): Observable<Task | void> {
     return this.http
       .get<Task>(
         this.url +
@@ -290,7 +265,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
@@ -298,7 +273,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     params: TaskBody
-  ): Observable<Task | Errors> {
+  ): Observable<Task | void> {
     return this.http
       .post<Task>(
         this.url +
@@ -316,7 +291,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
@@ -324,7 +299,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     taskId: string
-  ): Observable<Task | Errors> {
+  ): Observable<Task | void> {
     return this.http
       .delete<Task>(
         this.url +
@@ -343,7 +318,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 
@@ -352,7 +327,7 @@ export class HttpResponseService {
     columnId: string,
     taskId: string,
     params: TaskByIdBody
-  ): Observable<Task | Errors> {
+  ): Observable<Task | void> {
     return this.http
       .put<Task>(
         this.url +
@@ -372,7 +347,7 @@ export class HttpResponseService {
       )
       .pipe(
         map(value => value),
-        catchError(err => this.catchErrorDetailed(err))
+        catchError(async err => this.httpError.catchErrors(err))
       );
   }
 }

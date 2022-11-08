@@ -16,29 +16,29 @@ export class AuthService {
 
   signUp(data: SignUpBody): void {
     this.httpResponse.signUp(data).subscribe(resp => {
-      if ('_id' in resp) {
+      if (typeof resp === 'object' && '_id' in resp) {
         this.httpResponse
           .logIn({
             login: data.login,
             password: data.password,
           })
           .subscribe(respLogIn => {
-            if ('token' in respLogIn) {
+            if (typeof respLogIn === 'object' && 'token' in respLogIn) {
               this.setLogInConfigs(respLogIn);
             }
           });
       } else {
-        this.addInfoAboutError('failed to sign up, try later');
+        return;
       }
     });
   }
 
   logIn(data: SignInBody): void {
     this.httpResponse.logIn(data).subscribe(respLogIn => {
-      if ('token' in respLogIn) {
+      if (typeof respLogIn === 'object' && 'token' in respLogIn) {
         this.setLogInConfigs(respLogIn);
       } else {
-        this.addInfoAboutError('failed to log in, try later');
+        return;
       }
     });
   }
@@ -54,9 +54,5 @@ export class AuthService {
     this.isLogIn$.next(false);
     localStorage.clear();
     this.router.navigateByUrl('/welcome');
-  }
-
-  addInfoAboutError(text: string): void {
-    alert(text);
   }
 }
