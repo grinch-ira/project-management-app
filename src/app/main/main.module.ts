@@ -6,6 +6,7 @@ import { BoardCreationFormComponent, BoardItemComponent } from './components';
 import { MaterialModule } from '@material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from '@shared/shared.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     SharedModule,
   ],
 })

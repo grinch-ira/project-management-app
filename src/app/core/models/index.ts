@@ -5,3 +5,4 @@ export * from './files.model';
 export * from './points.model';
 export * from './tasks.model';
 export * from './users.model';
+export * from './modal-window.model';

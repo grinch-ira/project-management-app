@@ -16,26 +16,11 @@
   font-size: 26px;
 }
 
-.header-buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 40%;
-}
-
-.header-edit-profile,
-.header-add-board,
-.header-language,
-.header-logout,
-.header-login {
-  background-color: $blue;
-  border: none;
-}
-
-.mat-button {
-  color: $black;
+button {
+  margin-right: 5px;
 }
 
 a {
-  text-decoration: none;
   color: $blue;
+  text-decoration: none;
 }

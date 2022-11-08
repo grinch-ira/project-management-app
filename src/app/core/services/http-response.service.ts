@@ -13,7 +13,7 @@ import {
   TaskByIdBody,
 } from '@core/models';
 import { Errors } from '@core/models/http.model';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -32,12 +32,6 @@ export class HttpResponseService {
   columnsPath = '/columns';
 
   tasksPath = '/tasks';
-
-  isLogInFromStorage = !!Number(localStorage.getItem('isLogIn'));
-
-  isLogIn$ = new BehaviorSubject(this.isLogInFromStorage);
-
-  token = localStorage.getItem('token');
 
   headers = {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -120,25 +114,14 @@ export class HttpResponseService {
 
   public signUp(params: SignUpBody): Observable<SignUpResponse | Errors> {
     return this.http.post<SignUpResponse>(this.url + this.signUpPath, params).pipe(
-      map(value => {
-        this.isLogIn$.next(true);
-        localStorage.setItem('isLogIn', '1');
-        localStorage.setItem('userId', value._id);
-        return value;
-      }),
+      map(value => value),
       catchError(err => this.catchErrorDetailed(err))
     );
   }
 
   public logIn(params: SignInBody): Observable<SignInResponseBody | Errors> {
     return this.http.post<SignInResponseBody>(this.url + this.logInPath, params).pipe(
-      map(value => {
-        this.isLogIn$.next(true);
-        localStorage.setItem('isLogIn', '1');
-        localStorage.setItem('token', value.token);
-        localStorage.setItem('userId', value._id);
-        return value;
-      }),
+      map(value => value),
       catchError(err => this.catchErrorDetailed(err))
     );
   }
@@ -229,12 +212,8 @@ export class HttpResponseService {
         { headers: this.headers }
       )
       .pipe(
-        map(value => {
-          return value;
-        }),
-        catchError(err => {
-          return this.catchErrorDetailed(err);
-        })
+        map(value => value),
+        catchError(err => this.catchErrorDetailed(err))
       );
   }
 

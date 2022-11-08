@@ -28,6 +28,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DialogModule } from '@angular/cdk/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 
 const materialComponent: Array<object> = [
   MatButtonModule,
@@ -59,6 +60,7 @@ const materialComponent: Array<object> = [
   PortalModule,
   ScrollingModule,
   DialogModule,
+  HttpClientModule,
 ];
 @NgModule({
   imports: [materialComponent],

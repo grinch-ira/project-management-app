@@ -16,18 +16,8 @@ h2 {
   text-align: center;
 }
 
-.btn {
-  width: 80px;
-  height: 24px;
-}
-
-.mat-blue {
-  margin-left: 100px;
-  color: variables.$white;
-  font-weight: 400;
-  font-size: 12px;
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  line-height: 24px;
-  background-color: variables.$blue;
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 38px auto 10px;
 }
