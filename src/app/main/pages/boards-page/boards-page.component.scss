@@ -3,7 +3,11 @@
   @include layout.align-center(24px);
   width: 100%;
   max-width: 1440px;
-  .boards {
+  .main__header {
+    text-align: center;
+  }
+
+  .main__boards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
