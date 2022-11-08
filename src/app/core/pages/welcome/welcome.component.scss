@@ -58,6 +58,13 @@
   background-color: $blue;
   border: none;
   border-radius: 50%;
+  transition: 0.3s;
+}
+
+.start-planing:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: all 0.5s ease-out;
 }
 
 .start-planing::after,
