@@ -1,18 +1,19 @@
 import { Component, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '@auth/services/auth.service';
 import { SignInBody } from '@core/models';
-import { HttpResponseService } from '@core/services/http-response.service';
 import { config } from './login.constants';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private httpResponse: HttpResponseService, private router: Router) {}
+  constructor(private auth: AuthService) {}
 
   authForm = new FormGroup({
     login: new FormControl('', [
@@ -35,17 +36,6 @@ export class LoginComponent {
     if (this.authForm.invalid) {
       return;
     }
-
-    this.httpResponse.logIn(data).subscribe(resp => {
-      if ('token' in resp) {
-        this.router.navigateByUrl('/main');
-      } else {
-        this.addInfoAboutError('failed to log in, try later');
-      }
-    });
-  }
-
-  addInfoAboutError(text: string): void {
-    alert(text);
+    this.auth.logIn(data);
   }
 }

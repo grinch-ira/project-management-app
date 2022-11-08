@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '@auth/services/auth.service';
 import { SignUpBody } from '@core/models/auth.model';
-import { HttpResponseService } from '@core/services/http-response.service';
 import { config } from './registration.constants';
 
 @Component({
@@ -36,33 +35,13 @@ export class RegistrationComponent {
 
   controlPassword = this.authForm.get('password') as FormControl;
 
-  constructor(private httpResponse: HttpResponseService, private router: Router) {}
+  constructor(private auth: AuthService) {}
 
   onSingUpButton(): void {
     if (this.authForm.invalid) {
       return;
     }
     const data = this.authForm.value as SignUpBody;
-    this.httpResponse.signUp(data).subscribe(resp => {
-      if ('_id' in resp) {
-        this.httpResponse
-          .logIn({
-            login: data.login,
-            password: data.password,
-          })
-          .subscribe(respLogIn => {
-            if ('token' in respLogIn) {
-              localStorage.setItem('token', respLogIn.token);
-              this.router.navigateByUrl('/main');
-            }
-          });
-      } else {
-        this.addInfoAboutError('failed to sign up, try later');
-      }
-    });
-  }
-
-  addInfoAboutError(text: string): void {
-    alert(text);
+    this.auth.signUp(data);
   }
 }

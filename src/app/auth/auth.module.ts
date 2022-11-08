@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing-module';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '@shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpResponseService } from '@core/services/http-response.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { SharedModule } from '@shared/shared.module';
     ReactiveFormsModule,
     AuthRoutingModule,
     SharedModule,
+    HttpClientModule,
   ],
+  providers: [HttpResponseService],
 })
 export class AuthModule {}

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpResponseService } from '@core/services/http-response.service';
+import { AuthService } from '@auth/services/auth.service';
+import { ModalWindowService } from '@core/services';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,25 @@ import { HttpResponseService } from '@core/services/http-response.service';
 export class HeaderComponent {
   isLogIn = false;
 
-  isLogInBehavior = this.httpResponse.isLogIn$.subscribe(value => {
+  isLogInBehavior = this.auth.isLogIn$.subscribe(value => {
     this.isLogIn = value;
     return value;
   });
 
-  constructor(private httpResponse: HttpResponseService) {}
+  constructor(private auth: AuthService, private modalService: ModalWindowService) {}
+
+  logOut(): void {
+    this.modalService.modalHandler$.next({
+      type: 'confirm',
+      emitter: 'User',
+      action: 'logOut',
+      payload: '',
+    });
+    this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => {
+      if (result === 'confirm') {
+        this.auth.logOut();
+      }
+      return;
+    });
+  }
 }
