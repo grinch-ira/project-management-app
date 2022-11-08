@@ -27,7 +27,6 @@ export class BoardsPageComponent implements OnInit {
       .getUsers()
       .pipe(
         switchMap(res => {
-          console.log(res);
           if (res instanceof Array) {
             this.usersService.users$.next(res);
           }
@@ -40,7 +39,6 @@ export class BoardsPageComponent implements OnInit {
       .getAllBoards()
       .pipe(
         switchMap(res => {
-          console.log(res);
           if (res instanceof Array) {
             this.boardsService.boards$.next(res);
           }

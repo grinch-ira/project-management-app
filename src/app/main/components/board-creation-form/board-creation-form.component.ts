@@ -38,7 +38,6 @@ export class BoardCreationFormComponent implements OnInit {
   }
 
   createBoard(): void {
-    console.log(this.boardForm.value);
     const board = {
       title: this.boardForm.get('title')?.value as string,
       owner: localStorage.getItem('userId') || '',
