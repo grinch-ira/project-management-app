@@ -52,7 +52,7 @@ export class BoardPageComponent implements OnInit {
         order: NaN,
         boardId: '',
       })
-      .map((col: unknown, i: number) => {
+      .map((_, i: number) => {
         return {
           _id: `CID${i}`,
           title: `Column #${i}`,

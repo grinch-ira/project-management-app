@@ -1,4 +1,5 @@
 @use '../../../../variables.scss' as vars;
+@use '../../../../styles/animations' as animations;
 
 :host {
   height: 100%;
@@ -8,9 +9,26 @@
   overflow-y: auto;
   flex: none;
 
+  border-radius: 8px;
+
   background-color: scale-color(vars.$light-grey, $alpha: -50%);
+  backdrop-filter: blur(4px);
 
   .column__header {
     height: 32px;
   }
+
+  .column__container {
+    flex-grow: 1;
+    margin: 8px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 8px;
+  }
 }
+
+@include animations.drag-and-drop-animation;

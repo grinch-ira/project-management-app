@@ -3,3 +3,21 @@
   class="column__header">
   <span>{{ columnData.title }}</span>
 </mat-toolbar>
+
+<div
+  class="column__container"
+  cdkDropList
+  cdkDropListAutoScrollStep="15"
+  (cdkDropListDropped)="drop($event)">
+  <app-task
+    cdkDrag
+    *ngFor="let task of tasksData"
+    [taskData]="task">
+  </app-task>
+</div>
+
+<button
+  mat-raised-button
+  color="primary">
+  Create task
+</button>

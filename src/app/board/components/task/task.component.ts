@@ -7,5 +7,5 @@ import { Task } from '@core/models';
   styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent {
-  @Input() task!: Task;
+  @Input() taskData!: Task;
 }
