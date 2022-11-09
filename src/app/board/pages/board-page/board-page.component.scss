@@ -1,0 +1,54 @@
+@use '../../../../styles/layout' as layout;
+@use '../../../../variables.scss' as vars;
+
+:host {
+  height: calc(100vh - layout.$header-height - layout.$footer-height);
+  padding: 16px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  .board__controls {
+    margin-bottom: 16px;
+  }
+
+  .board__container {
+    width: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-x: auto;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    column-gap: 16px;
+
+    background-color: scale-color(vars.$light-grey, $alpha: -50%);
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Animate an item that has been dropped. */
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

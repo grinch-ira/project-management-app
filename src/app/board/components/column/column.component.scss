@@ -1,0 +1,16 @@
+@use '../../../../variables.scss' as vars;
+
+:host {
+  height: 100%;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: none;
+
+  background-color: scale-color(vars.$light-grey, $alpha: -50%);
+
+  .column__header {
+    height: 32px;
+  }
+}

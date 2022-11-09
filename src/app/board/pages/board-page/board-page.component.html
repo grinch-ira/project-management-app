@@ -1,1 +1,21 @@
-<p>board-page works!</p>
+<form class="board__controls">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="goToMain()">
+    Go to main
+  </button>
+</form>
+
+<div
+  class="board__container"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  cdkDropListAutoScrollStep="15"
+  (cdkDropListDropped)="drop($event)">
+  <app-column
+    cdkDrag
+    *ngFor="let column of columns"
+    [columnData]="column">
+  </app-column>
+</div>
