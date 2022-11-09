@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Column, Task } from '@core/models';
 
@@ -10,15 +10,32 @@ import { Column, Task } from '@core/models';
 export class ColumnComponent implements OnInit {
   @Input() columnData!: Column;
 
+  @Input() columnsIds!: string[];
+
   tasksData: Task[] = [];
+
+  data: string[] = [];
 
   ngOnInit(): void {
     //TODO: Release real tasks request
     this.tasksData = this.getTasks();
   }
 
-  drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<Task[]>): void {
+    if (event.previousContainer === event.container) {
+      moveItemInArray<Task>(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem<Task>(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
     this.updateOrder();
 
     //TODO: Send to server actual set of tasks
@@ -29,6 +46,7 @@ export class ColumnComponent implements OnInit {
       return {
         ...task,
         order: i,
+        columnId: this.columnData._id,
       };
     });
   }

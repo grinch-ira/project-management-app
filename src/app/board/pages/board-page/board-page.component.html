@@ -14,8 +14,9 @@
   cdkDropListAutoScrollStep="15"
   (cdkDropListDropped)="drop($event)">
   <app-column
-    cdkDrag
     *ngFor="let column of columns"
-    [columnData]="column">
+    cdkDrag
+    [columnData]="column"
+    [columnsIds]="getArrOfIds()">
   </app-column>
 </div>

@@ -30,9 +30,14 @@ export class BoardPageComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray<Column>(this.columns, event.previousIndex, event.currentIndex);
+
     this.updateOrder();
 
     //TODO: Send to server actual set of columns
+  }
+
+  getArrOfIds(): string[] {
+    return this.columns.map(col => `CID_${col._id}`);
   }
 
   private updateOrder(): void {
