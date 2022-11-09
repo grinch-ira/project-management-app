@@ -12,6 +12,8 @@
 
   .board__controls {
     margin-bottom: 16px;
+    display: flex;
+    column-gap: 16px;
   }
 
   .board__container {
@@ -27,6 +29,18 @@
     column-gap: 16px;
 
     background-color: scale-color(vars.$light-grey, $alpha: -50%);
+
+    .board__button-create {
+      display: block;
+      width: auto;
+      filter: opacity(0.3);
+
+      transition: filter 0.2s ease-out;
+
+      &:hover {
+        filter: opacity(0.6);
+      }
+    }
   }
 }
 

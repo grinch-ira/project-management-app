@@ -11,7 +11,7 @@
     type="button"
     mat-raised-button
     color="primary">
-    AddColumn
+    Create Column
   </button>
 </form>
 
@@ -28,4 +28,13 @@
     [columnData]="column"
     [columnsIds]="getArrOfIds()">
   </app-column>
+
+  <button
+    *ngIf="!columns.length"
+    type="button"
+    mat-raised-button
+    class="board__button-create"
+    color="warn">
+    Create column
+  </button>
 </div>
