@@ -6,6 +6,7 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
@@ -25,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     RouterModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [HttpResponseService],
   exports: [
