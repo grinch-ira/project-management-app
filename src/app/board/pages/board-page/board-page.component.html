@@ -1,14 +1,23 @@
 <form class="board__controls">
   <button
+    type="button"
     mat-raised-button
     color="primary"
     (click)="goToMain()">
     Go to main
   </button>
+
+  <button
+    type="button"
+    mat-raised-button
+    color="primary">
+    AddColumn
+  </button>
 </form>
 
 <div
   class="board__container"
+  cdkScrollable
   cdkDropList
   cdkDropListOrientation="horizontal"
   cdkDropListAutoScrollStep="15"

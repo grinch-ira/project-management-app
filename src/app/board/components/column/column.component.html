@@ -8,9 +8,9 @@
   class="column__container"
   id="CID_{{ columnData._id }}"
   cdkDropList
+  cdkDropListAutoScrollStep="15"
   [cdkDropListData]="tasksData"
   [cdkDropListConnectedTo]="columnsIds"
-  cdkDropListAutoScrollStep="15"
   (cdkDropListDropped)="drop($event)">
   <app-task
     cdkDrag

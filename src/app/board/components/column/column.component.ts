@@ -36,12 +36,12 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
     }
-    this.updateOrder();
+    this.updateOrderAndIds();
 
     //TODO: Send to server actual set of tasks
   }
 
-  private updateOrder(): void {
+  private updateOrderAndIds(): void {
     this.tasksData = this.tasksData.map((task, i) => {
       return {
         ...task,
