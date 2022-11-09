@@ -1,8 +1,8 @@
 <div class="container">
   <form [formGroup]="authForm">
-    <h2>Log In</h2>
+    <h2>{{'authorization.logIn' | translate}}</h2>
     <mat-form-field appearance="standard">
-      <mat-label for="inputText2">Login</mat-label>
+      <mat-label for="inputText2">{{'authorization.login' | translate}}</mat-label>
       <div [formGroup]="authForm">
         <input
           matInput
@@ -17,7 +17,7 @@
       <mat-error *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
-      <mat-label for="inputPassword3">Password</mat-label>
+      <mat-label for="inputPassword3">{{'authorization.password' | translate}}</mat-label>
       <div [formGroup]="authForm">
         <input
           matInput
@@ -37,6 +37,6 @@
     </div>
 
     <tr></tr>
-    <a routerLink="/login/registration">Don't have an account yet? Sing Up!</a>
+    <a routerLink="/login/registration">{{'authorization.dontHaveAccount' | translate}}</a>
   </form>
 </div>

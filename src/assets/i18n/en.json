@@ -1,0 +1,40 @@
+{
+  "welcomepage": {
+    "welcomeTitle": "Enjoy your project management",
+    "welcomeDescription": "Competent planning is an integral part of our life. Whether it is an apartment renovation, a birthday party or a project at work, it is always important to have a clear structure of the workflow for a more successful implementation of any event. That is why the task manager is an indispensable tool for daily task planning. Why do I need a task manager? It will simplify the workflow, make it more transparent, and help plan and monitor the implementation of projects from a variety of professional fields.",
+    "startplanningbutton":"Start planning!",
+    "buttonsTitle":"How does it work?",
+    "createBoards":"Create boards",
+    "createColumns":"Create columns",
+    "createTasks":"Create tasks",
+    "developers":{
+      "developersTitle":"ABOUT DEVELOPERS",
+      "iraDevName":"Iryna",
+      "iraDevDesc":"I've been learning Front-end for a year. Before that I was far from coding, but I am aimed at switching my career. I am sure that I will manage.",
+      "yuliaDevName":"Yulia",
+      "yuliaDevDesc":"Hello! I'm Yulia - a Frontend Developer with almost 1 year of practical experience. Interested in working with inspirational people, creating new contemporary projects, learning IT technologies. Find out more about me on",
+      "pavelDevName":"Pavel",
+      "pavelDevDesc":""
+    }
+  },
+  "footer":{
+    "creators":"Creators"
+  },
+  "header":{
+    "settingsTitle":"Settings",
+    "addBoard":"Add Board",
+    "translation":"Language",
+    "logInSignUp":"Login/Sign Up"
+  },
+  "authorization":{
+    "logIn":"Log In",
+    "login":"Login",
+    "password":"Password",
+    "dontHaveAccount":"Don't have an account yet? Sing Up!"
+  },
+  "registration":{
+    "name":"Name",
+    "signUp":"Sign Up",
+    "haveAccount":"Already have an account? Log In!"
+  }
+}
