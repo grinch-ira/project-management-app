@@ -55,7 +55,8 @@
     "boardsFormTitle": "Create board",
     "boardName": "Name",
     "boardSelectUser": "User",
-    "createBoardButton": "Create board"
+    "createBoardButton": "Create board",
+    "enterBoardTitlePlaceholder":"Enter the board title"
   },
   "DELETE_BOARD": {
     "title": "Delete Board",

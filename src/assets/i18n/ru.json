@@ -55,7 +55,8 @@
     "boardsFormTitle":"Создать доску",
     "boardName":"Название",
     "boardSelectUser":"Пользователи",
-    "createBoardButton":"Создать доску"
+    "createBoardButton":"Создать доску",
+    "enterBoardTitlePlaceholder":"Введите название доски"
   },
   "DELETE_BOARD": {
     "title": "Удалить доску",
