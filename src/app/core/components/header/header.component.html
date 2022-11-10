@@ -15,20 +15,19 @@
             add_box
           </mat-icon>
         </button>
-        <!-- TODO: оформить красиво выпадающий список через кнопку -->
-        <button color="primary" mat-raised-button title="{{ 'header.translation' | translate}}" >
+        <button [matMenuTriggerFor]="languageMenu" color="primary" mat-raised-button title="{{ 'header.translation' | translate}}" >
           <mat-icon>g_translate</mat-icon>
-            <mat-select (selectionChange) = "changeLanguage($event)">
-              <mat-option value="en">en</mat-option>
-              <mat-option value="ru">ru</mat-option>
-            </mat-select>
+            <mat-menu #languageMenu="matMenu">
+              <button mat-menu-item (click)="translate.use('en')">en</button>
+              <button mat-menu-item (click)="translate.use('ru')">ru</button>
+            </mat-menu>
         </button>
         <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="{{ 'header.logInSignUp' | translate}}">
           <mat-icon>
             login
           </mat-icon>
         </button>
-        <button *ngIf="isLogIn" color="primary" mat-raised-button title="Logout" (click)="logOut()">
+        <button *ngIf="isLogIn" color="primary" mat-raised-button title="{{ 'header.logOut' | translate}}" (click)="logOut()">
           <mat-icon>
             logout
           </mat-icon>

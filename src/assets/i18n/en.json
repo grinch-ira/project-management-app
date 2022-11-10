@@ -24,7 +24,8 @@
     "settingsTitle": "Settings",
     "addBoard": "Add Board",
     "translation": "Language",
-    "logInSignUp": "Login/Sign Up"
+    "logInSignUp": "Login/Sign Up",
+    "logOut":"Logout"
   },
   "authorization": {
     "logIn": "Log In",

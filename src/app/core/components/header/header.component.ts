@@ -3,7 +3,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { ModalWindowService } from '@core/services';
 import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSelectChange } from '@angular/material/select';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,8 +11,6 @@ import { MatSelectChange } from '@angular/material/select';
 })
 export class HeaderComponent {
   isLogIn = false;
-
-  public defaultLanguage: string = 'en';
 
   isLogInBehavior = this.auth.isLogIn$.subscribe(value => {
     this.isLogIn = value;
@@ -38,9 +36,5 @@ export class HeaderComponent {
       }
       return;
     });
-  }
-
-  public changeLanguage(e: MatSelectChange): void {
-    this.translate.use(e.value);
   }
 }

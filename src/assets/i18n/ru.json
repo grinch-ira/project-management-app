@@ -24,7 +24,8 @@
     "settingsTitle":"Настройки",
     "addBoard":"Создать доску",
     "translation":"Язык",
-    "logInSignUp":"Войти / зарегистрироваться"
+    "logInSignUp":"Войти / зарегистрироваться",
+    "logOut":"Выйти"
   },
   "authorization":{
     "logIn":"Войти",
