@@ -9,13 +9,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -31,14 +26,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MaterialModule,
     RouterModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'en',
-    }),
+    TranslateModule,
   ],
   providers: [HttpResponseService],
   exports: [

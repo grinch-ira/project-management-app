@@ -47,6 +47,18 @@
     "longerThanThree":"*ваше имя должно быть длиннее 3 символов",
     "noLongerThanTwentyName":"*ваше имя должно быть не длиннее 20 символов",
     "onlySmallOrNumbers":"*следует использовать только маленькие буквы или цифры",
-    "noLongerThanTwentyPassword":"*ваш пароль должен быть не длиннее 20 символов"
+    "noLongerThanTwentyPassword":"*ваш пароль должен быть не длиннее 20 символов",
+    "enterBoardTitle":"Пожалуйста, введите название доски"
+  },
+  "mainPage":{
+    "mainPageTitle":"Доски",
+    "boardsFormTitle":"Создать доску",
+    "boardName":"Название",
+    "boardSelectUser":"Пользователи",
+    "createBoardButton":"Создать доску"
+  },
+  "DELETE_BOARD": {
+    "title": "Удалить доску",
+    "description": "Вы уверены, что хотите удалить эту доску?"
   }
 }
