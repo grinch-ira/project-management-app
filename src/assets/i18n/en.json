@@ -25,7 +25,7 @@
     "addBoard": "Add Board",
     "translation": "Language",
     "logInSignUp": "Login/Sign Up",
-    "logOut":"Logout"
+    "logOut": "Logout"
   },
   "authorization": {
     "logIn": "Log In",
@@ -57,10 +57,30 @@
     "boardName": "Name",
     "boardSelectUser": "User",
     "createBoardButton": "Create board",
-    "enterBoardTitlePlaceholder":"Enter the board title"
+    "enterBoardTitlePlaceholder": "Enter the board title"
   },
-  "DELETE_BOARD": {
+  "deleteBoard": {
     "title": "Delete Board",
     "description": "Do you really want to delete the board?"
+  },
+  "deleteColumn": {
+    "title": "Delete Column",
+    "description": "Do you really want to delete the column?"
+  },
+  "deleteTask": {
+    "title": "Delete Task",
+    "description": "Do you really want to delete the task?"
+  },
+  "deleteUser": {
+    "title": "Delete User",
+    "description": "Do you really want to delete the User?"
+  },
+  "logOut": {
+    "title": "Log Out",
+    "description": "Do you really want to log out?"
+  },
+  "errorHTTP": {
+    "title": "HTTP Error",
+    "description": ""
   }
 }
