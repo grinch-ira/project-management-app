@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpResponseService } from '@core/services/http-response.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpResponseService } from '@core/services/http-response.service';
     AuthRoutingModule,
     SharedModule,
     HttpClientModule,
+    TranslateModule,
   ],
   providers: [HttpResponseService],
 })
