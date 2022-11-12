@@ -84,5 +84,8 @@
       "title": "HTTP Error",
       "description": ""
     }
-  }
+  },
+  "modalWindowYes":"Yes",
+  "modalWindowNo":"No",
+  "modalWindowOk":"Ok"
 }

@@ -84,5 +84,8 @@
       "title": "HTTP ошибка",
       "description": ""
     }
-  }
+  },
+  "modalWindowYes":"Да",
+  "modalWindowNo":"Нет",
+  "modalWindowOk":"Хорошо"
 }
