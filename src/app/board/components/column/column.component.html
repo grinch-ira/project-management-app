@@ -2,6 +2,12 @@
   color="primary"
   class="column__header">
   <span>{{ columnData.title }}</span>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    (click)="deleteColumn()">
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div

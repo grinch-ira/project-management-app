@@ -28,7 +28,8 @@
     *ngFor="let column of columns"
     cdkDrag
     [columnData]="column"
-    [columnsIds]="getArrOfIds()">
+    [columnsIds]="getArrOfIds()"
+    [boardId]="boardId">
   </app-column>
 
   <button

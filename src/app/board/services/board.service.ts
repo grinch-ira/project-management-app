@@ -15,4 +15,8 @@ export class BoardService {
   addColumn(col: Column): void {
     this.columns.getValue().push(col);
   }
+
+  deleteColumn(id: string): void {
+    this.columns.next(this.columns.getValue().filter(col => col._id !== id));
+  }
 }
