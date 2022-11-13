@@ -18,7 +18,6 @@ export class ColumnFormComponent {
         Validators.required,
       ],
     ],
-    order: [this.boardService.getColumnLastOrder()],
   });
 
   constructor(
@@ -28,10 +27,15 @@ export class ColumnFormComponent {
   ) {}
 
   createColumn(): void {
-    this.apiService.createColumn(this.boardId, this.columnForm.value).subscribe(col => {
-      if ('_id' in col) {
-        this.boardService.addColumn(col);
-      }
-    });
+    this.apiService
+      .createColumn(this.boardId, {
+        ...this.columnForm.value,
+        order: this.boardService.getColumnLastOrder(),
+      })
+      .subscribe(col => {
+        if ('_id' in col) {
+          this.boardService.addColumn(col);
+        }
+      });
   }
 }

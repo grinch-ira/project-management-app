@@ -60,7 +60,7 @@ export class BoardPageComponent implements OnInit {
   private getColumns(): void {
     this.apiService.getAllColumns(this.boardId).subscribe(cols => {
       if (cols instanceof Array) {
-        this.boardService.columns.next(cols);
+        this.boardService.columns.next(cols.sort((a, b) => a.order - b.order));
       }
     });
   }

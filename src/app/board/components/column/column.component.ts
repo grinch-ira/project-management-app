@@ -4,7 +4,7 @@ import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
-import { take } from 'rxjs';
+import { EMPTY, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-column',
@@ -61,15 +61,34 @@ export class ColumnComponent implements OnInit {
       payload: this.columnData.title,
     });
 
-    this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => {
-      if (result === 'confirm') {
-        this.apiService.deleteColumn(this.boardId, this.columnData._id).subscribe(col => {
+    this.modalService.modalEmitter$
+      .pipe(
+        take(1),
+        // Delete the column on server
+        switchMap(res =>
+          res === 'confirm'
+            ? this.apiService.deleteColumn(this.boardId, this.columnData._id)
+            : EMPTY
+        ),
+        // Delete the column in board service
+        tap(col => {
           if ('_id' in col) {
             this.boardService.deleteColumn(col._id);
           }
-        });
-      }
-    });
+        }),
+        //Update column order on server
+        switchMap(res =>
+          '_id' in res
+            ? this.apiService.updateSetOfColumns(this.boardService.getNewColumnOrders())
+            : EMPTY
+        )
+      )
+      .subscribe(result => {
+        if (result instanceof Array) {
+          //Update column order in board service
+          this.boardService.updateColumnsIndexes();
+        }
+      });
   }
 
   private updateOrderAndIds(): void {
