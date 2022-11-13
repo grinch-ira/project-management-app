@@ -41,11 +41,8 @@ export class BoardPageComponent implements OnInit {
   }
 
   private updateOrder(): void {
-    this.columns = this.columns.map((col, i) => {
-      return {
-        ...col,
-        order: i,
-      };
+    this.columns.forEach((col, i) => {
+      col.order = i;
     });
   }
 
