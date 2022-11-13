@@ -9,7 +9,7 @@ export class BoardService {
   columns: BehaviorSubject<Column[]> = new BehaviorSubject<Column[]>([]);
 
   getColumnLastOrder(): number {
-    return this.columns.getValue().length;
+    return Math.max(...this.columns.getValue().map(col => col.order));
   }
 
   addColumn(col: Column): void {
