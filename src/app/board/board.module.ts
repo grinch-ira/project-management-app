@@ -8,12 +8,14 @@ import { TaskComponent } from './components/task/task.component';
 import { BoardRoutingModule } from './board-routing.module';
 import { MaterialModule } from '@material/material.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ColumnFormComponent } from './components/column-form/column-form.component';
 
 @NgModule({
   declarations: [
     BoardPageComponent,
     ColumnComponent,
     TaskComponent,
+    ColumnFormComponent,
   ],
   imports: [
     CommonModule,
