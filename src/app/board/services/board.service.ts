@@ -14,6 +14,5 @@ export class BoardService {
 
   addColumn(col: Column): void {
     this.columns.getValue().push(col);
-    console.log(this.columns.getValue());
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { BoardService } from '@board/services/board.service';
+import { BoardService } from '@board/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 
 @Component({

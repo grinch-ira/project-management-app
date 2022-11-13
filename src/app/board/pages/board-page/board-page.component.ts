@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BoardService } from '@board/services';
 import { Column } from '@core/models';
+import { HttpResponseService } from '@core/services/http-response.service';
 
 @Component({
   selector: 'app-board-page',
@@ -13,7 +15,12 @@ export class BoardPageComponent implements OnInit {
 
   columns: Column[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private apiService: HttpResponseService,
+    private boardService: BoardService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -21,7 +28,11 @@ export class BoardPageComponent implements OnInit {
     });
 
     //TODO: Release real columns request
-    this.columns = this.getColumns();
+    this.boardService.columns.subscribe(cols => {
+      this.columns = cols;
+    });
+
+    this.getColumns();
   }
 
   goToMain(): void {
@@ -46,21 +57,11 @@ export class BoardPageComponent implements OnInit {
     });
   }
 
-  private getColumns(): Column[] {
-    return new Array(6)
-      .fill({
-        _id: '',
-        title: '',
-        order: NaN,
-        boardId: '',
-      })
-      .map((_, i: number) => {
-        return {
-          _id: `CID${i}`,
-          title: `Column #${i}`,
-          order: i,
-          boardId: this.boardId,
-        };
-      });
+  private getColumns(): void {
+    this.apiService.getAllColumns(this.boardId).subscribe(cols => {
+      if (cols instanceof Array) {
+        this.boardService.columns.next(cols);
+      }
+    });
   }
 }
