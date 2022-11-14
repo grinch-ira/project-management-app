@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs';
 import { ModalWindowService } from './modal-window.service';
 
 @Injectable({
@@ -19,6 +18,5 @@ export class HttpErrorHandlerService {
         type: 'custom',
       },
     });
-    this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => result);
   }
 }
