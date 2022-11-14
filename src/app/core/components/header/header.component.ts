@@ -21,11 +21,6 @@ export class HeaderComponent {
     return value;
   });
 
-  constructor(
-    private auth: AuthService,
-    private modalService: ModalWindowService,
-    public translate: TranslateService
-  ) {}
   userUpdateForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -55,7 +50,8 @@ export class HeaderComponent {
     private auth: AuthService,
     private modalService: ModalWindowService,
     private userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public translate: TranslateService
   ) {}
 
   logOut(): void {
