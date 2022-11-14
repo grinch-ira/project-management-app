@@ -22,6 +22,8 @@ export class ColumnComponent implements OnInit {
 
   data: string[] = [];
 
+  public isCreateVisible: boolean = false;
+
   constructor(
     private apiService: HttpResponseService,
     private boardService: BoardService,
@@ -125,5 +127,13 @@ export class ColumnComponent implements OnInit {
           columnId: '',
         };
       });
+  }
+
+  openCreateTaskForm(value: boolean): void {
+    this.isCreateVisible = value;
+  }
+
+  public closeModal(): void {
+    this.isCreateVisible = false;
   }
 }

@@ -1,0 +1,29 @@
+<div class="wrapper">
+<form [formGroup]="formGroup" class="create-task-form">
+  <h2 class="create-task-title">Create Task</h2>
+  <div class="create-task-text">
+  <mat-form-field appearance="outline">
+    <mat-label>Task title</mat-label>
+      <input
+        matInput
+        placeholder="Input task title"
+        type="text"
+        formControlName="taskTitle"
+        class="form-control"/>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Task description</mat-label>
+      <input
+        matInput
+        placeholder="Input task description"
+        formControlName="taskDescription"
+        type="text"
+        class="form-control"/>
+  </mat-form-field>
+</div>
+  <div class="buttons">
+    <button mat-raised-button color="primary" type="button">Add</button>
+    <button mat-raised-button color="primary" type="button" (click)="closeModal()" >Cancel</button>
+  </div>
+</form>
+</div>
