@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '@auth/services/auth.service';
@@ -13,7 +13,7 @@ import { config } from './header.constants';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isLogIn = false;
 
   isLogInBehavior = this.auth.isLogIn$.subscribe(value => {
@@ -53,6 +53,10 @@ export class HeaderComponent {
     public dialog: MatDialog,
     public translate: TranslateService
   ) {}
+
+  ngOnInit(): void {
+    this.translate.currentLang = 'en';
+  }
 
   logOut(): void {
     this.modalService.modalHandler$.next({
