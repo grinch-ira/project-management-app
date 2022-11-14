@@ -10,7 +10,7 @@
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'message'"
     (click)="close('close')">
-    Ok
+    {{'modalWindowOk' | translate}}
   </button>
 
   <button
@@ -19,7 +19,7 @@
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'confirm'"
     (click)="close('confirm')">
-    Yes
+    {{'modalWindowYes' | translate}}
   </button>
 
   <button
@@ -29,6 +29,6 @@
     class="mat-raised-button mat-primary"
     *ngIf="data.type === 'confirm'"
     (click)="close('skip')">
-    No
+    {{'modalWindowNo' | translate}}
   </button>
 </div>
