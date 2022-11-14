@@ -10,7 +10,7 @@ export interface TaskByIdBody extends TaskBody {
   columnId: string;
 }
 
-export interface Task extends TaskBody {
+export interface Task extends TaskByIdBody {
   _id: string;
   boardId: string;
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth/guards/auth.guard';
+import { WelcomeComponent } from '@core/pages';
 import { NotFoundComponent } from '@core/pages/not-found/not-found.component';
 
 const routes: Routes = [
@@ -14,11 +15,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'board/:id',
+    path: 'board',
     loadChildren: () => import('./board/board.module').then(m => m.BoardModule),
     canActivate: [AuthGuard],
   },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
   {
     path: '**',
     component: NotFoundComponent,

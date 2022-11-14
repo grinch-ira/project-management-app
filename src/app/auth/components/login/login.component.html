@@ -1,28 +1,42 @@
 <div class="container">
   <form [formGroup]="authForm">
-    <h2>Log In</h2>
+    <h2>{{'authorization.logIn' | translate}}</h2>
     <mat-form-field appearance="standard">
-      <mat-label for="inputText2">Login</mat-label>
+      <mat-label for="inputText2">{{'authorization.login' | translate}}</mat-label>
       <div [formGroup]="authForm">
-        <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin" autocomplete="new-password">
+        <input
+          matInput
+          type="text"
+          formControlName="login"
+          class="form-control"
+          id="inputText2"
+          [formControl]="controlLogin"
+          autocomplete="new-password" />
       </div>
-      <mat-error *ngIf="controlLogin?.errors?.['required']">*please enter a login email</mat-error>
-      <mat-error *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</mat-error>
+      <mat-error *ngIf="controlLogin?.errors?.['required']">{{'errors.enterLoginEmail' | translate}}</mat-error>
+      <mat-error *ngIf="controlLogin?.errors?.['email']">{{'errors.invalidLoginEmail' | translate}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
-      <mat-label for="inputPassword3">Password</mat-label>
+      <mat-label for="inputPassword3">{{'authorization.password' | translate}}</mat-label>
       <div [formGroup]="authForm">
-        <input matInput formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" autocomplete="new-password">
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="inputPassword3"
+          [formControl]="controlPassword"
+          autocomplete="new-password" />
       </div>
-      <mat-error *ngIf="controlPassword?.errors?.['required']">*please enter a password</mat-error>
-      <mat-error *ngIf="controlPassword?.errors?.['minlength']">*your password should be longer than 8</mat-error>
-      <mat-error *ngIf="controlPassword?.errors?.['pattern']">*your password should be used uppercase and lowercase letters, numbers, special character</mat-error>
+      <mat-error *ngIf="controlPassword?.errors?.['required']">{{'errors.enterPassword' | translate}}</mat-error>
+      <mat-error *ngIf="controlPassword?.errors?.['minlength']">{{'errors.longerThanEight' | translate}}</mat-error>
+      <mat-error *ngIf="controlPassword?.errors?.['pattern']">{{'errors.usedUpperLowerNumberSpecial' | translate}}</mat-error>
     </mat-form-field>
     <div class="button">
-      <button mat-raised-button color="primary" [disabled]="authForm.invalid" (click)="onLogInButton()" type="submit">Log In</button>
+      <button mat-raised-button color="primary" [disabled]="authForm.invalid" (click)="onLogInButton()" type="submit">{{'authorization.logIn' | translate}}</button>
     </div>
 
     <tr></tr>
-    <a routerLink="/login/registration">Don't have an account yet? Sing Up!</a>
+    <a routerLink="/login/registration">{{'authorization.dontHaveAccount' | translate}}</a>
   </form>
 </div>

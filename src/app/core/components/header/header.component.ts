@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '@auth/services/auth.service';
 import { ModalWindowService } from '@core/services';
 import { take } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,11 @@ export class HeaderComponent {
     return value;
   });
 
-  constructor(private auth: AuthService, private modalService: ModalWindowService) {}
+  constructor(
+    private auth: AuthService,
+    private modalService: ModalWindowService,
+    public translate: TranslateService
+  ) {}
 
   logOut(): void {
     this.modalService.modalHandler$.next({

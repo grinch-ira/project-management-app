@@ -1,0 +1,23 @@
+@use '../../../../variables.scss' as vars;
+
+:host {
+  display: block;
+  min-height: 160px;
+  max-height: 480px;
+  width: 100%;
+  overflow: hidden;
+
+  flex: none;
+  border-radius: 8px;
+
+  background-color: scale-color(vars.$light-grey, $alpha: -50%);
+  backdrop-filter: blur(4px);
+
+  .task__header {
+    height: 20px;
+  }
+
+  .task__description {
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,7 @@
+@mixin align-center($top-bottom: 8px) {
+  display: block;
+  margin: $top-bottom auto;
+}
+
+$header-height: 86px;
+$footer-height: 148px;

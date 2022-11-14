@@ -10,6 +10,7 @@ import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     RouterModule,
     HttpClientModule,
+    TranslateModule,
   ],
   providers: [HttpResponseService],
   exports: [

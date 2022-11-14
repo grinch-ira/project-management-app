@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  .board-item {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+
+    transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      box-shadow: 0px 2px 2px 1px rgb(0 0 0 / 15%), 0px 1px 1px 0px rgb(0 0 0 / 12%),
+        0px 1px 3px 0px rgb(0 0 0 / 10%);
+    }
+
+    .mat-card-header {
+      justify-content: center;
+    }
+  }
+}
