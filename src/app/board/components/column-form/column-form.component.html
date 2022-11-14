@@ -1,0 +1,31 @@
+<h3 class="column-form__header">Create column</h3>
+
+<form
+  [formGroup]="columnForm"
+  class="column-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Column title</mat-label>
+    <input
+      matInput
+      placeholder="Enter a column title"
+      autocomplete="off"
+      name="title"
+      formControlName="title" />
+
+    <mat-error *ngIf="columnForm.get('title')?.errors?.['required']">
+      Enter a column title
+    </mat-error>
+  </mat-form-field>
+
+  <div class="column-form__actions">
+    <button
+      type="button"
+      class="column-form__login-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="columnForm.invalid"
+      (click)="createColumn()">
+      Create column
+    </button>
+  </div>
+</form>

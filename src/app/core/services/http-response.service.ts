@@ -5,6 +5,7 @@ import {
   BoardBody,
   Column,
   ColumnBody,
+  ColumnOrderPatchBody,
   SignInBody,
   SignInResponseBody,
   SignUpBody,
@@ -30,6 +31,8 @@ export class HttpResponseService {
   boardsPath = '/boards';
 
   columnsPath = '/columns';
+
+  columnsSetPath = '/columnsSet';
 
   tasksPath = '/tasks';
 
@@ -374,5 +377,13 @@ export class HttpResponseService {
         map(value => value),
         catchError(err => this.catchErrorDetailed(err))
       );
+  }
+
+  updateSetOfColumns(arr: ColumnOrderPatchBody[]): Observable<Column[] | Errors> {
+    return this.http
+      .patch<Column[]>(this.url + this.columnsSetPath, arr, {
+        headers: this.headers,
+      })
+      .pipe(catchError(err => this.catchErrorDetailed(err)));
   }
 }
