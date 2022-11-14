@@ -5,6 +5,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { SignUpBody } from '@core/models';
 import { ModalWindowService, UserService } from '@core/services';
 import { take } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { config } from './header.constants';
 
 @Component({
@@ -20,6 +21,11 @@ export class HeaderComponent {
     return value;
   });
 
+  constructor(
+    private auth: AuthService,
+    private modalService: ModalWindowService,
+    public translate: TranslateService
+  ) {}
   userUpdateForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,

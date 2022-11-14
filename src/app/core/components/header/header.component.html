@@ -48,22 +48,24 @@
             person
           </mat-icon>
         </button>
-        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="Add board">
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.addBoard' | translate}}">
           <mat-icon>
             add_box
           </mat-icon>
         </button>
-        <button color="primary" mat-raised-button title="Language">
-          <mat-icon>
-            g_translate
-            </mat-icon>
+        <button [matMenuTriggerFor]="languageMenu" color="primary" mat-raised-button title="{{ 'header.translation' | translate}}" >
+          <mat-icon>g_translate</mat-icon>
+            <mat-menu #languageMenu="matMenu">
+              <button mat-menu-item (click)="translate.use('en')">en</button>
+              <button mat-menu-item (click)="translate.use('ru')">ru</button>
+            </mat-menu>
         </button>
-        <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="Login/Sign Up">
+        <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="{{ 'header.logInSignUp' | translate}}">
           <mat-icon>
             login
           </mat-icon>
         </button>
-        <button *ngIf="isLogIn" color="primary" mat-raised-button title="Logout" (click)="logOut()">
+        <button *ngIf="isLogIn" color="primary" mat-raised-button title="{{ 'header.logOut' | translate}}" (click)="logOut()">
           <mat-icon>
             logout
           </mat-icon>

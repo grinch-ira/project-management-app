@@ -54,6 +54,8 @@ export class ModalWindowService {
 
   modalEmitter$: Subject<ModalWindowResultType> = new Subject<ModalWindowResultType>();
 
+  //TODO:перевести модальные окна
+
   private readonly windowData: ModalWindowDataObject = {
     deleteBoard: {
       title: 'Delete Board',

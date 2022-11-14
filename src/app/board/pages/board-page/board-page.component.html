@@ -1,0 +1,40 @@
+<form class="board__controls">
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    (click)="goToMain()">
+    Go to main
+  </button>
+
+  <button
+    type="button"
+    mat-raised-button
+    color="primary">
+    Create Column
+  </button>
+</form>
+
+<div
+  class="board__container"
+  cdkScrollable
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  cdkDropListAutoScrollStep="15"
+  (cdkDropListDropped)="drop($event)">
+  <app-column
+    *ngFor="let column of columns"
+    cdkDrag
+    [columnData]="column"
+    [columnsIds]="getArrOfIds()">
+  </app-column>
+
+  <button
+    *ngIf="!columns.length"
+    type="button"
+    mat-raised-button
+    class="board__button-create"
+    color="warn">
+    Create column
+  </button>
+</div>
