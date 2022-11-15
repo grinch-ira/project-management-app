@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Board, User } from '@core/models';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { BoardsService, UsersService } from '@shared/services';
@@ -18,7 +19,8 @@ export class BoardCreationFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: HttpResponseService,
     private boardsService: BoardsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private snackBar: MatSnackBar
   ) {}
 
   boardForm: FormGroup = this.formBuilder.group({
@@ -45,6 +47,16 @@ export class BoardCreationFormComponent implements OnInit {
     };
     this.apiService.createBoard(board).subscribe(res => {
       if ((res as Board)._id) {
+        this.snackBar.open(
+          `The board '${this.boardForm.get('title')?.value}' has been created`,
+          'OK',
+          {
+            duration: 2000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          }
+        );
+        this.boardForm.reset();
         this.boardsService.addBoard(res as Board);
       }
     });

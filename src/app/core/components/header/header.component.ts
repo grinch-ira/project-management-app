@@ -3,6 +3,8 @@ import { AuthService } from '@auth/services/auth.service';
 import { ModalWindowService } from '@core/services';
 import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BoardCreationDialogComponent } from '..';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +22,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private modalService: ModalWindowService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +43,9 @@ export class HeaderComponent implements OnInit {
       }
       return;
     });
+  }
+
+  openDialog(): void {
+    this.dialog.open(BoardCreationDialogComponent);
   }
 }

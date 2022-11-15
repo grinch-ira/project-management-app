@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
@@ -11,6 +12,7 @@ import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { BoardCreationDialogComponent, BoardCreationFormComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NotFoundComponent,
     WelcomeComponent,
     DialogComponent,
+    BoardCreationDialogComponent,
+    BoardCreationFormComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     HttpClientModule,
     TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [HttpResponseService],
   exports: [
