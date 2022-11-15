@@ -12,6 +12,7 @@ import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     NotFoundComponent,
     WelcomeComponent,
     DialogComponent,
+    UserDialogComponent,
   ],
   imports: [
     CommonModule,
