@@ -1,7 +1,8 @@
 @import '../../../../variables.scss';
 
 :host {
-  position: fixed;
+  content: '';
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +12,6 @@
   height: 100%;
   z-index: 3000;
   background: #ffffff67;
-  content: '';
 }
 
 .wrapper {

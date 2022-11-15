@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
@@ -11,7 +11,7 @@ import { EMPTY, switchMap, take, tap } from 'rxjs';
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
+export class ColumnComponent {
   @Input() columnData!: Column;
 
   @Input() columnsIds!: string[];
@@ -32,10 +32,10 @@ export class ColumnComponent implements OnInit {
     private modalService: ModalWindowService
   ) {}
 
-  ngOnInit(): void {
+  /*   ngOnInit(): void {
     //TODO: Release real tasks request
     this.tasksData = this.getTasks();
-  }
+  } */
 
   drop(event: CdkDragDrop<Task[]>): void {
     if (event.previousContainer === event.container) {
@@ -105,7 +105,7 @@ export class ColumnComponent implements OnInit {
     });
   }
 
-  private getTasks(): Task[] {
+  /*   private getTasks(): Task[] {
     return new Array(6)
       .fill({
         title: '',
@@ -129,7 +129,7 @@ export class ColumnComponent implements OnInit {
           columnId: '',
         };
       });
-  }
+  } */
 
   openCreateTaskForm(value: boolean): void {
     this.isCreateVisible = value;

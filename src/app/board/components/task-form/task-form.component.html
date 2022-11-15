@@ -8,7 +8,7 @@
         matInput
         placeholder="Input task title"
         type="text"
-        formControlName="taskTitle"
+        formControlName="title"
         class="form-control"/>
   </mat-form-field>
   <mat-form-field appearance="outline">
@@ -16,13 +16,13 @@
       <input
         matInput
         placeholder="Input task description"
-        formControlName="taskDescription"
+        formControlName="description"
         type="text"
         class="form-control"/>
   </mat-form-field>
 </div>
   <div class="buttons">
-    <button mat-raised-button color="primary" type="button" (click)="createTask()">Add</button>
+    <button mat-raised-button color="primary" type="button" (click)="createTask()" >Add</button>
     <button mat-raised-button color="primary" type="button" (click)="closeModal()" >Cancel</button>
   </div>
 </form>

@@ -16,11 +16,11 @@ export class TaskFormComponent {
   @Input() boardId!: string;
 
   formGroup: FormGroup = new FormGroup({
-    taskTitle: new FormControl('', [
+    title: new FormControl('', [
       Validators.required,
       Validators.minLength(Number('3')),
     ]),
-    taskDescription: new FormControl('', [
+    description: new FormControl('', [
       Validators.required,
       Validators.minLength(Number('3')),
     ]),
@@ -40,6 +40,8 @@ export class TaskFormComponent {
       .createTask(this.boardId, this.columnId, {
         ...this.formGroup.value,
         order: this.boardService.getTaskLastOrder(),
+        userId: localStorage.getItem('userId'),
+        users: [],
       })
       .subscribe(task => {
         if ('_id' in task) {
