@@ -30,7 +30,7 @@ export class ModalWindowComponent implements OnInit {
   ngOnInit(): void {
     this.modalWindowService.modalHandler$
       .pipe(
-        tap(_ => {
+        tap(() => {
           this.lang = this.translate.currentLang;
         }),
         switchMap(data =>

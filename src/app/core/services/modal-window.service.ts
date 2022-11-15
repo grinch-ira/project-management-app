@@ -87,7 +87,6 @@ export class ModalWindowService {
     data: ModalWindowHandler,
     windowData: ModalWindowDataObject
   ): ModalWindowData {
-    console.log(windowData);
     if (data.action === 'delete' && data.emitter !== 'HTTP')
       return {
         ...windowData[`delete${data.emitter}`],
