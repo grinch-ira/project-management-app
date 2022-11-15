@@ -35,7 +35,7 @@ export class HttpResponseService {
 
   constructor(private http: HttpClient, private httpError: HttpErrorHandlerService) {}
 
-  public getUsers(): Observable<SignUpResponse[] | void> {
+  public getUsers(): Observable<SignUpResponse[] | Observable<never>> {
     return this.http
       .get<SignUpResponse[]>(this.url + this.usersPath, {
         headers: {
@@ -49,7 +49,7 @@ export class HttpResponseService {
       );
   }
 
-  public getUser(userId: string): Observable<SignUpResponse | void> {
+  public getUser(userId: string): Observable<SignUpResponse | Observable<never>> {
     return this.http
       .get<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
         headers: {
@@ -66,7 +66,7 @@ export class HttpResponseService {
   public updateUser(
     userId: string,
     params: SignUpBody
-  ): Observable<SignUpResponse | void> {
+  ): Observable<SignUpResponse | Observable<never>> {
     return this.http
       .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, params, {
         headers: {
@@ -80,7 +80,7 @@ export class HttpResponseService {
       );
   }
 
-  public deleteUser(userId: string): Observable<SignUpResponse | void> {
+  public deleteUser(userId: string): Observable<SignUpResponse | Observable<never>> {
     return this.http
       .delete<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
         headers: {
@@ -94,21 +94,21 @@ export class HttpResponseService {
       );
   }
 
-  public signUp(params: SignUpBody): Observable<SignUpResponse | void> {
+  public signUp(params: SignUpBody): Observable<SignUpResponse | Observable<never>> {
     return this.http.post<SignUpResponse>(this.url + this.signUpPath, params).pipe(
       map(value => value),
       catchError(async err => this.httpError.catchErrors(err))
     );
   }
 
-  public logIn(params: SignInBody): Observable<SignInResponseBody | void> {
+  public logIn(params: SignInBody): Observable<SignInResponseBody | Observable<never>> {
     return this.http.post<SignInResponseBody>(this.url + this.logInPath, params).pipe(
       map(value => value),
       catchError(async err => this.httpError.catchErrors(err))
     );
   }
 
-  public getAllBoards(): Observable<Board[] | void> {
+  public getAllBoards(): Observable<Board[] | Observable<never>> {
     return this.http
       .get<Board[]>(this.url + this.boardsPath, {
         headers: {
@@ -122,7 +122,7 @@ export class HttpResponseService {
       );
   }
 
-  public getBoard(boardId: string): Observable<Board | void> {
+  public getBoard(boardId: string): Observable<Board | Observable<never>> {
     return this.http
       .get<Board>(this.url + this.boardsPath + '/' + boardId, {
         headers: {
@@ -136,7 +136,7 @@ export class HttpResponseService {
       );
   }
 
-  public createBoard(params: BoardBody): Observable<Board | void> {
+  public createBoard(params: BoardBody): Observable<Board | Observable<never>> {
     return this.http
       .post<Board>(this.url + this.boardsPath, params, {
         headers: {
@@ -150,7 +150,10 @@ export class HttpResponseService {
       );
   }
 
-  public updateBoard(boardId: string, params: BoardBody): Observable<Board | void> {
+  public updateBoard(
+    boardId: string,
+    params: BoardBody
+  ): Observable<Board | Observable<never>> {
     return this.http
       .put<Board>(this.url + this.boardsPath + '/' + boardId, params, {
         headers: {
@@ -164,7 +167,7 @@ export class HttpResponseService {
       );
   }
 
-  public deleteBoard(boardId: string): Observable<Board | void> {
+  public deleteBoard(boardId: string): Observable<Board | Observable<never>> {
     return this.http
       .delete<Board>(this.url + this.boardsPath + '/' + boardId, {
         headers: {
@@ -178,7 +181,7 @@ export class HttpResponseService {
       );
   }
 
-  public getAllColumns(boardId: string): Observable<Column[] | void> {
+  public getAllColumns(boardId: string): Observable<Column[] | Observable<never>> {
     return this.http
       .get<Column[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, {
         headers: {
@@ -192,7 +195,10 @@ export class HttpResponseService {
       );
   }
 
-  public getColumn(boardId: string, columnId: string): Observable<Column | void> {
+  public getColumn(
+    boardId: string,
+    columnId: string
+  ): Observable<Column | Observable<never>> {
     return this.http
       .put<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -209,7 +215,10 @@ export class HttpResponseService {
       );
   }
 
-  public createColumn(boardId: string, params: ColumnBody): Observable<Column | void> {
+  public createColumn(
+    boardId: string,
+    params: ColumnBody
+  ): Observable<Column | Observable<never>> {
     return this.http
       .post<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath,
@@ -231,7 +240,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     params: ColumnBody
-  ): Observable<Column | void> {
+  ): Observable<Column | Observable<never>> {
     return this.http
       .put<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -249,7 +258,10 @@ export class HttpResponseService {
       );
   }
 
-  public deleteColumn(boardId: string, columnId: string): Observable<Column | void> {
+  public deleteColumn(
+    boardId: string,
+    columnId: string
+  ): Observable<Column | Observable<never>> {
     return this.http
       .delete<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
@@ -266,7 +278,10 @@ export class HttpResponseService {
       );
   }
 
-  public getAllTasks(boardId: string, columnId: string): Observable<Task[] | void> {
+  public getAllTasks(
+    boardId: string,
+    columnId: string
+  ): Observable<Task[] | Observable<never>> {
     return this.http
       .get<Task[]>(
         this.url +
@@ -294,7 +309,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     taskId: string
-  ): Observable<Task | void> {
+  ): Observable<Task | Observable<never>> {
     return this.http
       .get<Task>(
         this.url +
@@ -324,7 +339,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     params: TaskBody
-  ): Observable<Task | void> {
+  ): Observable<Task | Observable<never>> {
     return this.http
       .post<Task>(
         this.url +
@@ -353,7 +368,7 @@ export class HttpResponseService {
     boardId: string,
     columnId: string,
     taskId: string
-  ): Observable<Task | void> {
+  ): Observable<Task | Observable<never>> {
     return this.http
       .delete<Task>(
         this.url +
@@ -384,7 +399,7 @@ export class HttpResponseService {
     columnId: string,
     taskId: string,
     params: TaskByIdBody
-  ): Observable<Task | void> {
+  ): Observable<Task | Observable<never>> {
     return this.http
       .put<Task>(
         this.url +
