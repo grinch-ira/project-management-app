@@ -47,6 +47,7 @@ export class BoardCreationFormComponent implements OnInit {
     };
     this.apiService.createBoard(board).subscribe(res => {
       if ((res as Board)._id) {
+        //TODO: Add translation for the message
         this.snackBar.open(
           `The board '${this.boardForm.get('title')?.value}' has been created`,
           'OK',
