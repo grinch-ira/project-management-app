@@ -18,6 +18,8 @@ export class ColumnComponent implements OnInit {
 
   @Input() boardId!: string;
 
+  @Input() columnId!: string;
+
   tasksData: Task[] = [];
 
   data: string[] = [];

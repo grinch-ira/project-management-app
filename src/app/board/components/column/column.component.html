@@ -17,7 +17,7 @@
   cdkDropListAutoScrollStep="15"
   [cdkDropListData]="tasksData"
   [cdkDropListConnectedTo]="columnsIds"
-  (cdkDropListDropped)="drop($event )">
+  (cdkDropListDropped)="drop($event)">
   <app-task
     cdkDrag
     *ngFor="let task of tasksData"
@@ -42,4 +42,4 @@
   Create task
 </button>
 
-<app-task-form *ngIf="isCreateVisible"   (modalClose)="closeModal()"></app-task-form>
+<app-task-form *ngIf="isCreateVisible" (modalClose)="closeModal()" [boardId]="boardId" [columnId]="columnId"></app-task-form>

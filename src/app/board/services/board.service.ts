@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Column, ColumnOrderPatchBody } from '@core/models';
+import { Column, ColumnOrderPatchBody, Task, TaskUpdateBody } from '@core/models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BoardService {
   columns: BehaviorSubject<Column[]> = new BehaviorSubject<Column[]>([]);
+
+  tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
 
   getColumnLastOrder(): number {
     if (this.columns.getValue().length) {
@@ -35,6 +37,37 @@ export class BoardService {
   updateColumnsIndexes(): void {
     this.columns.getValue().forEach((col, i) => {
       col.order = i;
+    });
+  }
+
+  getTaskLastOrder(): number {
+    if (this.tasks.getValue().length) {
+      return Math.max(...this.tasks.getValue().map(task => task.order));
+    }
+    return 0;
+  }
+
+  addTask(task: Task): void {
+    this.tasks.getValue().push(task);
+  }
+
+  deleteTask(id: string): void {
+    this.tasks.next(this.tasks.getValue().filter(task => task._id !== id));
+  }
+
+  getNewTaskOrders(): TaskUpdateBody[] {
+    return this.tasks.getValue().map((task, i) => {
+      return {
+        _id: task._id,
+        order: i,
+        columnId: task.boardId,
+      };
+    });
+  }
+
+  updateTasksIndexes(): void {
+    this.tasks.getValue().forEach((task, i) => {
+      task.order = i;
     });
   }
 }
