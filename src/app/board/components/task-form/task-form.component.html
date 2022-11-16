@@ -10,6 +10,9 @@
         type="text"
         formControlName="title"
         class="form-control"/>
+        <mat-error *ngIf="formGroup.get('title')?.errors?.['required']">
+          Enter a task title
+        </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Task description</mat-label>
@@ -19,6 +22,9 @@
         formControlName="description"
         type="text"
         class="form-control"/>
+        <mat-error *ngIf="formGroup.get('description')?.errors?.['required']">
+          Enter a task description
+        </mat-error>
   </mat-form-field>
 </div>
   <div class="buttons">
