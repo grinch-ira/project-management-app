@@ -36,31 +36,17 @@ export class HttpResponseService {
   constructor(private http: HttpClient, private httpError: HttpErrorHandlerService) {}
 
   public getUsers(): Observable<SignUpResponse[] | Observable<never>> {
-    return this.http
-      .get<SignUpResponse[]>(this.url + this.usersPath, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.get<SignUpResponse[]>(this.url + this.usersPath).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public getUser(userId: string): Observable<SignUpResponse | Observable<never>> {
-    return this.http
-      .get<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.get<SignUpResponse>(this.url + this.usersPath + '/' + userId).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public updateUser(
@@ -68,12 +54,7 @@ export class HttpResponseService {
     params: SignUpBody
   ): Observable<SignUpResponse | Observable<never>> {
     return this.http
-      .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, params, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
+      .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, params)
       .pipe(
         map(value => value),
         catchError(async err => this.httpError.catchErrors(err))
@@ -82,12 +63,7 @@ export class HttpResponseService {
 
   public deleteUser(userId: string): Observable<SignUpResponse | Observable<never>> {
     return this.http
-      .delete<SignUpResponse>(this.url + this.usersPath + '/' + userId, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
+      .delete<SignUpResponse>(this.url + this.usersPath + '/' + userId)
       .pipe(
         map(value => value),
         catchError(async err => this.httpError.catchErrors(err))
@@ -109,86 +85,46 @@ export class HttpResponseService {
   }
 
   public getAllBoards(): Observable<Board[] | Observable<never>> {
-    return this.http
-      .get<Board[]>(this.url + this.boardsPath, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.get<Board[]>(this.url + this.boardsPath).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public getBoard(boardId: string): Observable<Board | Observable<never>> {
-    return this.http
-      .get<Board>(this.url + this.boardsPath + '/' + boardId, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.get<Board>(this.url + this.boardsPath + '/' + boardId).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public createBoard(params: BoardBody): Observable<Board | Observable<never>> {
-    return this.http
-      .post<Board>(this.url + this.boardsPath, params, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.post<Board>(this.url + this.boardsPath, params).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public updateBoard(
     boardId: string,
     params: BoardBody
   ): Observable<Board | Observable<never>> {
-    return this.http
-      .put<Board>(this.url + this.boardsPath + '/' + boardId, params, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.put<Board>(this.url + this.boardsPath + '/' + boardId, params).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public deleteBoard(boardId: string): Observable<Board | Observable<never>> {
-    return this.http
-      .delete<Board>(this.url + this.boardsPath + '/' + boardId, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+    return this.http.delete<Board>(this.url + this.boardsPath + '/' + boardId).pipe(
+      map(value => value),
+      catchError(async err => this.httpError.catchErrors(err))
+    );
   }
 
   public getAllColumns(boardId: string): Observable<Column[] | Observable<never>> {
     return this.http
-      .get<Column[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
+      .get<Column[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath)
       .pipe(
         map(value => value),
         catchError(async err => this.httpError.catchErrors(err))
@@ -201,13 +137,7 @@ export class HttpResponseService {
   ): Observable<Column | Observable<never>> {
     return this.http
       .put<Column>(
-        this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId
       )
       .pipe(
         map(value => value),
@@ -220,16 +150,7 @@ export class HttpResponseService {
     params: ColumnBody
   ): Observable<Column | Observable<never>> {
     return this.http
-      .post<Column>(
-        this.url + this.boardsPath + '/' + boardId + this.columnsPath,
-        params,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      )
+      .post<Column>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, params)
       .pipe(
         map(value => value),
         catchError(async err => this.httpError.catchErrors(err))
@@ -244,13 +165,7 @@ export class HttpResponseService {
     return this.http
       .put<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
-        params,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        params
       )
       .pipe(
         map(value => value),
@@ -264,13 +179,7 @@ export class HttpResponseService {
   ): Observable<Column | Observable<never>> {
     return this.http
       .delete<Column>(
-        this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId
       )
       .pipe(
         map(value => value),
@@ -291,13 +200,7 @@ export class HttpResponseService {
           this.columnsPath +
           '/' +
           columnId +
-          this.tasksPath,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+          this.tasksPath
       )
       .pipe(
         map(value => value),
@@ -321,13 +224,7 @@ export class HttpResponseService {
           columnId +
           this.tasksPath +
           '/' +
-          taskId,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+          taskId
       )
       .pipe(
         map(value => value),
@@ -350,13 +247,7 @@ export class HttpResponseService {
           '/' +
           columnId +
           this.tasksPath,
-        params,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        params
       )
       .pipe(
         map(value => value),
@@ -380,13 +271,7 @@ export class HttpResponseService {
           columnId +
           this.tasksPath +
           '/' +
-          taskId,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+          taskId
       )
       .pipe(
         map(value => value),
@@ -412,13 +297,7 @@ export class HttpResponseService {
           this.tasksPath +
           '/' +
           taskId,
-        params,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
+        params
       )
       .pipe(
         map(value => value),
