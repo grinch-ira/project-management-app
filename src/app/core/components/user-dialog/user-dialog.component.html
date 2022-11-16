@@ -5,7 +5,7 @@
             <mat-form-field appearance="standard">
               <mat-label for="inputName1" >Name</mat-label>
               <div [formGroup]="userUpdateForm">
-                <input matInput formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" autocomplete="new-password">
+                <input matInput formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" [value]="userData.name">
               </div>
               <mat-error *ngIf="controlName?.errors?.['required']">*please inter a name</mat-error>
               <mat-error *ngIf="controlName?.errors?.['minlength']">*your name should be longer than 3</mat-error>
@@ -16,7 +16,7 @@
             <mat-form-field appearance="standard">
               <mat-label for="inputText2">Login</mat-label>
               <div [formGroup]="userUpdateForm">
-                <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin" autocomplete="new-password">
+                <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin" [value]="userData.login">
               </div>
               <mat-error *ngIf="controlLogin?.errors?.['required']">*please enter a login email</mat-error>
               <mat-error *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</mat-error>
@@ -36,6 +36,6 @@
         </mat-dialog-content>
         <mat-dialog-actions align="end">
           <button mat-raised-button color="warn" [mat-dialog-close]="true" (click)="deleteUser()">Delete user</button>
-          <button mat-raised-button color="basic" mat-dialog-close>Cancel</button>
-          <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial [disabled]="userUpdateForm.invalid" (click)="changeUserData()">Save</button>
+          <button mat-raised-button color="basic" mat-dialog-close cdkFocusInitial>Cancel</button>
+          <button mat-raised-button color="primary" [mat-dialog-close]="true"  [disabled]="userUpdateForm.invalid" (click)="changeUserData()">Save</button>
         </mat-dialog-actions>

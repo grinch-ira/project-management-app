@@ -16,7 +16,7 @@ export type Payload = string | ClientError | ServerError | HttpErrorResponse;
 
 export type ModalWindowEmitters = 'User' | 'Board' | 'Column' | 'Task';
 export type ModalWindowEvents = 'delete';
-export type ModalWindowActions = 'logOut';
+export type ModalWindowActions = 'logOut' | 'save';
 export type ModalWindowTypes = 'confirm' | 'message';
 
 export type ModalWindowBackendEmitter = 'HTTP';

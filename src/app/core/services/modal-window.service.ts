@@ -56,32 +56,36 @@ export class ModalWindowService {
 
   //TODO:перевести модальные окна
 
-  // private readonly windowData: ModalWindowDataObject = {
-  //   deleteBoard: {
-  //     title: 'Delete Board',
-  //     description: 'Do you really want to delete the board?',
-  //   },
-  //   deleteColumn: {
-  //     title: 'Delete Column',
-  //     description: 'Do you really want to delete the column?',
-  //   },
-  //   deleteTask: {
-  //     title: 'Delete Task',
-  //     description: 'Do you really want to delete the task?',
-  //   },
-  //   deleteUser: {
-  //     title: 'Delete User',
-  //     description: 'Do you really want to delete the User?',
-  //   },
-  //   logOut: {
-  //     title: 'Log Out',
-  //     description: 'Do you really want to log out?',
-  //   },
-  //   errorHTTP: {
-  //     title: 'HTTP Error',
-  //     description: '',
-  //   },
-  // };
+  private readonly windowData: ModalWindowDataObject = {
+    deleteBoard: {
+      title: 'Delete Board',
+      description: 'Do you really want to delete the board?',
+    },
+    deleteColumn: {
+      title: 'Delete Column',
+      description: 'Do you really want to delete the column?',
+    },
+    deleteTask: {
+      title: 'Delete Task',
+      description: 'Do you really want to delete the task?',
+    },
+    deleteUser: {
+      title: 'Delete User',
+      description: 'Do you really want to delete the User?',
+    },
+    logOut: {
+      title: 'Log Out',
+      description: 'Do you really want to log out?',
+    },
+    save: {
+      title: 'Your settings have been saved',
+      description: 'Your settings have been saved',
+    },
+    errorHTTP: {
+      title: 'HTTP Error',
+      description: '',
+    },
+  };
 
   getModalData(
     data: ModalWindowHandler,
@@ -97,6 +101,12 @@ export class ModalWindowService {
     if (data.action === 'logOut' && data.emitter !== 'HTTP')
       return {
         ...windowData.logOut,
+        payload: data.payload as string,
+      };
+
+    if (data.action === 'save' && data.emitter !== 'HTTP')
+      return {
+        ...windowData.save,
         payload: data.payload as string,
       };
 

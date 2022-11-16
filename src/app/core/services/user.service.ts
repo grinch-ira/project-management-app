@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '@auth/services';
 import { SignUpBody } from '@core/models';
 import { BehaviorSubject } from 'rxjs';
 import { HttpResponseService } from './http-response.service';
@@ -15,7 +15,7 @@ export class UserService {
 
   constructor(
     private httpResponse: HttpResponseService,
-    private router: Router,
+    private auth: AuthService,
     private modalService: ModalWindowService
   ) {}
 
@@ -23,9 +23,9 @@ export class UserService {
     this.httpResponse.updateUser(userId, data).subscribe(resp => {
       if (typeof resp === 'object' && '_id' in resp) {
         this.modalService.modalHandler$.next({
-          type: 'confirm',
+          type: 'message',
           emitter: 'User',
-          action: 'logOut',
+          action: 'save',
           payload: '',
         });
       }
@@ -35,9 +35,7 @@ export class UserService {
   deleteUser(userId: string): void {
     this.httpResponse.deleteUser(userId).subscribe(resp => {
       if (typeof resp === 'object' && '_id' in resp) {
-        this.isLogIn$.next(false);
-        localStorage.clear();
-        this.router.navigateByUrl('/welcome');
+        this.auth.logOut();
       } else {
         return;
       }

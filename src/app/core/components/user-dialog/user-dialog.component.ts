@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignUpBody } from '@core/models';
-import { UserService } from '@core/services';
+import { SignUpBody, User } from '@core/models';
+import { HttpResponseService, ModalWindowService, UserService } from '@core/services';
+import { take } from 'rxjs';
 import { config } from './user.constants';
 
 @Component({
@@ -9,7 +10,7 @@ import { config } from './user.constants';
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.scss'],
 })
-export class UserDialogComponent {
+export class UserDialogComponent implements OnInit {
   userUpdateForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -35,7 +36,27 @@ export class UserDialogComponent {
 
   controlPassword = this.userUpdateForm.get('password') as FormControl;
 
-  constructor(private userService: UserService) {}
+  userData: User = {
+    name: '',
+    login: '',
+    _id: '',
+  };
+
+  constructor(
+    private userService: UserService,
+    private modalService: ModalWindowService,
+    private apiService: HttpResponseService
+  ) {}
+
+  ngOnInit(): void {
+    const userId = localStorage.getItem('userId') as string;
+    this.apiService.getUser(userId).subscribe(value => {
+      if ('_id' in value) {
+        this.userData = value;
+      }
+      return value;
+    });
+  }
 
   changeUserData(): void {
     if (this.userUpdateForm.invalid) {
@@ -47,7 +68,18 @@ export class UserDialogComponent {
   }
 
   deleteUser(): void {
-    const userId = localStorage.getItem('userId') as string;
-    this.userService.deleteUser(userId);
+    this.modalService.modalHandler$.next({
+      type: 'confirm',
+      emitter: 'User',
+      action: 'delete',
+      payload: '',
+    });
+    this.modalService.modalEmitter$.pipe(take(1)).subscribe(result => {
+      if (result === 'confirm') {
+        const userId = localStorage.getItem('userId') as string;
+        this.userService.deleteUser(userId);
+      }
+      return;
+    });
   }
 }
