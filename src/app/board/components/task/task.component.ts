@@ -8,4 +8,10 @@ import { Task } from '@core/models';
 })
 export class TaskComponent {
   @Input() taskData!: Task;
+
+  @Input() columnsIds!: string[];
+
+  @Input() boardId!: string;
+
+  @Input() columnId!: string;
 }

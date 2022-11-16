@@ -8,7 +8,12 @@
 
 <div class="column__container" id="CID_{{ columnData._id }}" cdkDropList cdkDropListAutoScrollStep="15"
   [cdkDropListData]="tasksData" [cdkDropListConnectedTo]="columnsIds" (cdkDropListDropped)="drop($event)">
-  <app-task cdkDrag *ngFor="let task of tasksData" [taskData]="task">
+
+  <app-task
+  cdkDrag *ngFor="let task of tasksData"
+  [taskData]="task"
+  [boardId]="boardId"
+  [columnId]="columnData._id">
   </app-task>
 
   <button *ngIf="!tasksData.length" type="button" mat-raised-button class="column__button-create" color="warn"

@@ -48,5 +48,7 @@ export class TaskFormComponent {
           this.boardService.addTask(task);
         }
       });
+    console.log(this.formGroup.value.title);
+    console.log(this.formGroup.value.description);
   }
 }

@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
@@ -11,7 +12,7 @@ import { EMPTY, switchMap, take, tap } from 'rxjs';
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent {
+export class ColumnComponent implements OnInit {
   @Input() columnData!: Column;
 
   @Input() columnsIds!: string[];
@@ -27,15 +28,25 @@ export class ColumnComponent {
   public isCreateVisible: boolean = false;
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
     private boardService: BoardService,
     private modalService: ModalWindowService
   ) {}
 
-  /*   ngOnInit(): void {
-    //TODO: Release real tasks request
-    this.tasksData = this.getTasks();
-  } */
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.boardId = params['id'];
+    });
+
+    //TODO: Release real columns request
+    this.boardService.tasks.subscribe(task => {
+      this.tasksData = task;
+    });
+
+    this.getTasks();
+  }
 
   drop(event: CdkDragDrop<Task[]>): void {
     if (event.previousContainer === event.container) {
@@ -105,37 +116,15 @@ export class ColumnComponent {
     });
   }
 
-  /*   private getTasks(): Task[] {
-    return new Array(6)
-      .fill({
-        title: '',
-        order: NaN,
-        description: '',
-        userId: '',
-        users: [],
-        _id: '',
-        boardId: '',
-        columnId: '',
-      })
-      .map((_, i: number) => {
-        return {
-          title: `Task #${i}`,
-          order: i,
-          description: `Description of task #${i}`,
-          userId: 'userID',
-          users: [],
-          _id: `TID${i}`,
-          boardId: 'boardID',
-          columnId: '',
-        };
-      });
-  } */
-
   openCreateTaskForm(value: boolean): void {
     this.isCreateVisible = value;
   }
 
   public closeModal(): void {
     this.isCreateVisible = false;
+  }
+
+  private getTasks(): void {
+    this.apiService.getAllTasks(this.boardId, this.columnId).subscribe();
   }
 }
