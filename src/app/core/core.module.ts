@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { BoardCreationDialogComponent, BoardCreationFormComponent } from './components';
-import { TokenInterceptor } from './interceptors';
+import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { TokenInterceptor } from './interceptors';
   providers: [
     HttpResponseService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: InvalidTokenInterceptor, multi: true },
   ],
   exports: [
     HeaderComponent,
