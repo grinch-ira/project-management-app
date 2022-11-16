@@ -12,7 +12,7 @@ import {
   TaskBody,
   TaskByIdBody,
 } from '@core/models';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { HttpErrorHandlerService } from './http-error-handler.service';
 
 @Injectable({
@@ -36,17 +36,15 @@ export class HttpResponseService {
   constructor(private http: HttpClient, private httpError: HttpErrorHandlerService) {}
 
   public getUsers(): Observable<SignUpResponse[] | Observable<never>> {
-    return this.http.get<SignUpResponse[]>(this.url + this.usersPath).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .get<SignUpResponse[]>(this.url + this.usersPath)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getUser(userId: string): Observable<SignUpResponse | Observable<never>> {
-    return this.http.get<SignUpResponse>(this.url + this.usersPath + '/' + userId).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .get<SignUpResponse>(this.url + this.usersPath + '/' + userId)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public updateUser(
@@ -55,80 +53,64 @@ export class HttpResponseService {
   ): Observable<SignUpResponse | Observable<never>> {
     return this.http
       .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, params)
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public deleteUser(userId: string): Observable<SignUpResponse | Observable<never>> {
     return this.http
       .delete<SignUpResponse>(this.url + this.usersPath + '/' + userId)
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public signUp(params: SignUpBody): Observable<SignUpResponse | Observable<never>> {
-    return this.http.post<SignUpResponse>(this.url + this.signUpPath, params).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .post<SignUpResponse>(this.url + this.signUpPath, params)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public logIn(params: SignInBody): Observable<SignInResponseBody | Observable<never>> {
-    return this.http.post<SignInResponseBody>(this.url + this.logInPath, params).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .post<SignInResponseBody>(this.url + this.logInPath, params)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getAllBoards(): Observable<Board[] | Observable<never>> {
-    return this.http.get<Board[]>(this.url + this.boardsPath).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .get<Board[]>(this.url + this.boardsPath)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getBoard(boardId: string): Observable<Board | Observable<never>> {
-    return this.http.get<Board>(this.url + this.boardsPath + '/' + boardId).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .get<Board>(this.url + this.boardsPath + '/' + boardId)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public createBoard(params: BoardBody): Observable<Board | Observable<never>> {
-    return this.http.post<Board>(this.url + this.boardsPath, params).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .post<Board>(this.url + this.boardsPath, params)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public updateBoard(
     boardId: string,
     params: BoardBody
   ): Observable<Board | Observable<never>> {
-    return this.http.put<Board>(this.url + this.boardsPath + '/' + boardId, params).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .put<Board>(this.url + this.boardsPath + '/' + boardId, params)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public deleteBoard(boardId: string): Observable<Board | Observable<never>> {
-    return this.http.delete<Board>(this.url + this.boardsPath + '/' + boardId).pipe(
-      map(value => value),
-      catchError(async err => this.httpError.catchErrors(err))
-    );
+    return this.http
+      .delete<Board>(this.url + this.boardsPath + '/' + boardId)
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getAllColumns(boardId: string): Observable<Column[] | Observable<never>> {
     return this.http
       .get<Column[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath)
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getColumn(
@@ -139,10 +121,7 @@ export class HttpResponseService {
       .get<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public createColumn(
@@ -151,10 +130,7 @@ export class HttpResponseService {
   ): Observable<Column | Observable<never>> {
     return this.http
       .post<Column>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, params)
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public updateColumn(
@@ -167,10 +143,7 @@ export class HttpResponseService {
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId,
         params
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public deleteColumn(
@@ -181,10 +154,7 @@ export class HttpResponseService {
       .delete<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getAllTasks(
@@ -202,10 +172,7 @@ export class HttpResponseService {
           columnId +
           this.tasksPath
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public getTask(
@@ -226,10 +193,7 @@ export class HttpResponseService {
           '/' +
           taskId
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public createTask(
@@ -249,10 +213,7 @@ export class HttpResponseService {
           this.tasksPath,
         params
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public deleteTask(
@@ -273,10 +234,7 @@ export class HttpResponseService {
           '/' +
           taskId
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 
   public updateTask(
@@ -299,9 +257,6 @@ export class HttpResponseService {
           taskId,
         params
       )
-      .pipe(
-        map(value => value),
-        catchError(async err => this.httpError.catchErrors(err))
-      );
+      .pipe(catchError(async err => this.httpError.catchErrors(err)));
   }
 }
