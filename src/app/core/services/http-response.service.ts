@@ -136,7 +136,7 @@ export class HttpResponseService {
     columnId: string
   ): Observable<Column | Observable<never>> {
     return this.http
-      .put<Column>(
+      .get<Column>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId
       )
       .pipe(
