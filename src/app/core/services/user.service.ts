@@ -26,7 +26,7 @@ export class UserService {
           type: 'message',
           emitter: 'User',
           action: 'save',
-          payload: '',
+          payload: 'Your settings have been saved',
         });
       }
     });

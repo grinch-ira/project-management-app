@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { SignUpBody } from '@core/models/auth.model';
 import { config } from './registration.constants';
+import { LoaderService } from '@core/services/loader.service';
 
 @Component({
   selector: 'app-registration',
@@ -35,7 +36,7 @@ export class RegistrationComponent {
 
   controlPassword = this.authForm.get('password') as FormControl;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, public loaderService: LoaderService) {}
 
   onSingUpButton(): void {
     if (this.authForm.invalid) {
