@@ -18,7 +18,7 @@ export class BoardService {
 
   getColumnLastOrder(): number {
     if (this.columns.getValue().length) {
-      return Math.max(...this.columns.getValue().map(col => col.order));
+      return Math.max(...this.columns.getValue().map(col => col.order)) + 1;
     }
     return 0;
   }
@@ -49,7 +49,7 @@ export class BoardService {
 
   getTaskLastOrder(colId: string): number {
     if (this.tasks[colId].getValue().length) {
-      return Math.max(...this.tasks[colId].getValue().map(task => task.order));
+      return Math.max(...this.tasks[colId].getValue().map(task => task.order)) + 1;
     }
     return 0;
   }
