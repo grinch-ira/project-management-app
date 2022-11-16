@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Column, ColumnOrderPatchBody, Task, TaskUpdateBody } from '@core/models';
+import {
+  Column,
+  ColumnOrderPatchBody,
+  Task,
+  TaskSet,
+  TaskUpdateBody,
+} from '@core/models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class BoardService {
   columns: BehaviorSubject<Column[]> = new BehaviorSubject<Column[]>([]);
 
-  tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
+  tasks: TaskSet = {};
 
   getColumnLastOrder(): number {
     if (this.columns.getValue().length) {
@@ -18,6 +24,7 @@ export class BoardService {
   }
 
   addColumn(col: Column): void {
+    this.tasks[col._id] = new BehaviorSubject<Task[]>([]);
     this.columns.getValue().push(col);
   }
 
@@ -40,23 +47,23 @@ export class BoardService {
     });
   }
 
-  getTaskLastOrder(): number {
-    if (this.tasks.getValue().length) {
-      return Math.max(...this.tasks.getValue().map(task => task.order));
+  getTaskLastOrder(colId: string): number {
+    if (this.tasks[colId].getValue().length) {
+      return Math.max(...this.tasks[colId].getValue().map(task => task.order));
     }
     return 0;
   }
 
-  addTask(task: Task): void {
-    this.tasks.getValue().push(task);
+  addTask(task: Task, colId: string): void {
+    this.tasks[colId].getValue().push(task);
   }
 
-  deleteTask(id: string): void {
-    this.tasks.next(this.tasks.getValue().filter(task => task._id !== id));
+  deleteTask(id: string, colId: string): void {
+    this.tasks[colId].next(this.tasks[colId].getValue().filter(task => task._id !== id));
   }
 
-  getNewTaskOrders(): TaskUpdateBody[] {
-    return this.tasks.getValue().map((task, i) => {
+  getNewTaskOrders(colId: string): TaskUpdateBody[] {
+    return this.tasks[colId].getValue().map((task, i) => {
       return {
         _id: task._id,
         order: i,
@@ -65,9 +72,15 @@ export class BoardService {
     });
   }
 
-  updateTasksIndexes(): void {
-    this.tasks.getValue().forEach((task, i) => {
+  updateTasksIndexes(colId: string): void {
+    this.tasks[colId].getValue().forEach((task, i) => {
       task.order = i;
+    });
+  }
+
+  fillTaskObject(): void {
+    this.columns.getValue().forEach(col => {
+      this.tasks[col._id] = new BehaviorSubject<Task[]>([]);
     });
   }
 }

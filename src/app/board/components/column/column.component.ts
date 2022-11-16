@@ -19,8 +19,6 @@ export class ColumnComponent implements OnInit {
 
   @Input() boardId!: string;
 
-  @Input() columnId!: string;
-
   tasksData: Task[] = [];
 
   data: string[] = [];
@@ -41,7 +39,7 @@ export class ColumnComponent implements OnInit {
     });
 
     //TODO: Release real columns request
-    this.boardService.tasks.subscribe(task => {
+    this.boardService.tasks[this.columnData._id].subscribe(task => {
       this.tasksData = task;
     });
 
@@ -125,6 +123,10 @@ export class ColumnComponent implements OnInit {
   }
 
   private getTasks(): void {
-    this.apiService.getAllTasks(this.boardId, this.columnId).subscribe();
+    this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
+      if (tasks instanceof Array) {
+        this.boardService.tasks[this.columnData._id].next(tasks);
+      }
+    });
   }
 }

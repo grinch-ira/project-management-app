@@ -10,6 +10,7 @@ import {
   SignInResponseBody,
   SignUpBody,
   SignUpResponse,
+  Task,
   TaskBody,
   TaskByIdBody,
 } from '@core/models';

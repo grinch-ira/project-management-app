@@ -39,16 +39,16 @@ export class TaskFormComponent {
     this.apiService
       .createTask(this.boardId, this.columnId, {
         ...this.formGroup.value,
-        order: this.boardService.getTaskLastOrder(),
+        order: this.boardService.getTaskLastOrder(this.columnId),
         userId: localStorage.getItem('userId'),
         users: [],
       })
       .subscribe(task => {
         if ('_id' in task) {
-          this.boardService.addTask(task);
+          this.boardService.addTask(task, this.columnId);
         }
       });
-    console.log(this.formGroup.value.title);
-    console.log(this.formGroup.value.description);
+
+    this.closeModal();
   }
 }
