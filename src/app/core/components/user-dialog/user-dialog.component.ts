@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignUpBody, User } from '@core/models';
-import { HttpResponseService, ModalWindowService, UserService } from '@core/services';
+import { HttpResponseService, ModalWindowService } from '@core/services';
+import { UserService } from '@core/services/user.service';
 import { take } from 'rxjs';
 import { config } from './user.constants';
 

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '@auth/services/auth.service';
 import { ModalWindowService } from '@core/services';
 import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BoardCreationDialogComponent } from '..';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
@@ -22,8 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private modalService: ModalWindowService,
-    public dialog: MatDialog,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +47,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openDialog(): void {
+    this.dialog.open(BoardCreationDialogComponent);
+  }
+
+  openDialog1(): void {
     this.dialog.open(UserDialogComponent);
   }
 }
