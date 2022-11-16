@@ -10,14 +10,17 @@ export class HttpErrorHandlerService {
   constructor(private modalService: ModalWindowService) {}
 
   catchErrors(err: HttpErrorResponse): Observable<never> {
+    const payload = err.error
+      ? {
+          ...err.error,
+          type: 'custom',
+        }
+      : err;
     this.modalService.modalHandler$.next({
       type: 'message',
       emitter: 'HTTP',
       action: 'error',
-      payload: {
-        ...err.error,
-        type: 'custom',
-      },
+      payload: payload,
     });
     return EMPTY;
   }
