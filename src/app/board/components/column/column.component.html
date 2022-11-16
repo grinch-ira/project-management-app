@@ -1,42 +1,30 @@
-<mat-toolbar
-  color="primary"
-  class="column__header">
+<mat-toolbar color="primary" class="column__header">
   <span>{{ columnData.title }}</span>
   <span class="spacer"></span>
-  <button
-    mat-icon-button
-    (click)="deleteColumn()">
+  <button mat-icon-button (click)="deleteColumn()">
     <mat-icon>delete</mat-icon>
   </button>
 </mat-toolbar>
 
-<div
-  class="column__container"
-  id="CID_{{ columnData._id }}"
-  cdkDropList
-  cdkDropListAutoScrollStep="15"
-  [cdkDropListData]="tasksData"
-  [cdkDropListConnectedTo]="columnsIds"
-  (cdkDropListDropped)="drop($event)">
+<div class="column__container" id="CID_{{ columnData._id }}" cdkDropList cdkDropListAutoScrollStep="15"
+  [cdkDropListData]="tasksData" [cdkDropListConnectedTo]="columnsIds" (cdkDropListDropped)="drop($event)">
+
   <app-task
-    cdkDrag
-    *ngFor="let task of tasksData"
-    [taskData]="task">
+  cdkDrag *ngFor="let task of tasksData"
+  [taskData]="task"
+  [boardId]="boardId"
+  [columnId]="columnData._id">
   </app-task>
 
-  <button
-    *ngIf="!tasksData.length"
-    type="button"
-    mat-raised-button
-    class="column__button-create"
-    color="warn">
+  <button *ngIf="!tasksData.length" type="button" mat-raised-button class="column__button-create" color="warn"
+    (click)="openCreateTaskForm(true)">
     Create task
   </button>
 </div>
 
-<button
-  *ngIf="tasksData.length"
-  mat-raised-button
-  color="primary">
+<button *ngIf="tasksData.length" mat-raised-button color="primary" (click)="openCreateTaskForm(true)">
   Create task
 </button>
+
+<app-task-form *ngIf="isCreateVisible" (modalClose)="closeModal()" [boardId]="boardId" [columnId]="columnData._id">
+</app-task-form>

@@ -6,7 +6,7 @@
   height: calc(100vh - layout.$header-height - layout.$footer-height);
   padding: 16px;
   box-sizing: border-box;
-
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
 

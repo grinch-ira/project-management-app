@@ -1,3 +1,5 @@
+import { BehaviorSubject } from 'rxjs';
+
 export interface TaskBody {
   title: string;
   order: number;
@@ -20,3 +22,7 @@ export interface TaskUpdateBody {
   order: number;
   columnId: string;
 }
+
+export type TaskSet = {
+  [key: string]: BehaviorSubject<Task[]>;
+};

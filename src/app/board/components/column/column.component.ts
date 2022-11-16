@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
@@ -22,15 +23,27 @@ export class ColumnComponent implements OnInit {
 
   data: string[] = [];
 
+  public isCreateVisible: boolean = false;
+
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
     private boardService: BoardService,
     private modalService: ModalWindowService
   ) {}
 
   ngOnInit(): void {
-    //TODO: Release real tasks request
-    this.tasksData = this.getTasks();
+    this.activatedRoute.params.subscribe(params => {
+      this.boardId = params['id'];
+    });
+
+    //TODO: Release real columns request
+    this.boardService.tasks[this.columnData._id].subscribe(task => {
+      this.tasksData = task;
+    });
+
+    this.getTasks();
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
@@ -101,29 +114,19 @@ export class ColumnComponent implements OnInit {
     });
   }
 
-  private getTasks(): Task[] {
-    return new Array(6)
-      .fill({
-        title: '',
-        order: NaN,
-        description: '',
-        userId: '',
-        users: [],
-        _id: '',
-        boardId: '',
-        columnId: '',
-      })
-      .map((_, i: number) => {
-        return {
-          title: `Task #${i}`,
-          order: i,
-          description: `Description of task #${i}`,
-          userId: 'userID',
-          users: [],
-          _id: `TID${i}`,
-          boardId: 'boardID',
-          columnId: '',
-        };
-      });
+  openCreateTaskForm(value: boolean): void {
+    this.isCreateVisible = value;
+  }
+
+  public closeModal(): void {
+    this.isCreateVisible = false;
+  }
+
+  private getTasks(): void {
+    this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
+      if (tasks instanceof Array) {
+        this.boardService.tasks[this.columnData._id].next(tasks);
+      }
+    });
   }
 }
