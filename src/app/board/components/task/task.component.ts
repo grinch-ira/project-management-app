@@ -55,7 +55,7 @@ export class TaskComponent {
       .subscribe(result => {
         if (result instanceof Array) {
           //Update task order in board service
-          this.boardService.updateColumnsIndexes();
+          this.boardService.updateTasksIndexes(this.columnId);
         }
       });
   }
