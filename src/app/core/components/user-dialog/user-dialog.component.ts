@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignUpBody, User } from '@core/models';
+import { SignUpBody } from '@core/models';
 import { HttpResponseService, ModalWindowService } from '@core/services';
 import { UserService } from '@core/services/user.service';
 import { take } from 'rxjs';
@@ -37,12 +37,6 @@ export class UserDialogComponent implements OnInit {
 
   controlPassword = this.userUpdateForm.get('password') as FormControl;
 
-  userData: User = {
-    name: '',
-    login: '',
-    _id: '',
-  };
-
   constructor(
     private userService: UserService,
     private modalService: ModalWindowService,
@@ -53,7 +47,8 @@ export class UserDialogComponent implements OnInit {
     const userId = localStorage.getItem('userId') as string;
     this.apiService.getUser(userId).subscribe(value => {
       if ('_id' in value) {
-        this.userData = value;
+        this.controlName.setValue(value.name);
+        this.controlLogin.setValue(value.login);
       }
       return value;
     });

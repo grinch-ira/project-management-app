@@ -5,7 +5,7 @@
             <mat-form-field appearance="standard">
               <mat-label for="inputName1" >Name</mat-label>
               <div [formGroup]="userUpdateForm">
-                <input matInput formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" [value]="userData.name">
+                <input matInput formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" >
               </div>
               <mat-error *ngIf="controlName?.errors?.['required']">*please inter a name</mat-error>
               <mat-error *ngIf="controlName?.errors?.['minlength']">*your name should be longer than 3</mat-error>
@@ -16,7 +16,7 @@
             <mat-form-field appearance="standard">
               <mat-label for="inputText2">Login</mat-label>
               <div [formGroup]="userUpdateForm">
-                <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin" [value]="userData.login">
+                <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin">
               </div>
               <mat-error *ngIf="controlLogin?.errors?.['required']">*please enter a login email</mat-error>
               <mat-error *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</mat-error>
