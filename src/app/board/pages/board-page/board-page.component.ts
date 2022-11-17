@@ -40,12 +40,24 @@ export class BoardPageComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray<Column>(this.columns, event.previousIndex, event.currentIndex);
+    // Create copy of columns array
+    const columnsSetCopy = [...this.columns];
 
-    this.updateOrder();
+    // Update copying array
+    moveItemInArray<Column>(columnsSetCopy, event.previousIndex, event.currentIndex);
+
+    // Update columns order in copying array
+    const newColumnsSet = this.boardService.updateArrayIndexes(columnsSetCopy);
+
+    // Send copying array to server (the source of truth is still has state before DnD)
     this.apiService
-      .updateSetOfColumns(this.boardService.getNewColumnOrders())
-      .subscribe();
+      .updateSetOfColumns(this.boardService.getNewColumnOrders(newColumnsSet as Column[]))
+      .subscribe(res => {
+        if (res instanceof Array) {
+          // Update source of truth after successful request
+          this.boardService.columns.next(res);
+        }
+      });
   }
 
   getArrOfIds(): string[] {

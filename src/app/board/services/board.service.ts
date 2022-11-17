@@ -32,8 +32,8 @@ export class BoardService {
     this.columns.next(this.columns.getValue().filter(col => col._id !== id));
   }
 
-  getNewColumnOrders(): ColumnOrderPatchBody[] {
-    return this.columns.getValue().map((col, i) => {
+  getNewColumnOrders(arr: Column[]): ColumnOrderPatchBody[] {
+    return [...arr].map((col, i) => {
       return {
         _id: col._id,
         order: i,
@@ -86,5 +86,11 @@ export class BoardService {
 
   updateColumnTitle(order: number, title: string): void {
     this.columns.getValue()[order].title = title;
+  }
+
+  updateArrayIndexes(arr: (Column | Task)[]): Array<Column | Task> {
+    return arr.map((e, i) => {
+      return { ...e, order: i };
+    });
   }
 }
