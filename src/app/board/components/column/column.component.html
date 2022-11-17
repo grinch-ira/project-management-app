@@ -13,6 +13,7 @@
     *ngIf="isEditableTitle"
     matInput
     autocomplete="false"
+    [formControl]="titleControl"
     (blur)="hideInput()"
     #titleInput />
 

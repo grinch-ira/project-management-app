@@ -8,9 +8,8 @@ describe('TaskFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskFormComponent ]
-    })
-    .compileComponents();
+      declarations: [TaskFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TaskFormComponent);
     component = fixture.componentInstance;

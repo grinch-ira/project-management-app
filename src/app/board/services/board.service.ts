@@ -83,4 +83,8 @@ export class BoardService {
       this.tasks[col._id] = new BehaviorSubject<Task[]>([]);
     });
   }
+
+  updateColumnTitle(order: number, title: string): void {
+    this.columns.getValue()[order].title = title;
+  }
 }

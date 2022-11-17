@@ -9,12 +9,13 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
-import { EMPTY, switchMap, take, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, EMPTY, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-column',
@@ -33,6 +34,8 @@ export class ColumnComponent implements OnInit {
   tasksData: Task[] = [];
 
   data: string[] = [];
+
+  titleControl = new FormControl();
 
   isEditableTitle: boolean = false;
 
@@ -123,10 +126,27 @@ export class ColumnComponent implements OnInit {
   showInput(): void {
     this.isEditableTitle = true;
     this.changeDetector.detectChanges();
+    this.titleControl.setValue(this.columnData.title);
     this.focusMonitor.focusVia(
       this.renderer.selectRootElement(this.titleInputEl.nativeElement),
       'program'
     );
+    this.titleControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(title =>
+          this.apiService.updateColumn(this.boardId, this.columnData._id, {
+            order: this.columnData.order,
+            title: title,
+          })
+        )
+      )
+      .subscribe(newCol => {
+        if ('_id' in newCol) {
+          this.boardService.updateColumnTitle(this.columnData.order, newCol.title);
+        }
+      });
   }
 
   hideInput(): void {
