@@ -1,5 +1,14 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
@@ -19,9 +28,13 @@ export class ColumnComponent implements OnInit {
 
   @Input() boardId!: string;
 
+  @ViewChild('titleInput') titleInputEl!: ElementRef<HTMLElement>;
+
   tasksData: Task[] = [];
 
   data: string[] = [];
+
+  isEditableTitle: boolean = false;
 
   public isCreateVisible: boolean = false;
 
@@ -30,7 +43,10 @@ export class ColumnComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
     private boardService: BoardService,
-    private modalService: ModalWindowService
+    private modalService: ModalWindowService,
+    public focusMonitor: FocusMonitor,
+    private changeDetector: ChangeDetectorRef,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -102,6 +118,19 @@ export class ColumnComponent implements OnInit {
           this.boardService.updateColumnsIndexes();
         }
       });
+  }
+
+  showInput(): void {
+    this.isEditableTitle = true;
+    this.changeDetector.detectChanges();
+    this.focusMonitor.focusVia(
+      this.renderer.selectRootElement(this.titleInputEl.nativeElement),
+      'program'
+    );
+  }
+
+  hideInput(): void {
+    this.isEditableTitle = false;
   }
 
   private updateOrderAndIds(): void {

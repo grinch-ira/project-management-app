@@ -10,6 +10,7 @@ import { MaterialModule } from '@material/material.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnFormComponent } from './components/column-form/column-form.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     BoardRoutingModule,
     MaterialModule,
     DragDropModule,
+    A11yModule,
   ],
 })
 export class BoardModule {}
