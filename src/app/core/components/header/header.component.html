@@ -5,12 +5,12 @@
         <a [routerLink]="!isLogIn ? '/welcome' : '/main'">PMA</a>
       </div>
       <div>
-        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.settingsTitle' | translate}}" mat-button (click)="openDialog1()">
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.settingsTitle' | translate}}" mat-button (click)="openDialogUser()">
           <mat-icon>
             person
           </mat-icon>
         </button>
-        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.addBoard' | translate}}" (click)="openDialog()">
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.addBoard' | translate}}" (click)="openDialogBoard()">
           <mat-icon>
             add_box
           </mat-icon>
