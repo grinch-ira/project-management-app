@@ -43,8 +43,9 @@ export class BoardPageComponent implements OnInit {
     moveItemInArray<Column>(this.columns, event.previousIndex, event.currentIndex);
 
     this.updateOrder();
-
-    //TODO: Send to server actual set of columns
+    this.apiService
+      .updateSetOfColumns(this.boardService.getNewColumnOrders())
+      .subscribe();
   }
 
   getArrOfIds(): string[] {
