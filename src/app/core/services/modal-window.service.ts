@@ -77,10 +77,6 @@ export class ModalWindowService {
   //     title: 'Log Out',
   //     description: 'Do you really want to log out?',
   //   },
-  //   save: {
-  //     title: 'Your settings have been saved',
-  //     description: 'Your settings have been saved',
-  //   },
   //   errorHTTP: {
   //     title: 'HTTP Error',
   //     description: '',
