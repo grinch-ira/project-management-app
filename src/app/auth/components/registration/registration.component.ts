@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../../auth/services/auth.service';
+import { AuthService } from '@auth/services/auth.service';
 import { SignUpBody } from '@core/models/auth.model';
 import { config } from './registration.constants';
 import { LoaderService } from '@core/services/loader.service';

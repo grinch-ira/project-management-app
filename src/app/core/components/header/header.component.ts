@@ -46,11 +46,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openDialogBoard(): void {
     this.dialog.open(BoardCreationDialogComponent);
   }
 
-  openDialog1(): void {
+  openDialogUser(): void {
     this.dialog.open(UserDialogComponent);
   }
 }
