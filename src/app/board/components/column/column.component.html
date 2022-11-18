@@ -1,7 +1,7 @@
 <mat-toolbar
   color="primary"
   class="column__header"
-  [ngClass]="{'column__header_with-input': isEditableTitle}">
+  [ngClass]="{ 'column__header_with-input': isEditableTitle }">
   <span
     *ngIf="!isEditableTitle"
     focusOrigin="mouse"
@@ -13,7 +13,7 @@
     <button
       mat-icon-button
       matSuffix
-      [disabled]="titleControl.invalid"
+      [disabled]="titleControl.invalid || titleControl.value === columnData.title"
       (click)="updateTitle()">
       <mat-icon>done</mat-icon>
     </button>
