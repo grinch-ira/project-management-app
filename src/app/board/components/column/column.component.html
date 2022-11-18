@@ -1,7 +1,7 @@
 <mat-toolbar
   color="primary"
-  class="column__header">
-
+  class="column__header"
+  [ngClass]="{'column__header_with-input': isEditableTitle}">
   <span
     *ngIf="!isEditableTitle"
     focusOrigin="mouse"
@@ -9,13 +9,28 @@
     >{{ columnData.title }}
   </span>
 
-  <input
-    *ngIf="isEditableTitle"
-    matInput
-    autocomplete="false"
-    [formControl]="titleControl"
-    (blur)="hideInput()"
-    #titleInput />
+  <mat-form-field *ngIf="isEditableTitle">
+    <button
+      mat-icon-button
+      matSuffix
+      [disabled]="titleControl.invalid"
+      (click)="updateTitle()">
+      <mat-icon>done</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideInput()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <input
+      matInput
+      autocomplete="false"
+      [formControl]="titleControl"
+      #titleInput />
+  </mat-form-field>
 
   <span class="spacer"></span>
   <button

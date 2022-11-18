@@ -9,13 +9,13 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
-import { debounceTime, distinctUntilChanged, EMPTY, switchMap, take, tap } from 'rxjs';
+import { EMPTY, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-column',
@@ -63,6 +63,8 @@ export class ColumnComponent implements OnInit {
     });
 
     this.getTasks();
+
+    this.titleControl.setValidators(Validators.required);
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
@@ -133,21 +135,23 @@ export class ColumnComponent implements OnInit {
       this.renderer.selectRootElement(this.titleInputEl.nativeElement),
       'program'
     );
-    this.titleControl.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        switchMap(title =>
-          this.apiService.updateColumn(this.boardId, this.columnData._id, {
-            order: this.columnData.order,
-            title: title,
-          })
-        )
-      )
-      .subscribe(newCol => {
-        if ('_id' in newCol) {
-          this.boardService.updateColumnTitle(this.columnData.order, newCol.title);
-        }
+  }
+
+  updateTitle(): void {
+    this.apiService
+      .updateColumn(this.boardId, this.columnData._id, {
+        order: this.columnData.order,
+        title: this.titleControl.value,
+      })
+      .subscribe({
+        next: newCol => {
+          if ('_id' in newCol) {
+            this.boardService.updateColumnTitle(this.columnData.order, newCol.title);
+          }
+        },
+        complete: () => {
+          this.isEditableTitle = false;
+        },
       });
   }
 

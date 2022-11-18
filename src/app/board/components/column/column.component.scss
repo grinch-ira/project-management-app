@@ -16,6 +16,10 @@
   .column__header {
     height: 32px;
 
+    &.column__header_with-input {
+      height: 40px;
+    }
+
     .spacer {
       flex: 1 1 auto
     }
