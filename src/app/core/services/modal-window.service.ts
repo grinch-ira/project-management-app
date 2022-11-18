@@ -99,6 +99,12 @@ export class ModalWindowService {
         payload: data.payload as string,
       };
 
+    if (data.action === 'save' && data.emitter !== 'HTTP')
+      return {
+        ...windowData.save,
+        payload: data.payload as string,
+      };
+
     if (
       data.action === 'error' &&
       typeof data.payload !== 'string' &&

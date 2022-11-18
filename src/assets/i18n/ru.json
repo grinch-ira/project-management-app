@@ -80,6 +80,10 @@
       "title": "Выйти",
       "description": "Вы уверены, что хотите выйти?"
     },
+    "save": {
+      "title": "Успешно!",
+      "description": "Ваши настройки сохранены"
+    },
     "errorHTTP": {
       "title": "HTTP ошибка",
       "description": ""

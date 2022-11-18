@@ -5,6 +5,7 @@ import { take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BoardCreationDialogComponent } from '..';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -45,7 +46,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openDialogBoard(): void {
     this.dialog.open(BoardCreationDialogComponent);
+  }
+
+  openDialogUser(): void {
+    this.dialog.open(UserDialogComponent);
   }
 }
