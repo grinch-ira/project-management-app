@@ -13,6 +13,7 @@ import {
   Task,
   TaskBody,
   TaskByIdBody,
+  TaskUpdateBody,
 } from '@core/models';
 import { Errors } from '@core/models/http.model';
 import { catchError, map, Observable, of } from 'rxjs';
@@ -36,6 +37,8 @@ export class HttpResponseService {
   columnsSetPath = '/columnsSet';
 
   tasksPath = '/tasks';
+
+  tasksSetPath = '/tasksSet';
 
   headers = {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -383,6 +386,14 @@ export class HttpResponseService {
   updateSetOfColumns(arr: ColumnOrderPatchBody[]): Observable<Column[] | Errors> {
     return this.http
       .patch<Column[]>(this.url + this.columnsSetPath, arr, {
+        headers: this.headers,
+      })
+      .pipe(catchError(err => this.catchErrorDetailed(err)));
+  }
+
+  updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Errors> {
+    return this.http
+      .patch<Task[]>(this.url + this.tasksSetPath, arr, {
         headers: this.headers,
       })
       .pipe(catchError(err => this.catchErrorDetailed(err)));

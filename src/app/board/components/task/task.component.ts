@@ -50,7 +50,14 @@ export class TaskComponent {
           if ('_id' in task) {
             this.boardService.deleteTask(task._id, this.columnId);
           }
-        })
+        }),
+        switchMap(res =>
+          '_id' in res
+            ? this.apiService.updateSetOfTasks(
+                this.boardService.getNewTaskOrders(this.columnId)
+              )
+            : EMPTY
+        )
       )
       .subscribe(result => {
         if (result instanceof Array) {
