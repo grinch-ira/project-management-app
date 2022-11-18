@@ -23,6 +23,13 @@
     .spacer {
       flex: 1 1 auto
     }
+
+    .stroke-spinner {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 22.5px;
+      vertical-align: middle;
+    }
   }
 
   .column__container {

@@ -39,6 +39,8 @@ export class ColumnComponent implements OnInit {
 
   isEditableTitle: boolean = false;
 
+  isTitleUpdatingProgress: boolean = false;
+
   public isCreateVisible: boolean = false;
 
   constructor(
@@ -138,6 +140,8 @@ export class ColumnComponent implements OnInit {
   }
 
   updateTitle(): void {
+    this.isTitleUpdatingProgress = true;
+    this.titleControl.disable();
     this.apiService
       .updateColumn(this.boardId, this.columnData._id, {
         order: this.columnData.order,
@@ -151,6 +155,8 @@ export class ColumnComponent implements OnInit {
         },
         complete: () => {
           this.isEditableTitle = false;
+          this.isTitleUpdatingProgress = false;
+          this.titleControl.enable();
         },
       });
   }

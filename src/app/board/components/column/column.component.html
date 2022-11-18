@@ -11,6 +11,7 @@
 
   <mat-form-field *ngIf="isEditableTitle">
     <button
+      *ngIf="!isTitleUpdatingProgress"
       mat-icon-button
       matSuffix
       [disabled]="titleControl.invalid || titleControl.value === columnData.title"
@@ -19,11 +20,21 @@
     </button>
 
     <button
+      *ngIf="!isTitleUpdatingProgress"
       mat-icon-button
       matSuffix
       (click)="hideInput()">
       <mat-icon>close</mat-icon>
     </button>
+
+    <mat-spinner
+      *ngIf="isTitleUpdatingProgress"
+      matSuffix
+      color="accent"
+      strokeWidth="3"
+      diameter="20"
+      class="stroke-spinner">
+    </mat-spinner>
 
     <input
       matInput
