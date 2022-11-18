@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpResponseService } from './services/http-response.service';
 import { MaterialModule } from '@material/material.module';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { BoardCreationDialogComponent, BoardCreationFormComponent } from './components';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,11 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [HttpResponseService],
+  providers: [
+    HttpResponseService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: InvalidTokenInterceptor, multi: true },
+  ],
   exports: [
     HeaderComponent,
     FooterComponent,
