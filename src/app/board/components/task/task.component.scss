@@ -15,6 +15,9 @@
 
   .task__header {
     height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .task__description {
