@@ -9,10 +9,13 @@ import { ModalWindowService } from './modal-window.service';
 export class HttpErrorHandlerService {
   constructor(private modalService: ModalWindowService) {}
 
+  catchErrors(err: HttpErrorResponse): Observable<never>;
   catchErrors(
     err: HttpErrorResponse,
-    isReturnStatus: boolean = false
-  ): Observable<never> | number {
+    isReturnStatus: boolean
+  ): Observable<never> | number;
+
+  catchErrors(err: HttpErrorResponse, isReturnStatus?: boolean): unknown {
     const payload = err.error
       ? {
           ...err.error,
@@ -25,6 +28,11 @@ export class HttpErrorHandlerService {
       action: 'error',
       payload: payload,
     });
-    return isReturnStatus ? err.status : EMPTY;
+
+    if (isReturnStatus !== undefined) {
+      return isReturnStatus ? err.status : EMPTY;
+    } else {
+      return EMPTY;
+    }
   }
 }
