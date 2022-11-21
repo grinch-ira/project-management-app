@@ -17,12 +17,13 @@ export class HttpErrorHandlerService {
   ): Observable<never> | number;
 
   catchErrors(err: HttpErrorResponse, isReturnStatus?: boolean): unknown {
-    const payload = err.error
-      ? {
-          ...err.error,
-          type: 'custom',
-        }
-      : err;
+    const payload =
+      err.error && !(err.error instanceof ProgressEvent)
+        ? {
+            ...err.error,
+            type: 'custom',
+          }
+        : err;
     this.modalService.modalHandler$.next({
       type: 'message',
       emitter: 'HTTP',

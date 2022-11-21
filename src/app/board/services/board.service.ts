@@ -83,4 +83,14 @@ export class BoardService {
       this.tasks[col._id] = new BehaviorSubject<Task[]>([]);
     });
   }
+
+  updateColumnTitle(order: number, title: string): void {
+    this.columns.getValue()[order].title = title;
+  }
+
+  updateArrayIndexes(arr: (Column | Task)[]): Array<Column | Task> {
+    return arr.map((e, i) => {
+      return { ...e, order: i };
+    });
+  }
 }

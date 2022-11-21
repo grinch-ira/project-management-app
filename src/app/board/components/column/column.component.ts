@@ -1,5 +1,15 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
@@ -19,9 +29,17 @@ export class ColumnComponent implements OnInit {
 
   @Input() boardId!: string;
 
+  @ViewChild('titleInput') titleInputEl!: ElementRef<HTMLElement>;
+
   tasksData: Task[] = [];
 
   data: string[] = [];
+
+  titleControl = new FormControl();
+
+  isEditableTitle: boolean = false;
+
+  isTitleUpdatingProgress: boolean = false;
 
   public isCreateVisible: boolean = false;
 
@@ -30,7 +48,10 @@ export class ColumnComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
     private boardService: BoardService,
-    private modalService: ModalWindowService
+    private modalService: ModalWindowService,
+    public focusMonitor: FocusMonitor,
+    private changeDetector: ChangeDetectorRef,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +65,8 @@ export class ColumnComponent implements OnInit {
     });
 
     this.getTasks();
+
+    this.titleControl.setValidators(Validators.required);
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
@@ -102,6 +125,42 @@ export class ColumnComponent implements OnInit {
           this.boardService.updateColumnsIndexes();
         }
       });
+  }
+
+  showInput(): void {
+    this.isEditableTitle = true;
+    this.changeDetector.detectChanges();
+    this.titleControl.setValue(this.columnData.title);
+    this.focusMonitor.focusVia(
+      this.renderer.selectRootElement(this.titleInputEl.nativeElement),
+      'program'
+    );
+  }
+
+  updateTitle(): void {
+    this.isTitleUpdatingProgress = true;
+    this.titleControl.disable();
+    this.apiService
+      .updateColumn(this.boardId, this.columnData._id, {
+        order: this.columnData.order,
+        title: this.titleControl.value,
+      })
+      .subscribe({
+        next: newCol => {
+          if ('_id' in newCol) {
+            this.boardService.updateColumnTitle(this.columnData.order, newCol.title);
+          }
+        },
+        complete: () => {
+          this.isEditableTitle = false;
+          this.isTitleUpdatingProgress = false;
+          this.titleControl.enable();
+        },
+      });
+  }
+
+  hideInput(): void {
+    this.isEditableTitle = false;
   }
 
   private updateOrderAndIds(): void {
