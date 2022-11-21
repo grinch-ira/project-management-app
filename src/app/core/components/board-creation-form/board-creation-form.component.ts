@@ -40,26 +40,29 @@ export class BoardCreationFormComponent implements OnInit {
   }
 
   createBoard(): void {
-    const board = {
-      title: this.boardForm.get('title')?.value as string,
-      owner: localStorage.getItem('userId') || '',
-      users: (this.boardForm.get('users')?.value as string[]) || [],
-    };
-    this.apiService.createBoard(board).subscribe(res => {
-      if ((res as Board)._id) {
-        //TODO: Add translation for the message
-        this.snackBar.open(
-          `The board '${this.boardForm.get('title')?.value}' has been created`,
-          'OK',
-          {
-            duration: 2000,
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-          }
-        );
-        this.boardForm.reset();
-        this.boardsService.addBoard(res as Board);
-      }
+    this.usersService.users$.subscribe(users => {
+      this.boardForm.setValue({ users: users });
+      const board = {
+        title: this.boardForm.get('title')?.value as string,
+        owner: localStorage.getItem('userId') || '',
+        users: (this.boardForm.get('users')?.value as string[]) || [],
+      };
+      this.apiService.createBoard(board).subscribe(res => {
+        if ((res as Board)._id) {
+          //TODO: Add translation for the message
+          this.snackBar.open(
+            `The board '${this.boardForm.get('title')?.value}' has been created`,
+            'OK',
+            {
+              duration: 2000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            }
+          );
+          this.boardForm.reset();
+          this.boardsService.addBoard(res as Board);
+        }
+      });
     });
   }
 
