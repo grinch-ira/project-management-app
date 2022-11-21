@@ -16,6 +16,7 @@ import { BoardCreationDialogComponent, BoardCreationFormComponent } from './comp
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -41,11 +42,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
   ],
   providers: [
     HttpResponseService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptorService,
-      multi: true,
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: InvalidTokenInterceptor, multi: true },
   ],
   exports: [
     HeaderComponent,
