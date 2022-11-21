@@ -1,0 +1,41 @@
+
+        <mat-dialog-content class="mat-typography">
+          <form [formGroup]="userUpdateForm">
+            <h2>Your settings</h2>
+            <mat-form-field appearance="standard">
+              <mat-label for="inputName1" >Name</mat-label>
+              <div [formGroup]="userUpdateForm">
+                <input matInput formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" >
+              </div>
+              <mat-error *ngIf="controlName?.errors?.['required']">*please inter a name</mat-error>
+              <mat-error *ngIf="controlName?.errors?.['minlength']">*your name should be longer than 3</mat-error>
+              <mat-error *ngIf="controlName?.errors?.['maxlength']">*your name should be no longer than 20</mat-error>
+              <mat-error *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="standard">
+              <mat-label for="inputText2">Login</mat-label>
+              <div [formGroup]="userUpdateForm">
+                <input matInput type="text" formControlName="login" class="form-control" id="inputText2" [formControl]="controlLogin">
+              </div>
+              <mat-error *ngIf="controlLogin?.errors?.['required']">*please enter a login email</mat-error>
+              <mat-error *ngIf="controlLogin?.errors?.['email']">*the login email is invalid</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="standard">
+              <mat-label for="inputPassword3">Password</mat-label>
+              <div [formGroup]="userUpdateForm">
+                <input matInput formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" autocomplete="new-password">
+              </div>
+              <mat-error *ngIf="controlPassword?.errors?.['required']">*please enter a password</mat-error>
+              <mat-error *ngIf="controlPassword?.errors?.['minlength']">*your password should be longer than 8</mat-error>
+              <mat-error *ngIf="controlPassword?.errors?.['minlength']">*your password should be no longer than 20</mat-error>
+              <mat-error *ngIf="controlPassword?.errors?.['pattern']">*should be used uppercase and lowercase letters, numbers, special character</mat-error>
+            </mat-form-field>
+          </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+          <button mat-raised-button color="warn" [mat-dialog-close]="true" (click)="deleteUser()">Delete user</button>
+          <button mat-raised-button color="basic" mat-dialog-close cdkFocusInitial>Cancel</button>
+          <button mat-raised-button color="primary" [mat-dialog-close]="true"  [disabled]="userUpdateForm.invalid" (click)="changeUserData()">Save</button>
+        </mat-dialog-actions>
