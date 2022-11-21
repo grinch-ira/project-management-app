@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignUpBody } from '@core/models';
 import { HttpResponseService, ModalWindowService } from '@core/services';
@@ -11,7 +11,7 @@ import { config } from './user.constants';
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.scss'],
 })
-export class UserDialogComponent implements OnInit {
+export class UserDialogComponent implements OnInit, AfterContentChecked {
   userUpdateForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -40,18 +40,21 @@ export class UserDialogComponent implements OnInit {
   constructor(
     private userService: UserService,
     private modalService: ModalWindowService,
-    private apiService: HttpResponseService
+    private apiService: HttpResponseService,
+    private cdref: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId') as string;
-    this.apiService.getUser(userId).subscribe(value => {
-      if ('_id' in value) {
-        this.controlName.setValue(value.name);
-        this.controlLogin.setValue(value.login);
-      }
-      return value;
-    });
+    setTimeout(() => {
+      this.apiService.getUser(userId).subscribe(value => {
+        if ('_id' in value) {
+          this.controlName.setValue(value.name);
+          this.controlLogin.setValue(value.login);
+        }
+        return value;
+      });
+    }, 0);
   }
 
   changeUserData(): void {
@@ -77,5 +80,9 @@ export class UserDialogComponent implements OnInit {
       }
       return;
     });
+  }
+
+  ngAfterContentChecked(): void {
+    this.cdref.detectChanges();
   }
 }
