@@ -59,8 +59,37 @@
     "createBoardButton":"Создать доску",
     "enterBoardTitlePlaceholder":"Введите название доски"
   },
-  "DELETE_BOARD": {
-    "title": "Удалить доску",
-    "description": "Вы уверены, что хотите удалить эту доску?"
-  }
+  "windowData": {
+    "deleteBoard": {
+      "title": "Удалить доску",
+      "description": "Вы уверены, что хотите удалить доску?"
+    },
+    "deleteColumn": {
+      "title": "Удалить колонку",
+      "description": "Вы уверены, что хотите удалить колонку?"
+    },
+    "deleteTask": {
+      "title": "Удалить задачу",
+      "description": "Вы уверены, что хотите удалить задачу?"
+    },
+    "deleteUser": {
+      "title": "Удалить пользователя",
+      "description": "Вы уверены, что хотите удалить пользователя?"
+    },
+    "logOut": {
+      "title": "Выйти",
+      "description": "Вы уверены, что хотите выйти?"
+    },
+    "save": {
+      "title": "Успешно!",
+      "description": "Ваши настройки сохранены"
+    },
+    "errorHTTP": {
+      "title": "HTTP ошибка",
+      "description": ""
+    }
+  },
+  "modalWindowYes":"Да",
+  "modalWindowNo":"Нет",
+  "modalWindowOk":"Хорошо"
 }
