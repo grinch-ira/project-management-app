@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BoardCreationDialogComponent, BoardCreationFormComponent } from './components';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoaderInterceptorService } from './services/loader-interceptor.service'
     BoardCreationDialogComponent,
     BoardCreationFormComponent,
     UserDialogComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,7 @@ import { LoaderInterceptorService } from './services/loader-interceptor.service'
     FooterComponent,
     ModalWindowComponent,
     DialogComponent,
+    SpinnerComponent,
     MaterialModule,
   ],
 })
