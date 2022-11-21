@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignUpBody, SignInResponseBody, SignInBody } from '@core/models';
