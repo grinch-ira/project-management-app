@@ -32,8 +32,8 @@ export class BoardService {
     this.columns.next(this.columns.getValue().filter(col => col._id !== id));
   }
 
-  getNewColumnOrders(arr: Column[]): ColumnOrderPatchBody[] {
-    return [...arr].map((col, i) => {
+  getNewColumnOrders(): ColumnOrderPatchBody[] {
+    return this.columns.getValue().map((col, i) => {
       return {
         _id: col._id,
         order: i,

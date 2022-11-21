@@ -43,19 +43,17 @@ export class BoardPageComponent implements OnInit {
     // Create copy of columns array
     const columnsSetCopy = [...this.columns];
 
-    // Update copying array
-    moveItemInArray<Column>(columnsSetCopy, event.previousIndex, event.currentIndex);
+    // Update state
+    moveItemInArray<Column>(this.columns, event.previousIndex, event.currentIndex);
 
-    // Update columns order in copying array
-    const newColumnsSet = this.boardService.updateArrayIndexes(columnsSetCopy);
-
-    // Send copying array to server (the source of truth is still has state before DnD)
+    // Send  array to server
     this.apiService
-      .updateSetOfColumns(this.boardService.getNewColumnOrders(newColumnsSet as Column[]))
+      .updateSetOfColumns(this.boardService.getNewColumnOrders())
       .subscribe(res => {
-        if (res instanceof Array) {
-          // Update source of truth after successful request
-          this.boardService.columns.next(res);
+        console.log(res);
+        if (typeof res === 'number') {
+          // If there is error, restore previous state
+          this.boardService.columns.next(columnsSetCopy);
         }
       });
   }

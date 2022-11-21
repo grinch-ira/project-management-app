@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Board,
@@ -22,7 +22,7 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
   providedIn: 'root',
 })
 export class HttpResponseService {
-  url = 'https://blablateam-pma.herokuapp.com';
+  url = 'https://blablateam-pma.onrender.com';
 
   usersPath = '/users';
 
@@ -269,10 +269,13 @@ export class HttpResponseService {
 
   updateSetOfColumns(
     arr: ColumnOrderPatchBody[]
-  ): Observable<Column[] | Observable<never>> {
-    return this.http
-      .patch<Column[]>(this.url + this.columnsSetPath, arr)
-      .pipe(catchError(err => this.httpError.catchErrors(err)));
+  ): Observable<Column[] | Observable<never> | number> {
+    return this.http.patch<Column[]>(this.url + this.columnsSetPath, arr).pipe(
+      catchError(async (err: HttpErrorResponse) => {
+        console.log(err);
+        return this.httpError.catchErrors(err, true);
+      })
+    );
   }
 
   updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Observable<never>> {
