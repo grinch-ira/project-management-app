@@ -10,6 +10,7 @@ export class HttpErrorHandlerService {
   constructor(private modalService: ModalWindowService) {}
 
   catchErrors(err: HttpErrorResponse): Observable<never>;
+
   catchErrors(
     err: HttpErrorResponse,
     isReturnStatus: boolean
