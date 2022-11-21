@@ -50,7 +50,6 @@ export class BoardPageComponent implements OnInit {
     this.apiService
       .updateSetOfColumns(this.boardService.getNewColumnOrders())
       .subscribe(res => {
-        console.log(res);
         if (typeof res === 'number') {
           // If there is error, restore previous state
           this.boardService.columns.next(columnsSetCopy);

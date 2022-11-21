@@ -16,7 +16,6 @@ import { BoardCreationDialogComponent, BoardCreationFormComponent } from './comp
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,
