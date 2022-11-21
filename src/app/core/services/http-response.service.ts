@@ -22,7 +22,7 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
   providedIn: 'root',
 })
 export class HttpResponseService {
-  url = 'https://blablateam-pma.onrender.com';
+  url = 'https://blablateam-pma.up.railway.app';
 
   usersPath = '/users';
 
@@ -270,12 +270,13 @@ export class HttpResponseService {
   updateSetOfColumns(
     arr: ColumnOrderPatchBody[]
   ): Observable<Column[] | Observable<never> | number> {
-    return this.http.patch<Column[]>(this.url + this.columnsSetPath, arr).pipe(
-      catchError(async (err: HttpErrorResponse) => {
-        console.log(err);
-        return this.httpError.catchErrors(err, true);
-      })
-    );
+    return this.http
+      .patch<Column[]>(this.url + this.columnsSetPath, arr)
+      .pipe(
+        catchError(async (err: HttpErrorResponse) =>
+          this.httpError.catchErrors(err, true)
+        )
+      );
   }
 
   updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Observable<never>> {

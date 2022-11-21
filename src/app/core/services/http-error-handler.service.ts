@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { ModalWindowService } from './modal-window.service';
 
 @Injectable({
@@ -17,13 +17,13 @@ export class HttpErrorHandlerService {
   ): Observable<never> | number;
 
   catchErrors(err: HttpErrorResponse, isReturnStatus?: boolean): unknown {
-    console.log(err.error);
-    const payload = err.error
-      ? {
-          ...err.error,
-          type: 'custom',
-        }
-      : err;
+    const payload =
+      err.error && !(err.error instanceof ProgressEvent)
+        ? {
+            ...err.error,
+            type: 'custom',
+          }
+        : err;
     this.modalService.modalHandler$.next({
       type: 'message',
       emitter: 'HTTP',
@@ -32,7 +32,7 @@ export class HttpErrorHandlerService {
     });
 
     if (isReturnStatus !== undefined) {
-      return isReturnStatus ? of(err.status) : EMPTY;
+      return isReturnStatus ? err.status : EMPTY;
     } else {
       return EMPTY;
     }
