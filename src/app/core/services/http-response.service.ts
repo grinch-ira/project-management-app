@@ -19,7 +19,7 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
   providedIn: 'root',
 })
 export class HttpResponseService {
-  url = 'https://blablateam-pma.herokuapp.com';
+  url = 'https://blablateam-pma.up.railway.app';
 
   usersPath = '/users';
 
