@@ -8,12 +8,17 @@ import { TaskComponent } from './components/task/task.component';
 import { BoardRoutingModule } from './board-routing.module';
 import { MaterialModule } from '@material/material.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ColumnFormComponent } from './components/column-form/column-form.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
   declarations: [
     BoardPageComponent,
     ColumnComponent,
     TaskComponent,
+    ColumnFormComponent,
+    TaskFormComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +27,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BoardRoutingModule,
     MaterialModule,
     DragDropModule,
+    A11yModule,
   ],
 })
 export class BoardModule {}

@@ -2,6 +2,11 @@
   color="primary"
   class="task__header">
   <span>{{ taskData.title }}</span>
+  <button
+    mat-icon-button
+    (click)="deleteTask()">
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div class="task__description">

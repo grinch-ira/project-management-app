@@ -1,16 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Board,
   BoardBody,
   Column,
   ColumnBody,
+  ColumnOrderPatchBody,
   SignInBody,
   SignInResponseBody,
   SignUpBody,
   SignUpResponse,
+  Task,
   TaskBody,
   TaskByIdBody,
+  TaskUpdateBody,
 } from '@core/models';
 import { catchError, Observable } from 'rxjs';
 import { HttpErrorHandlerService } from './http-error-handler.service';
@@ -31,7 +34,11 @@ export class HttpResponseService {
 
   columnsPath = '/columns';
 
+  columnsSetPath = '/columnsSet';
+
   tasksPath = '/tasks';
+
+  tasksSetPath = '/tasksSet';
 
   constructor(private http: HttpClient, private httpError: HttpErrorHandlerService) {}
 
@@ -258,5 +265,23 @@ export class HttpResponseService {
         params
       )
       .pipe(catchError(async err => this.httpError.catchErrors(err)));
+  }
+
+  updateSetOfColumns(
+    arr: ColumnOrderPatchBody[]
+  ): Observable<Column[] | Observable<never> | number> {
+    return this.http
+      .patch<Column[]>(this.url + this.columnsSetPath, arr)
+      .pipe(
+        catchError(async (err: HttpErrorResponse) =>
+          this.httpError.catchErrors(err, true)
+        )
+      );
+  }
+
+  updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Observable<never>> {
+    return this.http
+      .patch<Task[]>(this.url + this.tasksSetPath, arr)
+      .pipe(catchError(err => this.httpError.catchErrors(err)));
   }
 }

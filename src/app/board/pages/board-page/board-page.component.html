@@ -1,4 +1,4 @@
-<form class="board__controls">
+<div class="board__controls">
   <button
     type="button"
     mat-raised-button
@@ -13,7 +13,9 @@
     color="primary">
     Create Column
   </button>
-</form>
+
+  <app-column-form [boardId]="boardId"></app-column-form>
+</div>
 
 <div
   class="board__container"
@@ -26,7 +28,8 @@
     *ngFor="let column of columns"
     cdkDrag
     [columnData]="column"
-    [columnsIds]="getArrOfIds()">
+    [columnsIds]="getArrOfIds()"
+    [boardId]="boardId">
   </app-column>
 
   <button
