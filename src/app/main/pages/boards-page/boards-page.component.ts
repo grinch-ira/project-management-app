@@ -12,6 +12,8 @@ import { switchMap } from 'rxjs';
 export class BoardsPageComponent implements OnInit {
   boardItems: Board[] = [];
 
+  activeLink: string = 'boards';
+
   constructor(
     private apiService: HttpResponseService,
     private boardsService: BoardsService,

@@ -8,11 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { SearchCriteriaComponent } from './components';
 
 @NgModule({
   declarations: [
     BoardsPageComponent,
     BoardItemComponent,
+    SearchCriteriaComponent,
   ],
   imports: [
     CommonModule,

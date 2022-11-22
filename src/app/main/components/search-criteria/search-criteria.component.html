@@ -1,0 +1,38 @@
+<h3 class="search-criteria-form__header">Search criteria</h3>
+
+<form
+  [formGroup]="tasksForm"
+  class="search-criteria-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Keywords</mat-label>
+    <input
+      matInput
+      placeholder="Enter a keywords"
+      autocomplete="off"
+      name="keywords"
+      formControlName="keywords" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>User</mat-label>
+    <mat-select formControlName="owner">
+      <mat-option
+        *ngFor="let user of appUsers"
+        [value]="user._id"
+        >{{ user.name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <div class="login-form__actions">
+    <button
+      type="button"
+      class="login-form__login-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="!tasksForm.dirty && (keywordsControl.value || ownerControl.value)"
+      (click)="findTasks()">
+      Search
+    </button>
+  </div>
+</form>
