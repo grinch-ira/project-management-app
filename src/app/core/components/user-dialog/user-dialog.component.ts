@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignUpBody } from '@core/models';
 import { HttpResponseService, ModalWindowService } from '@core/services';
@@ -11,7 +11,7 @@ import { config } from './user.constants';
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.scss'],
 })
-export class UserDialogComponent implements OnInit, AfterContentChecked {
+export class UserDialogComponent implements OnInit {
   userUpdateForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -40,8 +40,7 @@ export class UserDialogComponent implements OnInit, AfterContentChecked {
   constructor(
     private userService: UserService,
     private modalService: ModalWindowService,
-    private apiService: HttpResponseService,
-    private cdref: ChangeDetectorRef
+    private apiService: HttpResponseService
   ) {}
 
   ngOnInit(): void {
@@ -80,9 +79,5 @@ export class UserDialogComponent implements OnInit, AfterContentChecked {
       }
       return;
     });
-  }
-
-  ngAfterContentChecked(): void {
-    this.cdref.detectChanges();
   }
 }

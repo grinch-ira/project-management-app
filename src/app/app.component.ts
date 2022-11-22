@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LoaderService } from '@core/services/loader.service';
 
 @Component({
@@ -6,12 +6,17 @@ import { LoaderService } from '@core/services/loader.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterContentChecked {
+export class AppComponent implements OnInit {
   title = 'project-app';
+
+  isLoading = false;
 
   constructor(public loaderService: LoaderService, private cdref: ChangeDetectorRef) {}
 
-  ngAfterContentChecked(): void {
-    this.cdref.detectChanges();
+  ngOnInit(): void {
+    this.loaderService.isLoading.subscribe(isLoad => {
+      this.isLoading = isLoad;
+      this.cdref.detectChanges();
+    });
   }
 }
