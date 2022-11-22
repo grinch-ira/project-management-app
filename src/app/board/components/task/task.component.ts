@@ -71,6 +71,7 @@ export class TaskComponent {
   }
 
   openUpdateTaskDialog(): void {
+    console.log(this.taskData);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.taskData.title,
@@ -86,15 +87,22 @@ export class TaskComponent {
           ...result,
         };
         this.apiService
-          .updateTask(this.boardId, this.columnId, this.taskData._id, editedTask)
+          .updateTask(this.boardId, editedTask.columnId, this.taskData._id, {
+            order: this.taskData.order,
+            title: editedTask.title,
+            description: editedTask.description,
+            columnId: this.columnId,
+            userId: this.taskData.userId,
+            users: this.taskData.users,
+          })
           .subscribe({
             next: newTask => {
               if ('_id' in newTask) {
                 this.boardService.updateTask(
                   this.taskData.order,
-                  this.taskData.title,
+                  editedTask.title,
                   this.columnId,
-                  this.taskData.description
+                  editedTask.description
                 );
               }
             },
