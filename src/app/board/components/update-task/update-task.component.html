@@ -1,0 +1,49 @@
+<mat-dialog-content class="mat-typography" [formGroup]="updateTaskForm">
+  <form [formGroup]="updateTaskForm" >
+    <h2>Update task</h2>
+    <mat-form-field appearance="standard">
+      <mat-label for="inputTitle">title</mat-label>
+      <div [formGroup]="updateTaskForm">
+        <input
+          matInput
+          formControlName="title"
+
+          type="text"
+          class="form-control"
+          id="inputTitle" />
+      </div>
+      <mat-error>*your name should be longer than 3</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="standard">
+      <mat-label for="inputDescription">description</mat-label>
+      <div>
+        <input
+          matInput
+          type="text"
+          formControlName="description"
+
+          class="form-control"
+          id="inputDescription" />
+      </div>
+      <mat-error>*please enter a login email</mat-error>
+    </mat-form-field>
+    <br />
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="basic"
+    mat-dialog-close
+    cdkFocusInitial>
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    (click)="onUpdateValue()">
+    Update task
+  </button>
+</mat-dialog-actions>

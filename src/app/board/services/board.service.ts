@@ -88,6 +88,11 @@ export class BoardService {
     this.columns.getValue()[order].title = title;
   }
 
+  updateTask(order: number, title: string, colId: string, description: string): void {
+    this.tasks[colId].getValue()[order].title = title;
+    this.tasks[colId].getValue()[order].description = description;
+  }
+
   updateArrayIndexes(arr: (Column | Task)[]): Array<Column | Task> {
     return arr.map((e, i) => {
       return { ...e, order: i };

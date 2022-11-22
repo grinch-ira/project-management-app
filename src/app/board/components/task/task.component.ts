@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { EMPTY, switchMap, take, tap } from 'rxjs';
+import { UpdateTaskComponent } from '../update-task/update-task.component';
 
 @Component({
   selector: 'app-task',
@@ -25,7 +27,8 @@ export class TaskComponent {
     private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
     private boardService: BoardService,
-    private modalService: ModalWindowService
+    private modalService: ModalWindowService,
+    public dialog: MatDialog
   ) {}
 
   deleteTask(): void {
@@ -65,5 +68,39 @@ export class TaskComponent {
           this.boardService.updateTasksIndexes(this.columnId);
         }
       });
+  }
+
+  openUpdateTaskDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: this.taskData.title,
+      description: this.taskData.description,
+    };
+
+    const dialogRef = this.dialog.open(UpdateTaskComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const editedTask = {
+          ...this.taskData,
+          ...result,
+        };
+        this.apiService
+          .updateTask(this.boardId, this.columnId, this.taskData._id, editedTask)
+          .subscribe({
+            next: newTask => {
+              if ('_id' in newTask) {
+                this.boardService.updateTask(
+                  this.taskData.order,
+                  this.taskData.title,
+                  this.columnId,
+                  this.taskData.description
+                );
+              }
+            },
+          });
+        console.log(editedTask);
+      }
+    });
   }
 }
