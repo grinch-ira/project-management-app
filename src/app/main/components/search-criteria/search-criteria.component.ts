@@ -13,8 +13,6 @@ import { UsersService } from '@shared/services';
 export class SearchCriteriaComponent implements OnInit {
   appUsers: User[] = [];
 
-  tasks: Task[] = [];
-
   tasksForm: FormGroup = this.formBuilder.group({
     keywords: [''],
     owner: [''],
@@ -56,10 +54,6 @@ export class SearchCriteriaComponent implements OnInit {
         this.updateControls();
       }
       this.tasksService.isFullMatch = Boolean(isFullMatch);
-    });
-
-    this.tasksService.tasks$.subscribe(tasks => {
-      this.tasks = tasks;
     });
   }
 

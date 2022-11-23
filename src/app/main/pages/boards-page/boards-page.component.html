@@ -15,5 +15,8 @@
   <mat-tab label="Tasks">
     <h2 class="main__header">Tasks</h2>
     <app-search-criteria></app-search-criteria>
+    <div class="tasks__container">
+      <app-task-item *ngFor="let task of taskItems" [taskData]="task"></app-task-item>
+    </div>
   </mat-tab>
 </mat-tab-group>

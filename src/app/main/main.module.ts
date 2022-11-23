@@ -9,12 +9,14 @@ import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { SearchCriteriaComponent } from './components';
+import { TaskItemComponent } from './components/task-item/task-item.component';
 
 @NgModule({
   declarations: [
     BoardsPageComponent,
     BoardItemComponent,
     SearchCriteriaComponent,
+    TaskItemComponent,
   ],
   imports: [
     CommonModule,
