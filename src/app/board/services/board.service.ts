@@ -67,7 +67,7 @@ export class BoardService {
       return {
         _id: task._id,
         order: i,
-        columnId: task.boardId,
+        columnId: task.columnId,
       };
     });
   }

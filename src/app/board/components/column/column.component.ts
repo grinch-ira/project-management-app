@@ -195,7 +195,9 @@ export class ColumnComponent implements OnInit {
   private getTasks(): void {
     this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
       if (tasks instanceof Array) {
-        this.boardService.tasks[this.columnData._id].next(tasks);
+        this.boardService.tasks[this.columnData._id].next(
+          tasks.sort((a, b) => a.order - b.order)
+        );
       }
     });
   }
