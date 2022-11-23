@@ -1,5 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectorRef,
   Component,
@@ -70,12 +70,18 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
-    /*     if (event.previousContainer === event.container) {
-      moveItemInArray<Task>(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+    const columnId = event.container.id.slice(4);
+    const taskSetCopy = [...this.tasksData];
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+      this.apiService
+        .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[this.columnData._id].next(taskSetCopy);
+          }
+        });
     } else {
       transferArrayItem<Task>(
         event.previousContainer.data,
@@ -83,19 +89,33 @@ export class ColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.apiService
+        .updateTask(
+          this.boardId,
+          columnId,
+          event.container.data[event.currentIndex]._id,
+          {
+            order: event.currentIndex,
+            title: event.container.data[event.currentIndex].title,
+            description: event.container.data[event.currentIndex].description,
+            columnId: columnId,
+            userId: event.container.data[event.currentIndex].userId,
+            users: event.container.data[event.currentIndex].users,
+          }
+        )
+        .subscribe({
+          next: newTask => {
+            if ('_id' in newTask) {
+              this.boardService.updateTask(
+                event.currentIndex,
+                event.container.data[event.currentIndex].title,
+                columnId,
+                event.container.data[event.currentIndex].description
+              );
+            }
+          },
+        });
     }
-    this.updateOrderAndIds(); */
-
-    const taskSetCopy = [...this.tasksData];
-
-    moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
-    this.apiService
-      .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
-      .subscribe(res => {
-        if (typeof res === 'number') {
-          this.boardService.tasks[this.columnData._id].next(taskSetCopy);
-        }
-      });
 
     //TODO: Send to server actual set of tasks
   }
