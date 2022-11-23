@@ -1,5 +1,5 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectorRef,
   Component,
@@ -70,7 +70,7 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
-    if (event.previousContainer === event.container) {
+    /*     if (event.previousContainer === event.container) {
       moveItemInArray<Task>(
         event.container.data,
         event.previousIndex,
@@ -84,7 +84,18 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
     }
-    this.updateOrderAndIds();
+    this.updateOrderAndIds(); */
+
+    const taskSetCopy = [...this.tasksData];
+
+    moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+    this.apiService
+      .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
+      .subscribe(res => {
+        if (typeof res === 'number') {
+          this.boardService.tasks[this.columnData._id].next(taskSetCopy);
+        }
+      });
 
     //TODO: Send to server actual set of tasks
   }
