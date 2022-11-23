@@ -11,18 +11,23 @@
       autocomplete="off"
       name="keywords"
       formControlName="keywords" />
+    <mat-error *ngIf="keywordsControl.errors?.['required']">Enter keywords</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>User</mat-label>
     <mat-select formControlName="owner">
+      <mat-option>-None-</mat-option>
       <mat-option
         *ngFor="let user of appUsers"
         [value]="user._id"
         >{{ user.name }}</mat-option
       >
     </mat-select>
+    <mat-error *ngIf="ownerControl.errors?.['required']">Select a user</mat-error>
   </mat-form-field>
+
+  <mat-slide-toggle color="primary" formControlName="isFullMatch">Full match</mat-slide-toggle>
 
   <div class="login-form__actions">
     <button
@@ -30,7 +35,7 @@
       class="login-form__login-button"
       mat-raised-button
       color="primary"
-      [disabled]="!tasksForm.dirty && (keywordsControl.value || ownerControl.value)"
+      [disabled]="tasksForm.invalid || !(keywordsControl.value || ownerControl.value)"
       (click)="findTasks()">
       Search
     </button>

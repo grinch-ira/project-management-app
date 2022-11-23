@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Board,
@@ -282,6 +282,16 @@ export class HttpResponseService {
   updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Observable<never>> {
     return this.http
       .patch<Task[]>(this.url + this.tasksSetPath, arr)
+      .pipe(catchError(err => this.httpError.catchErrors(err)));
+  }
+
+  searchTasks(keywords: string, userId: string): Observable<Task[] | Observable<never>> {
+    const params = new HttpParams().set('userId', userId).set('search', keywords);
+
+    return this.http
+      .get<Task[]>(this.url + this.tasksSetPath, {
+        params: params,
+      })
       .pipe(catchError(err => this.httpError.catchErrors(err)));
   }
 }
