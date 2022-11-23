@@ -177,7 +177,12 @@ export class ColumnComponent implements OnInit {
   }
 
   openDialogTask(): void {
-    this.dialog.open(TaskDialogComponent);
+    this.dialog.open(TaskDialogComponent, {
+      data: {
+        boardId: this.boardId,
+        columnId: this.columnData._id,
+      },
+    });
   }
 
   public closeModal(): void {
