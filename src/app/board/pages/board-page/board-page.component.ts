@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ColumnDialogComponent } from '@board/components';
 import { BoardService } from '@board/services';
 import { Column } from '@core/models';
 import { HttpResponseService } from '@core/services/http-response.service';
@@ -19,7 +21,8 @@ export class BoardPageComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private apiService: HttpResponseService,
-    private boardService: BoardService
+    private boardService: BoardService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -68,11 +71,21 @@ export class BoardPageComponent implements OnInit {
   }
 
   private getColumns(): void {
-    this.apiService.getAllColumns(this.boardId).subscribe(cols => {
-      if (cols instanceof Array) {
-        this.boardService.columns.next(cols.sort((a, b) => a.order - b.order));
-        this.boardService.fillTaskObject();
-      }
+    setTimeout(() => {
+      this.apiService.getAllColumns(this.boardId).subscribe(cols => {
+        if (cols instanceof Array) {
+          this.boardService.columns.next(cols.sort((a, b) => a.order - b.order));
+          this.boardService.fillTaskObject();
+        }
+      });
+    }, 0);
+  }
+
+  openDialogColumn(): void {
+    this.dialog.open(ColumnDialogComponent, {
+      data: {
+        boardId: this.boardId,
+      },
     });
   }
 }

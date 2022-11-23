@@ -71,7 +71,6 @@ export class TaskComponent {
   }
 
   openUpdateTaskDialog(): void {
-    console.log(this.taskData);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.taskData.title,
@@ -107,7 +106,6 @@ export class TaskComponent {
               }
             },
           });
-        console.log(editedTask);
       }
     });
   }

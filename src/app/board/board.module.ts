@@ -11,6 +11,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnFormComponent } from './components/column-form/column-form.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { A11yModule } from '@angular/cdk/a11y';
+import { ColumnDialogComponent } from './components/column-dialog/column-dialog.component';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 @NgModule({
@@ -20,6 +22,8 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
     TaskComponent,
     ColumnFormComponent,
     TaskFormComponent,
+    ColumnDialogComponent,
+    TaskDialogComponent,
     UpdateTaskComponent,
   ],
   imports: [

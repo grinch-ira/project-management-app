@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { BoardCreationDialogComponent, BoardCreationFormComponent } from './components';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
 
 @NgModule({
@@ -27,6 +29,7 @@ import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
     BoardCreationDialogComponent,
     BoardCreationFormComponent,
     UserDialogComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
   ],
   providers: [
     HttpResponseService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: InvalidTokenInterceptor, multi: true },
   ],
@@ -47,6 +51,7 @@ import { InvalidTokenInterceptor, TokenInterceptor } from './interceptors';
     FooterComponent,
     ModalWindowComponent,
     DialogComponent,
+    SpinnerComponent,
     MaterialModule,
   ],
 })

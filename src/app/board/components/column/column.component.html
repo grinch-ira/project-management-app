@@ -73,7 +73,7 @@
     mat-raised-button
     class="column__button-create"
     color="warn"
-    (click)="openCreateTaskForm(true)">
+    (click)="openDialogTask()">
     Create task
   </button>
 </div>
@@ -82,7 +82,7 @@
   *ngIf="tasksData.length"
   mat-raised-button
   color="primary"
-  (click)="openCreateTaskForm(true)">
+  (click)="openDialogTask()">
   Create task
 </button>
 
