@@ -10,11 +10,10 @@
   <button
     type="button"
     mat-raised-button
-    color="primary">
+    color="primary"
+    (click)="openDialogColumn()">
     Create Column
   </button>
-
-  <app-column-form [boardId]="boardId"></app-column-form>
 </div>
 
 <div
@@ -37,7 +36,8 @@
     type="button"
     mat-raised-button
     class="board__button-create"
-    color="warn">
+    color="warn"
+    (click)="openDialogColumn()">
     Create column
   </button>
 </div>

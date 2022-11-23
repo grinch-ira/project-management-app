@@ -27,6 +27,7 @@ export class ColumnFormComponent {
   ) {}
 
   createColumn(): void {
+    console.log('🚀 ~ createColumn ~ this.boardId', this.boardId);
     this.apiService
       .createColumn(this.boardId, {
         ...this.columnForm.value,

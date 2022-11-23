@@ -10,12 +10,14 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { EMPTY, switchMap, take, tap } from 'rxjs';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-column',
@@ -51,7 +53,8 @@ export class ColumnComponent implements OnInit {
     private modalService: ModalWindowService,
     public focusMonitor: FocusMonitor,
     private changeDetector: ChangeDetectorRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -173,8 +176,8 @@ export class ColumnComponent implements OnInit {
     });
   }
 
-  openCreateTaskForm(value: boolean): void {
-    this.isCreateVisible = value;
+  openDialogTask(): void {
+    this.dialog.open(TaskDialogComponent);
   }
 
   public closeModal(): void {
@@ -182,10 +185,12 @@ export class ColumnComponent implements OnInit {
   }
 
   private getTasks(): void {
-    this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
-      if (tasks instanceof Array) {
-        this.boardService.tasks[this.columnData._id].next(tasks);
-      }
-    });
+    setTimeout(() => {
+      this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
+        if (tasks instanceof Array) {
+          this.boardService.tasks[this.columnData._id].next(tasks);
+        }
+      });
+    }, 0);
   }
 }

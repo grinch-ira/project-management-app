@@ -46,6 +46,7 @@
       mat-raised-button
       color="primary"
       [disabled]="boardForm.invalid"
+      [mat-dialog-close]="true"
       (click)="createBoard()">
       {{'mainPage.createBoardButton' | translate}}
     </button>

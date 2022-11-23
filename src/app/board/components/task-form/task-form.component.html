@@ -27,9 +27,9 @@
         </mat-error>
   </mat-form-field>
 </div>
-  <div class="buttons">
-    <button mat-raised-button color="primary" type="button" (click)="createTask()" >Add</button>
-    <button mat-raised-button color="primary" type="button" (click)="closeModal()" >Cancel</button>
-  </div>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="button" (click)="createTask()" >Add</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="button" (click)="closeModal()" >Cancel</button>
+  </mat-dialog-actions>
 </form>
 </div>
