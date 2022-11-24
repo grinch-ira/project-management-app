@@ -285,7 +285,7 @@ export class HttpResponseService {
       .pipe(catchError(err => this.httpError.catchErrors(err)));
   }
 
-  searchTasks(keywords: string, userId: string): Observable<Task[] | Observable<never>> {
+  searchTasks(keywords: string, userId?: string): Observable<Task[] | Observable<never>> {
     let params = new HttpParams();
 
     if (userId) {

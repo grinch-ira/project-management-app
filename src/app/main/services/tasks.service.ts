@@ -6,36 +6,25 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class TasksService {
-  keywords: string = '';
-
   owner: string = '';
 
   isFullMatch: boolean = false;
 
   tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
 
-  getSearchResults(tasks: Task[]): void {
-    if (this.isFullMatch) {
-      this.tasks$.next(this.filterResults(tasks));
-    } else {
-      this.tasks$.next(tasks);
-    }
+  tasksSet$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
+
+  getSearchResults(): void {
+    this.tasks$.next(this.filterResults(this.tasksSet$.getValue()));
   }
 
   private filterResults(tasks: Task[]): Task[] {
-    return tasks
-      .filter(task => this.isIncludedKeywords(task))
-      .filter(task => this.isIncludedUser(task));
-  }
-
-  private isIncludedKeywords(task: Task): boolean {
-    return (
-      task.title.toLowerCase().includes(this.keywords.toLowerCase()) ||
-      task.description.toLowerCase().includes(this.keywords.toLowerCase())
-    );
+    return tasks.filter(task => this.isIncludedUser(task));
   }
 
   private isIncludedUser(task: Task): boolean {
-    return task.userId === this.owner || task.users.includes(this.owner);
+    return this.owner
+      ? task.userId === this.owner || task.users.includes(this.owner)
+      : true;
   }
 }

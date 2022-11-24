@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Task, User } from '@core/models';
 import { HttpResponseService } from '@core/services';
 import { TasksService } from '@main/services/tasks.service';
 import { UsersService } from '@shared/services';
+import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-search-criteria',
@@ -37,46 +38,25 @@ export class SearchCriteriaComponent implements OnInit {
       this.appUsers = users;
     });
 
-    this.keywordsControl.valueChanges.subscribe(keywords => {
-      this.tasksService.keywords = keywords;
-    });
+    this.keywordsControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((keywords: string) => {
+          if (keywords.trim().length < 3) {
+            return of([]);
+          }
+          return this.apiService.searchTasks(keywords);
+        })
+      )
+      .subscribe(tasks => {
+        this.tasksService.tasksSet$.next(tasks as Task[]);
+        this.tasksService.getSearchResults();
+      });
 
     this.ownerControl.valueChanges.subscribe(owner => {
       this.tasksService.owner = owner;
+      this.tasksService.getSearchResults();
     });
-
-    this.isFullMatchControl.valueChanges.subscribe(isFullMatch => {
-      if (isFullMatch) {
-        this.setValidators();
-        this.updateControls();
-      } else {
-        this.resetValidators();
-        this.updateControls();
-      }
-      this.tasksService.isFullMatch = Boolean(isFullMatch);
-    });
-  }
-
-  findTasks(): void {
-    this.apiService
-      .searchTasks(this.tasksService.keywords, this.tasksService.owner)
-      .subscribe(tasks => {
-        this.tasksService.getSearchResults(tasks as Task[]);
-      });
-  }
-
-  private setValidators(): void {
-    this.keywordsControl.setValidators(Validators.required);
-    this.ownerControl.setValidators(Validators.required);
-  }
-
-  private resetValidators(): void {
-    this.keywordsControl.removeValidators(Validators.required);
-    this.ownerControl.removeValidators(Validators.required);
-  }
-
-  private updateControls(): void {
-    this.keywordsControl.updateValueAndValidity({ emitEvent: true });
-    this.ownerControl.updateValueAndValidity({ emitEvent: true });
   }
 }

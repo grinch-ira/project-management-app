@@ -27,17 +27,4 @@
     <mat-error *ngIf="ownerControl.errors?.['required']">Select a user</mat-error>
   </mat-form-field>
 
-  <mat-slide-toggle color="primary" formControlName="isFullMatch">Full match</mat-slide-toggle>
-
-  <div class="login-form__actions">
-    <button
-      type="button"
-      class="login-form__login-button"
-      mat-raised-button
-      color="primary"
-      [disabled]="tasksForm.invalid || !(keywordsControl.value || ownerControl.value)"
-      (click)="findTasks()">
-      Search
-    </button>
-  </div>
 </form>
