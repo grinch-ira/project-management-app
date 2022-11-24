@@ -286,7 +286,15 @@ export class HttpResponseService {
   }
 
   searchTasks(keywords: string, userId: string): Observable<Task[] | Observable<never>> {
-    const params = new HttpParams().set('userId', userId).set('search', keywords);
+    let params = new HttpParams();
+
+    if (userId) {
+      params = params.set('userId', userId || '');
+    }
+
+    if (keywords) {
+      params = params.set('search', keywords || '');
+    }
 
     return this.http
       .get<Task[]>(this.url + this.tasksSetPath, {

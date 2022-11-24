@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '@core/models';
+import { BoardsService, UsersService } from '@shared/services';
 
 @Component({
   selector: 'app-task-item',
@@ -9,12 +10,15 @@ import { Task } from '@core/models';
 export class TaskItemComponent implements OnInit {
   @Input() taskData!: Task;
 
-  constructor() {}
+  constructor(private usersService: UsersService, private boardsService: BoardsService) {}
 
   ngOnInit(): void {}
 
-  getOwnerName(): string {
-    //TODO: get owner name
-    return 'owner';
+  getTaskOwnerName(): string {
+    return this.usersService.getName(this.taskData.userId as string);
+  }
+
+  getBoardOwnerName(): string {
+    return this.boardsService.getOwnerName(this.taskData.boardId);
   }
 }

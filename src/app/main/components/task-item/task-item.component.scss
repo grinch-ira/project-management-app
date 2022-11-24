@@ -2,4 +2,9 @@
   .task__card {
     width: 320px;
   }
+
+  .task__content {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }
