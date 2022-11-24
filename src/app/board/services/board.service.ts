@@ -72,6 +72,10 @@ export class BoardService {
     });
   }
 
+  updateColIdInTask(colId: string, position: number): void {
+    this.tasks[colId].getValue()[position].columnId = colId;
+  }
+
   updateTasksIndexes(colId: string): void {
     this.tasks[colId].getValue().forEach((task, i) => {
       task.order = i;

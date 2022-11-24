@@ -74,10 +74,18 @@ export class ColumnComponent implements OnInit {
 
   drop(event: CdkDragDrop<Task[]>): void {
     const columnId = event.container.id.slice(4);
+    const previousColumnId = event.previousContainer.id.slice(4);
     const taskSetCopy = [...this.tasksData];
+
+    const previousTasksSetCopy = [
+      ...this.boardService.tasks[previousColumnId].getValue(),
+    ];
+
+    console.log(columnId, previousColumnId, taskSetCopy, previousTasksSetCopy);
 
     if (event.previousContainer === event.container) {
       moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+      this.boardService.updateTasksIndexes(columnId);
       this.apiService
         .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
         .subscribe(res => {
@@ -92,7 +100,8 @@ export class ColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.apiService
+      this.boardService.updateColIdInTask(columnId, event.currentIndex);
+      /*       this.apiService
         .updateTask(
           this.boardId,
           columnId,
@@ -117,7 +126,7 @@ export class ColumnComponent implements OnInit {
               );
             }
           },
-        });
+        }); */
     }
 
     //TODO: Send to server actual set of tasks
