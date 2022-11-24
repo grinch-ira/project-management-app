@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.translate.currentLang = 'en';
+    this.translate.currentLang = localStorage.getItem('lang') || 'en';
   }
 
   logOut(): void {
@@ -44,6 +44,11 @@ export class HeaderComponent implements OnInit {
       }
       return;
     });
+  }
+
+  saveToLocal(lang: string): void {
+    localStorage.setItem('lang', lang);
+    this.translate.use(lang);
   }
 
   openDialogBoard(): void {

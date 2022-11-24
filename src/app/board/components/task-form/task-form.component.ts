@@ -18,11 +18,9 @@ export class TaskFormComponent {
   formGroup: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
-      Validators.minLength(Number('3')),
     ]),
     description: new FormControl('', [
       Validators.required,
-      Validators.minLength(Number('3')),
     ]),
   });
 
