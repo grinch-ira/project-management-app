@@ -36,7 +36,6 @@ export class BoardCreationFormComponent implements OnInit {
   ngOnInit(): void {
     this.usersService.users$.subscribe(users => {
       this.appUsers = users;
-      console.log('🚀 ~ ngOnInit ~ this.appUsers', this.appUsers);
     });
   }
 
