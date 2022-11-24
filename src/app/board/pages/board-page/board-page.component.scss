@@ -1,40 +1,41 @@
 @use '../../../../styles/layout' as layout;
 @use '../../../../styles/animations' as animations;
 @use '../../../../variables.scss' as vars;
+@use 'sass:color';
 
 :host {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  box-sizing: border-box;
   height: calc(100vh - layout.$header-height - layout.$footer-height);
   padding: 16px;
-  box-sizing: border-box;
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
 
-  .board__controls {
-    margin-bottom: 16px;
-    display: flex;
-    column-gap: 16px;
-  }
+  .board {
+    &__controls {
+      display: flex;
+      margin-bottom: 16px;
+      column-gap: 16px;
+    }
 
-  .board__container {
-    width: 100%;
-    flex-grow: 1;
-    box-sizing: border-box;
-    overflow-x: auto;
-    padding: 16px;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-content: flex-start;
-    column-gap: 16px;
+    &__container {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-start;
+      align-content: flex-start;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 16px;
+      overflow-x: auto;
+      column-gap: 16px;
+      background-color: color.scale(vars.$light-grey, $alpha: -50%);
+    }
 
-    background-color: scale-color(vars.$light-grey, $alpha: -50%);
-
-    .board__button-create {
+    &__button-create {
       display: block;
       width: auto;
       filter: opacity(0.3);
-
       transition: filter 0.2s ease-out;
 
       &:hover {
