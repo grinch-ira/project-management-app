@@ -18,9 +18,13 @@
     }
   },
   "footer": {
-    "creators": "Creators"
+    "creators": "Creators",
+    "Ira": "Iryna Hryniuk",
+    "Yulia": "Yuliya Shulgan",
+    "Pasha": "Pavel Burdavitsyn"
   },
   "header": {
+    "logo": "PMA",
     "settingsTitle": "Settings",
     "addBoard": "Add Board",
     "translation": "Language",
@@ -38,6 +42,15 @@
     "signUp": "Sign Up",
     "haveAccount": "Already have an account? Log In!"
   },
+  "user": {
+    "title": "Your settings",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "delete": "Delete user",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "errors": {
     "enterLoginEmail": "*please enter a login email",
     "invalidLoginEmail": "*the login email is invalid",
@@ -49,7 +62,8 @@
     "noLongerThanTwentyName": "*your name should be no longer than 20",
     "onlySmallOrNumbers": "*should use only small letters or numbers",
     "noLongerThanTwentyPassword": "*your password should be no longer than 20",
-    "enterBoardTitle": "Please, enter board title"
+    "enterBoardTitle": "Please, enter board title",
+    "enterColumnTitle": "Please, enter column title"
   },
   "mainPage": {
     "mainPageTitle": "Boards",
@@ -58,6 +72,18 @@
     "boardSelectUser": "User",
     "createBoardButton": "Create board",
     "enterBoardTitlePlaceholder": "Enter the board title"
+  },
+  "boardPage": {
+    "goToMain": "Go to main",
+    "createColumn": "Create column",
+    "createTask": "Create task",
+    "columnTitle": "Column title",
+    "enterColumnTitlePlaceholder": "Enter column title",
+    "taskTitle": "Task title",
+    "enterTaskTitlePlaceholder": "Enter task title",
+    "taskDescription": "Task description",
+    "enterTaskDescriptionPlaceholder": "Enter task description",
+    "cancel": "Cancel"
   },
   "windowData": {
     "deleteBoard": {

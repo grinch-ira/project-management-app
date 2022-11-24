@@ -2,7 +2,7 @@
   <div class="header-wrapper">
     <div class="header-container">
       <div class="header-title">
-        <a [routerLink]="!isLogIn ? '/welcome' : '/main'">PMA</a>
+        <a [routerLink]="!isLogIn ? '/welcome' : '/main'">{{ 'header.logo' | translate}}</a>
       </div>
       <div>
         <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.settingsTitle' | translate}}" mat-button (click)="openDialogUser()">

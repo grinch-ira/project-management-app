@@ -18,9 +18,13 @@
     }
   },
   "footer":{
-    "creators":"Разработчики"
+    "creators":"Разработчики",
+    "Ira": "Ира Гринюк",
+    "Yulia": "Юля Шульган",
+    "Pasha": "Паша Бурдавицын"
   },
   "header":{
+    "logo": "ПЛАННЕР",
     "settingsTitle":"Настройки",
     "addBoard":"Создать доску",
     "translation":"Язык",
@@ -38,6 +42,15 @@
     "signUp":"Зарегистрироваться",
     "haveAccount":"Уже есть аккаунт? Тогда войдите!"
   },
+  "user": {
+    "title": "Твои настройки",
+    "name": "Имя",
+    "login": "Логин",
+    "password": "Пароль",
+    "delete": "Удалить пользователя",
+    "cancel": "Отмена",
+    "save": "Сохранить"
+  },
   "errors":{
     "enterLoginEmail":"*пожалуйста, введите адрес электронной почты для входа в систему",
     "invalidLoginEmail":"*адрес электронной почты для входа недействителен",
@@ -49,7 +62,8 @@
     "noLongerThanTwentyName":"*ваше имя должно быть не длиннее 20 символов",
     "onlySmallOrNumbers":"*следует использовать только маленькие буквы или цифры",
     "noLongerThanTwentyPassword":"*ваш пароль должен быть не длиннее 20 символов",
-    "enterBoardTitle":"Пожалуйста, введите название доски"
+    "enterBoardTitle":"Пожалуйста, введите название доски",
+    "enterColumnTitle": "Пожалуйста, введите название колонки"
   },
   "mainPage":{
     "mainPageTitle":"Доски",
@@ -58,6 +72,18 @@
     "boardSelectUser":"Пользователи",
     "createBoardButton":"Создать доску",
     "enterBoardTitlePlaceholder":"Введите название доски"
+  },
+  "boardPage": {
+    "goToMain": "На главную",
+    "createColumn": "Создать колонку",
+    "createTask": "Создать задачу",
+    "columnTitle": "Название колонки",
+    "enterColumnTitlePlaceholder": "Введите название колонки",
+    "taskTitle": "Название задачи",
+    "enterTaskTitlePlaceholder": "Введите название задачи",
+    "taskDescription": "Описание задачи",
+    "enterTaskDescriptionPlaceholder": "Введите описание задачи",
+    "cancel": "Отмена"
   },
   "windowData": {
     "deleteBoard": {
