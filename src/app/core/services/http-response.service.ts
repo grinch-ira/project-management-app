@@ -279,9 +279,15 @@ export class HttpResponseService {
       );
   }
 
-  updateSetOfTasks(arr: TaskUpdateBody[]): Observable<Task[] | Observable<never>> {
+  updateSetOfTasks(
+    arr: TaskUpdateBody[]
+  ): Observable<Task[] | Observable<never> | number> {
     return this.http
       .patch<Task[]>(this.url + this.tasksSetPath, arr)
-      .pipe(catchError(err => this.httpError.catchErrors(err)));
+      .pipe(
+        catchError(async (err: HttpErrorResponse) =>
+          this.httpError.catchErrors(err, true)
+        )
+      );
   }
 }
