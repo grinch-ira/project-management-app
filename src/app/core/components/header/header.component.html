@@ -18,8 +18,8 @@
         <button [matMenuTriggerFor]="languageMenu" color="primary" mat-raised-button title="{{ 'header.translation' | translate}}" >
           <mat-icon>g_translate</mat-icon>
             <mat-menu #languageMenu="matMenu">
-              <button mat-menu-item (click)="translate.use('en')">en</button>
-              <button mat-menu-item (click)="translate.use('ru')">ru</button>
+              <button mat-menu-item (click)="saveToLocal('en')">en</button>
+              <button mat-menu-item (click)="saveToLocal('ru')">ru</button>
             </mat-menu>
         </button>
         <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="{{ 'header.logInSignUp' | translate}}">
