@@ -62,7 +62,6 @@ export class ColumnComponent implements OnInit {
       this.boardId = params['id'];
     });
 
-    //TODO: Release real columns request
     this.boardService.tasks[this.columnData._id].subscribe(task => {
       this.tasksData = task;
     });
@@ -80,8 +79,6 @@ export class ColumnComponent implements OnInit {
     const previousTasksSetCopy = [
       ...this.boardService.tasks[previousColumnId].getValue(),
     ];
-
-    console.log(columnId, previousColumnId, taskSetCopy, previousTasksSetCopy);
 
     if (event.previousContainer === event.container) {
       moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
@@ -101,35 +98,26 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
       this.boardService.updateColIdInTask(columnId, event.currentIndex);
-      /*       this.apiService
-        .updateTask(
-          this.boardId,
-          columnId,
-          event.container.data[event.currentIndex]._id,
-          {
-            order: event.currentIndex,
-            title: event.container.data[event.currentIndex].title,
-            description: event.container.data[event.currentIndex].description,
-            columnId: columnId,
-            userId: event.container.data[event.currentIndex].userId,
-            users: event.container.data[event.currentIndex].users,
-          }
-        )
-        .subscribe({
-          next: newTask => {
-            if ('_id' in newTask) {
-              this.boardService.updateTask(
-                event.currentIndex,
-                event.container.data[event.currentIndex].title,
-                columnId,
-                event.container.data[event.currentIndex].description
-              );
-            }
-          },
-        }); */
-    }
 
-    //TODO: Send to server actual set of tasks
+      this.boardService.updateTasksIndexes(columnId);
+      this.boardService.updateTasksIndexes(previousColumnId);
+
+      const tasksSetNewOrders = this.boardService.getNewTaskOrders(columnId);
+      const previousTasksSetNewOrders =
+        this.boardService.getNewTaskOrders(previousColumnId);
+
+      this.apiService
+        .updateSetOfTasks([
+          ...tasksSetNewOrders,
+          ...previousTasksSetNewOrders,
+        ])
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[columnId].next(taskSetCopy);
+            this.boardService.tasks[previousColumnId].next(previousTasksSetCopy);
+          }
+        });
+    }
   }
 
   deleteColumn(): void {
@@ -204,16 +192,6 @@ export class ColumnComponent implements OnInit {
 
   hideInput(): void {
     this.isEditableTitle = false;
-  }
-
-  private updateOrderAndIds(): void {
-    this.tasksData = this.tasksData.map((task, i) => {
-      return {
-        ...task,
-        order: i,
-        columnId: this.columnData._id,
-      };
-    });
   }
 
   openDialogTask(): void {
