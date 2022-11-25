@@ -3,5 +3,26 @@
   margin: $top-bottom auto;
 }
 
+@mixin responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+  grid-auto-rows: max-content;
+  gap: 16px;
+  margin: 16px;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
 $header-height: 86px;
 $footer-height: 148px;
