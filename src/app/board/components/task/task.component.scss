@@ -6,13 +6,12 @@
   flex: none;
   width: 100%;
   height: 160px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  text-overflow: ellipsis;
   background-color: color.scale(vars.$light-grey, $alpha: -50%);
   border-radius: 8px;
   backdrop-filter: blur(4px);
-  overflow-y: visible;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
 
   .task {
     &__header {
@@ -28,9 +27,9 @@
 .task-header {
   display: block;
   width: 150px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 p {
