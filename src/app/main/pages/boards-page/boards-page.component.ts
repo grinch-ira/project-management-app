@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Board } from '@core/models';
+import { Board, Task } from '@core/models';
 import { HttpResponseService } from '@core/services/http-response.service';
+import { TasksService } from '@main/services';
 import { BoardsService, UsersService } from '@shared/services';
 import { switchMap } from 'rxjs';
 
@@ -12,10 +13,15 @@ import { switchMap } from 'rxjs';
 export class BoardsPageComponent implements OnInit {
   boardItems: Board[] = [];
 
+  taskItems: Task[] = [];
+
+  activeLink: string = 'boards';
+
   constructor(
     private apiService: HttpResponseService,
     private boardsService: BoardsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private tasksService: TasksService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +40,10 @@ export class BoardsPageComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.tasksService.tasks$.subscribe(tasks => {
+      this.taskItems = tasks;
+    });
 
     this.apiService
       .getAllBoards()

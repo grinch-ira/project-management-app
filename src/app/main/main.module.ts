@@ -8,11 +8,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { SearchCriteriaComponent } from './components';
+import { TaskItemComponent } from './components/task-item/task-item.component';
+
+import { LottieModule } from 'ngx-lottie';
 
 @NgModule({
   declarations: [
     BoardsPageComponent,
     BoardItemComponent,
+    SearchCriteriaComponent,
+    TaskItemComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +29,7 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     SharedModule,
     TranslateModule,
+    LottieModule,
   ],
 })
 export class MainModule {}

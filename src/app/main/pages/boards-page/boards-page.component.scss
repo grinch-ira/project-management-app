@@ -7,18 +7,15 @@
   width: 100%;
   max-width: 1440px;
 
-  .main {
-    &__header {
-      text-align: center;
+  .tasks {
+    &__container {
+      @include layout.responsive-grid;
     }
+  }
 
+  .main {
     &__boards {
-      display: flex;
-      flex-basis: 400px;
-      flex-flow: row wrap;
-      gap: 24px;
-      justify-content: center;
-      width: 100%;
+      @include layout.responsive-grid;
     }
   }
 }
