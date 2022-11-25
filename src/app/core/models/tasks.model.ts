@@ -26,3 +26,9 @@ export interface TaskUpdateBody {
 export type TaskSet = {
   [key: string]: BehaviorSubject<Task[]>;
 };
+
+export interface IAssignedUser {
+  title: string;
+  description: string;
+  userId: string;
+}
