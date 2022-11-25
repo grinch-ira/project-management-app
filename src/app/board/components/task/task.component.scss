@@ -5,23 +5,35 @@
   display: block;
   flex: none;
   width: 100%;
-  min-height: 160px;
-  max-height: 480px;
+  height: 160px;
   overflow: hidden;
   background-color: color.scale(vars.$light-grey, $alpha: -50%);
   border-radius: 8px;
   backdrop-filter: blur(4px);
+  overflow-y: visible;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 
   .task {
     &__header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       height: 20px;
     }
 
     &__description {
-      overflow-y: auto;
+      margin: 10px;
     }
   }
+}
+
+.task-header {
+  display: block;
+  width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
