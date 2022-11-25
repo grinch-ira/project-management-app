@@ -56,14 +56,14 @@
     "invalidLoginEmail": "*the login email is invalid",
     "enterPassword": "*please enter a password",
     "longerThanEight": "*your password should be longer than 8",
-    "usedUpperLowerNumberSpecial": "*your password should be used uppercase and lowercase letters, numbers, special character",
+    "usedUpperLowerNumberSpecial": "*your password should include uppercase and lowercase letters, numbers, special character",
     "enterName": "*please enter a name",
     "longerThanThree": "*your name should be longer than 3",
     "noLongerThanTwentyName": "*your name should be no longer than 20",
     "onlySmallOrNumbers": "*should use only small letters or numbers",
     "noLongerThanTwentyPassword": "*your password should be no longer than 20",
-    "enterBoardTitle": "Please, enter board title",
-    "enterColumnTitle": "Please, enter column title"
+    "enterBoardTitle": "*please, enter board title",
+    "enterColumnTitle": "*please, enter column title"
   },
   "mainPage": {
     "mainPageTitle": "Boards",
