@@ -8,8 +8,7 @@
     text-align: center;
   }
 
-  .main__boards,
-  .tasks__container {
+  .main__boards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -17,5 +16,15 @@
     flex-basis: 400px;
     gap: 24px;
     width: 100%;
+    margin: 16px;
+  }
+
+  .tasks__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
+    grid-auto-rows: max-content;
+    gap: 16px;
+    margin: 16px;
   }
 }

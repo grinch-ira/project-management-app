@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Board, Task, User } from '@core/models';
 import { HttpResponseService } from '@core/services';
@@ -11,7 +11,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
   templateUrl: './search-criteria.component.html',
   styleUrls: ['./search-criteria.component.scss'],
 })
-export class SearchCriteriaComponent implements OnInit {
+export class SearchCriteriaComponent implements OnInit, OnDestroy {
   appUsers: User[] = [];
 
   boards: Board[] = [];
@@ -68,5 +68,10 @@ export class SearchCriteriaComponent implements OnInit {
       this.tasksService.owner = owner.trim();
       this.tasksService.getSearchResults();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.tasksService.setTasks([]);
+    this.tasksService.getSearchResults();
   }
 }
