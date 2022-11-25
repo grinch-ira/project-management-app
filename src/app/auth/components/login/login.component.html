@@ -13,9 +13,11 @@
           [formControl]="controlLogin"
           autocomplete="new-password" />
       </div>
+    </mat-form-field>
+    <div>
       <mat-error *ngIf="controlLogin?.errors?.['required']">{{'errors.enterLoginEmail' | translate}}</mat-error>
       <mat-error *ngIf="controlLogin?.errors?.['email']">{{'errors.invalidLoginEmail' | translate}}</mat-error>
-    </mat-form-field>
+    </div>
     <mat-form-field appearance="standard">
       <mat-label for="inputPassword3">{{'authorization.password' | translate}}</mat-label>
       <div [formGroup]="authForm">
@@ -28,10 +30,12 @@
           [formControl]="controlPassword"
           autocomplete="new-password" />
       </div>
+    </mat-form-field>
+    <div>
       <mat-error *ngIf="controlPassword?.errors?.['required']">{{'errors.enterPassword' | translate}}</mat-error>
       <mat-error *ngIf="controlPassword?.errors?.['minlength']">{{'errors.longerThanEight' | translate}}</mat-error>
       <mat-error *ngIf="controlPassword?.errors?.['pattern']">{{'errors.usedUpperLowerNumberSpecial' | translate}}</mat-error>
-    </mat-form-field>
+    </div>
     <div class="button">
       <button mat-raised-button color="primary" [disabled]="authForm.invalid" (click)="onLogInButton()" type="submit">{{'authorization.logIn' | translate}}</button>
     </div>

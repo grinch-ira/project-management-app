@@ -1,35 +1,35 @@
 <div class="wrapper">
 <form [formGroup]="formGroup" class="create-task-form">
-  <h2 class="create-task-title">Create Task</h2>
+  <h2 class="create-task-title">{{'boardPage.createTask' | translate}}</h2>
   <div class="create-task-text">
   <mat-form-field appearance="outline">
-    <mat-label>Task title</mat-label>
+    <mat-label>{{'boardPage.taskTitle' | translate}}</mat-label>
       <input
         matInput
-        placeholder="Input task title"
+        placeholder="{{'boardPage.enterTaskTitlePlaceholder' | translate}}"
         type="text"
         formControlName="title"
         class="form-control"/>
         <mat-error *ngIf="formGroup.get('title')?.errors?.['required']">
-          Enter a task title
+          {{'boardPage.enterTaskTitlePlaceholder' | translate}}
         </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Task description</mat-label>
+    <mat-label>{{'boardPage.taskDescription' | translate}}</mat-label>
       <input
         matInput
-        placeholder="Input task description"
+        placeholder="{{'boardPage.enterTaskDescriptionPlaceholder' | translate}}"
         formControlName="description"
         type="text"
         class="form-control"/>
         <mat-error *ngIf="formGroup.get('description')?.errors?.['required']">
-          Enter a task description
+          {{'boardPage.enterTaskDescriptionPlaceholder' | translate}}
         </mat-error>
   </mat-form-field>
 </div>
-  <div class="buttons">
-    <button mat-raised-button color="primary" type="button" (click)="createTask()" >Add</button>
-    <button mat-raised-button color="primary" type="button" (click)="closeModal()" >Cancel</button>
-  </div>
+  <mat-dialog-actions>
+    <button mat-raised-button [disabled]="formGroup.invalid" color="primary" [mat-dialog-close]="true" type="button" (click)="createTask()" >{{'boardPage.createTask' | translate}}</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="button" (click)="closeModal()" >{{'boardPage.cancel' | translate}}</button>
+  </mat-dialog-actions>
 </form>
 </div>

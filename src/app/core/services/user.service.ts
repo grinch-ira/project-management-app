@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth/services';
 import { SignUpBody } from '@core/models';
+import { UsersService } from '@shared/services';
 import { BehaviorSubject } from 'rxjs';
 import { HttpResponseService } from './http-response.service';
 import { ModalWindowService } from './modal-window.service';
@@ -16,7 +17,8 @@ export class UserService {
   constructor(
     private httpResponse: HttpResponseService,
     private auth: AuthService,
-    private modalService: ModalWindowService
+    private modalService: ModalWindowService,
+    private userServiceAddition: UsersService
   ) {}
 
   updateUser(userId: string, data: SignUpBody): void {
@@ -28,6 +30,7 @@ export class UserService {
           action: 'save',
           payload: '',
         });
+        this.updateUsersList();
       }
     });
   }
@@ -38,6 +41,15 @@ export class UserService {
         this.auth.logOut();
       } else {
         return;
+      }
+    });
+    this.updateUsersList();
+  }
+
+  updateUsersList(): void {
+    this.httpResponse.getUsers().subscribe(users => {
+      if (Array.isArray(users)) {
+        this.userServiceAddition.users$.next(users);
       }
     });
   }

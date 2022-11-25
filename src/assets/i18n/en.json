@@ -18,9 +18,13 @@
     }
   },
   "footer": {
-    "creators": "Creators"
+    "creators": "Creators",
+    "Ira": "Iryna Hryniuk",
+    "Yulia": "Yuliya Shulgan",
+    "Pasha": "Pavel Burdavitsyn"
   },
   "header": {
+    "logo": "PMA",
     "settingsTitle": "Settings",
     "addBoard": "Add Board",
     "translation": "Language",
@@ -38,18 +42,28 @@
     "signUp": "Sign Up",
     "haveAccount": "Already have an account? Log In!"
   },
+  "user": {
+    "title": "Your settings",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "delete": "Delete user",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "errors": {
     "enterLoginEmail": "*please enter a login email",
     "invalidLoginEmail": "*the login email is invalid",
     "enterPassword": "*please enter a password",
     "longerThanEight": "*your password should be longer than 8",
-    "usedUpperLowerNumberSpecial": "*your password should be used uppercase and lowercase letters, numbers, special character",
+    "usedUpperLowerNumberSpecial": "*your password should include uppercase and lowercase letters, numbers, special character",
     "enterName": "*please enter a name",
     "longerThanThree": "*your name should be longer than 3",
     "noLongerThanTwentyName": "*your name should be no longer than 20",
     "onlySmallOrNumbers": "*should use only small letters or numbers",
     "noLongerThanTwentyPassword": "*your password should be no longer than 20",
-    "enterBoardTitle": "Please, enter board title"
+    "enterBoardTitle": "*please, enter board title",
+    "enterColumnTitle": "*please, enter column title"
   },
   "mainPage": {
     "mainPageTitle": "Boards",
@@ -58,6 +72,18 @@
     "boardSelectUser": "User",
     "createBoardButton": "Create board",
     "enterBoardTitlePlaceholder": "Enter the board title"
+  },
+  "boardPage": {
+    "goToMain": "Go to main",
+    "createColumn": "Create column",
+    "createTask": "Create task",
+    "columnTitle": "Column title",
+    "enterColumnTitlePlaceholder": "Enter column title",
+    "taskTitle": "Task title",
+    "enterTaskTitlePlaceholder": "Enter task title",
+    "taskDescription": "Task description",
+    "enterTaskDescriptionPlaceholder": "Enter task description",
+    "cancel": "Cancel"
   },
   "windowData": {
     "deleteBoard": {

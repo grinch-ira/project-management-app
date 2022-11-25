@@ -2,11 +2,11 @@
 
 :host {
   @include layout.align-center(24px);
-  max-width: 400px;
+
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   align-items: center;
+  max-width: 400px;
 
   .boards-form {
     display: flex;

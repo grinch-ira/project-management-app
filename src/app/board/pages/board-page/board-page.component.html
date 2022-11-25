@@ -4,17 +4,16 @@
     mat-raised-button
     color="primary"
     (click)="goToMain()">
-    Go to main
+    {{'boardPage.goToMain' | translate}}
   </button>
 
   <button
     type="button"
     mat-raised-button
-    color="primary">
-    Create Column
+    color="primary"
+    (click)="openDialogColumn()">
+    {{'boardPage.createColumn' | translate}}
   </button>
-
-  <app-column-form [boardId]="boardId"></app-column-form>
 </div>
 
 <div
@@ -37,7 +36,8 @@
     type="button"
     mat-raised-button
     class="board__button-create"
-    color="warn">
-    Create column
+    color="warn"
+    (click)="openDialogColumn()">
+    {{'boardPage.createColumn' | translate}}
   </button>
 </div>

@@ -10,12 +10,14 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardService } from '@board/services';
 import { Column, Task } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { EMPTY, switchMap, take, tap } from 'rxjs';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-column',
@@ -51,7 +53,8 @@ export class ColumnComponent implements OnInit {
     private modalService: ModalWindowService,
     public focusMonitor: FocusMonitor,
     private changeDetector: ChangeDetectorRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +62,6 @@ export class ColumnComponent implements OnInit {
       this.boardId = params['id'];
     });
 
-    //TODO: Release real columns request
     this.boardService.tasks[this.columnData._id].subscribe(task => {
       this.tasksData = task;
     });
@@ -70,12 +72,24 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
+    const columnId = event.container.id.slice(4);
+    const previousColumnId = event.previousContainer.id.slice(4);
+    const taskSetCopy = [...this.tasksData];
+
+    const previousTasksSetCopy = [
+      ...this.boardService.tasks[previousColumnId].getValue(),
+    ];
+
     if (event.previousContainer === event.container) {
-      moveItemInArray<Task>(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+      this.boardService.updateTasksIndexes(columnId);
+      this.apiService
+        .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[this.columnData._id].next(taskSetCopy);
+          }
+        });
     } else {
       transferArrayItem<Task>(
         event.previousContainer.data,
@@ -83,10 +97,27 @@ export class ColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-    }
-    this.updateOrderAndIds();
+      this.boardService.updateColIdInTask(columnId, event.currentIndex);
 
-    //TODO: Send to server actual set of tasks
+      this.boardService.updateTasksIndexes(columnId);
+      this.boardService.updateTasksIndexes(previousColumnId);
+
+      const tasksSetNewOrders = this.boardService.getNewTaskOrders(columnId);
+      const previousTasksSetNewOrders =
+        this.boardService.getNewTaskOrders(previousColumnId);
+
+      this.apiService
+        .updateSetOfTasks([
+          ...tasksSetNewOrders,
+          ...previousTasksSetNewOrders,
+        ])
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[columnId].next(taskSetCopy);
+            this.boardService.tasks[previousColumnId].next(previousTasksSetCopy);
+          }
+        });
+    }
   }
 
   deleteColumn(): void {
@@ -163,18 +194,13 @@ export class ColumnComponent implements OnInit {
     this.isEditableTitle = false;
   }
 
-  private updateOrderAndIds(): void {
-    this.tasksData = this.tasksData.map((task, i) => {
-      return {
-        ...task,
-        order: i,
+  openDialogTask(): void {
+    this.dialog.open(TaskDialogComponent, {
+      data: {
+        boardId: this.boardId,
         columnId: this.columnData._id,
-      };
+      },
     });
-  }
-
-  openCreateTaskForm(value: boolean): void {
-    this.isCreateVisible = value;
   }
 
   public closeModal(): void {
@@ -182,10 +208,14 @@ export class ColumnComponent implements OnInit {
   }
 
   private getTasks(): void {
-    this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
-      if (tasks instanceof Array) {
-        this.boardService.tasks[this.columnData._id].next(tasks);
-      }
-    });
+    setTimeout(() => {
+      this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
+        if (tasks instanceof Array) {
+          this.boardService.tasks[this.columnData._id].next(
+            tasks.sort((a, b) => a.order - b.order)
+          );
+        }
+      });
+    }, 0);
   }
 }

@@ -67,9 +67,13 @@ export class BoardService {
       return {
         _id: task._id,
         order: i,
-        columnId: task.boardId,
+        columnId: task.columnId,
       };
     });
+  }
+
+  updateColIdInTask(colId: string, position: number): void {
+    this.tasks[colId].getValue()[position].columnId = colId;
   }
 
   updateTasksIndexes(colId: string): void {
@@ -86,6 +90,11 @@ export class BoardService {
 
   updateColumnTitle(order: number, title: string): void {
     this.columns.getValue()[order].title = title;
+  }
+
+  updateTask(order: number, title: string, colId: string, description: string): void {
+    this.tasks[colId].getValue()[order].title = title;
+    this.tasks[colId].getValue()[order].description = description;
   }
 
   updateArrayIndexes(arr: (Column | Task)[]): Array<Column | Task> {

@@ -45,13 +45,15 @@ export class UserDialogComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId') as string;
-    this.apiService.getUser(userId).subscribe(value => {
-      if ('_id' in value) {
-        this.controlName.setValue(value.name);
-        this.controlLogin.setValue(value.login);
-      }
-      return value;
-    });
+    setTimeout(() => {
+      this.apiService.getUser(userId).subscribe(value => {
+        if ('_id' in value) {
+          this.controlName.setValue(value.name);
+          this.controlLogin.setValue(value.login);
+        }
+        return value;
+      });
+    }, 0);
   }
 
   changeUserData(): void {
