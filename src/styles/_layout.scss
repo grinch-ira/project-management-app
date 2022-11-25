@@ -5,10 +5,10 @@
 
 @mixin responsive-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: stretch;
   grid-auto-rows: max-content;
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  align-items: stretch;
   margin: 16px;
 
   @media (max-width: 1400px) {
