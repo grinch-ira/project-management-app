@@ -13,6 +13,7 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
 import { A11yModule } from '@angular/cdk/a11y';
 import { ColumnDialogComponent } from './components/column-dialog/column-dialog.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
     TaskFormComponent,
     ColumnDialogComponent,
     TaskDialogComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     CommonModule,

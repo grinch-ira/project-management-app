@@ -62,7 +62,6 @@ export class ColumnComponent implements OnInit {
       this.boardId = params['id'];
     });
 
-    //TODO: Release real columns request
     this.boardService.tasks[this.columnData._id].subscribe(task => {
       this.tasksData = task;
     });
@@ -73,12 +72,24 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
+    const columnId = event.container.id.slice(4);
+    const previousColumnId = event.previousContainer.id.slice(4);
+    const taskSetCopy = [...this.tasksData];
+
+    const previousTasksSetCopy = [
+      ...this.boardService.tasks[previousColumnId].getValue(),
+    ];
+
     if (event.previousContainer === event.container) {
-      moveItemInArray<Task>(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+      this.boardService.updateTasksIndexes(columnId);
+      this.apiService
+        .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[this.columnData._id].next(taskSetCopy);
+          }
+        });
     } else {
       transferArrayItem<Task>(
         event.previousContainer.data,
@@ -86,10 +97,27 @@ export class ColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-    }
-    this.updateOrderAndIds();
+      this.boardService.updateColIdInTask(columnId, event.currentIndex);
 
-    //TODO: Send to server actual set of tasks
+      this.boardService.updateTasksIndexes(columnId);
+      this.boardService.updateTasksIndexes(previousColumnId);
+
+      const tasksSetNewOrders = this.boardService.getNewTaskOrders(columnId);
+      const previousTasksSetNewOrders =
+        this.boardService.getNewTaskOrders(previousColumnId);
+
+      this.apiService
+        .updateSetOfTasks([
+          ...tasksSetNewOrders,
+          ...previousTasksSetNewOrders,
+        ])
+        .subscribe(res => {
+          if (typeof res === 'number') {
+            this.boardService.tasks[columnId].next(taskSetCopy);
+            this.boardService.tasks[previousColumnId].next(previousTasksSetCopy);
+          }
+        });
+    }
   }
 
   deleteColumn(): void {
@@ -166,16 +194,6 @@ export class ColumnComponent implements OnInit {
     this.isEditableTitle = false;
   }
 
-  private updateOrderAndIds(): void {
-    this.tasksData = this.tasksData.map((task, i) => {
-      return {
-        ...task,
-        order: i,
-        columnId: this.columnData._id,
-      };
-    });
-  }
-
   openDialogTask(): void {
     this.dialog.open(TaskDialogComponent, {
       data: {
@@ -193,7 +211,9 @@ export class ColumnComponent implements OnInit {
     setTimeout(() => {
       this.apiService.getAllTasks(this.boardId, this.columnData._id).subscribe(tasks => {
         if (tasks instanceof Array) {
-          this.boardService.tasks[this.columnData._id].next(tasks);
+          this.boardService.tasks[this.columnData._id].next(
+            tasks.sort((a, b) => a.order - b.order)
+          );
         }
       });
     }, 0);

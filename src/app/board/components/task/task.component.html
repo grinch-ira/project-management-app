@@ -4,6 +4,11 @@
   <div class="task-header">{{ taskData.title }}</div>
   <button
     mat-icon-button
+    (click)="openUpdateTaskDialog()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button
+    mat-icon-button
     (click)="deleteTask()">
     <mat-icon>delete</mat-icon>
   </button>
