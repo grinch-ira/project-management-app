@@ -7,8 +7,15 @@
   width: 100%;
   max-width: 1440px;
 
-  .tasks__container,
-  .main__boards {
-    @include layout.responsive-grid
+  .tasks {
+    &__container {
+      @include layout.responsive-grid;
+    }
+  }
+
+  .main {
+    &__boards {
+      @include layout.responsive-grid;
+    }
   }
 }

@@ -18,8 +18,10 @@
       justify-content: center;
     }
 
-    .board-item__button {
-      @include animations.hover-scale(1.1);
+    .board-item {
+      &__button {
+        @include animations.hover-scale(1.1);
+      }
     }
   }
 }
