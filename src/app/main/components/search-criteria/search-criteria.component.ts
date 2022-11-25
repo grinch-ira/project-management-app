@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { Task, User } from '@core/models';
+import { Board, Task, User } from '@core/models';
 import { HttpResponseService } from '@core/services';
 import { TasksService } from '@main/services/tasks.service';
-import { UsersService } from '@shared/services';
-import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
+import { BoardsService, UsersService } from '@shared/services';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-search-criteria',
@@ -14,13 +14,18 @@ import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 export class SearchCriteriaComponent implements OnInit {
   appUsers: User[] = [];
 
+  boards: Board[] = [];
+
   tasksForm: FormGroup = this.formBuilder.group({
     keywords: [''],
+    board: [''],
     owner: [''],
     isFullMatch: [''],
   });
 
   keywordsControl: AbstractControl<string> = this.tasksForm.get('keywords')!;
+
+  boardControl: AbstractControl<string> = this.tasksForm.get('board')!;
 
   ownerControl: AbstractControl<string> = this.tasksForm.get('owner')!;
 
@@ -30,7 +35,8 @@ export class SearchCriteriaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: HttpResponseService,
     private usersService: UsersService,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    private boardsService: BoardsService
   ) {}
 
   ngOnInit(): void {
@@ -38,24 +44,28 @@ export class SearchCriteriaComponent implements OnInit {
       this.appUsers = users;
     });
 
+    this.boardsService.boards$.subscribe(boards => {
+      this.boards = boards;
+    });
+
     this.keywordsControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        switchMap((keywords: string) => {
-          if (keywords.trim().length < 3) {
-            return of([]);
-          }
-          return this.apiService.searchTasks(keywords);
-        })
+        switchMap((keywords: string) => this.apiService.searchTasks(keywords))
       )
       .subscribe(tasks => {
-        this.tasksService.tasksSet$.next(tasks as Task[]);
+        this.tasksService.setTasks(tasks as Task[]);
         this.tasksService.getSearchResults();
       });
 
+    this.boardControl.valueChanges.subscribe(board => {
+      this.tasksService.board = board;
+      this.tasksService.getSearchResults();
+    });
+
     this.ownerControl.valueChanges.subscribe(owner => {
-      this.tasksService.owner = owner;
+      this.tasksService.owner = owner.trim();
       this.tasksService.getSearchResults();
     });
   }

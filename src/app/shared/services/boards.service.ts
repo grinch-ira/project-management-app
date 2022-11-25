@@ -22,10 +22,14 @@ export class BoardsService {
     this.boards$.next(boards.filter(board => board._id !== id));
   }
 
-  getOwnerName(boardId: string): string {
-    const ownerId =
-      this.boards$.getValue().find(board => board._id === boardId)?.owner || '';
+  getName(boardId: string): string {
+    return (
+      this.boards$.getValue().find(board => board._id === boardId)?.title ||
+      'DELETED_BOARD'
+    );
+  }
 
-    return this.usersService.getName(ownerId);
+  hasBoard(boardId: string): boolean {
+    return !!this.boards$.getValue().find(board => board._id === boardId);
   }
 }

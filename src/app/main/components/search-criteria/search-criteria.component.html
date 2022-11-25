@@ -1,30 +1,47 @@
-<h3 class="search-criteria-form__header">Search criteria</h3>
-
 <form
   [formGroup]="tasksForm"
   class="search-criteria-form">
-  <mat-form-field appearance="outline">
-    <mat-label>Keywords</mat-label>
-    <input
-      matInput
-      placeholder="Enter a keywords"
-      autocomplete="off"
-      name="keywords"
-      formControlName="keywords" />
-    <mat-error *ngIf="keywordsControl.errors?.['required']">Enter keywords</mat-error>
-  </mat-form-field>
+  <fieldset>
+    <legend>Search criteria</legend>
+    <mat-form-field appearance="outline">
+      <mat-label>Search request</mat-label>
+      <input
+        matInput
+        placeholder="Enter keywords"
+        autocomplete="off"
+        name="keywords"
+        formControlName="keywords" />
+      <mat-hint>A part of title or description</mat-hint>
+    </mat-form-field>
+  </fieldset>
 
-  <mat-form-field appearance="outline">
-    <mat-label>User</mat-label>
-    <mat-select formControlName="owner">
-      <mat-option>-None-</mat-option>
-      <mat-option
-        *ngFor="let user of appUsers"
-        [value]="user._id"
-        >{{ user.name }}</mat-option
-      >
-    </mat-select>
-    <mat-error *ngIf="ownerControl.errors?.['required']">Select a user</mat-error>
-  </mat-form-field>
+  <fieldset *ngIf="keywordsControl.value.trim()">
+    <legend>Filters</legend>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Board</mat-label>
+      <mat-select formControlName="board">
+        <mat-option [value]="">-None-</mat-option>
+        <mat-option
+          *ngFor="let board of boards"
+          [value]="board._id"
+          >{{ board.title }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Task owner</mat-label>
+      <mat-select formControlName="owner">
+        <mat-option [value]="">-None-</mat-option>
+        <!-- TODO: Change keyword for deleted user -->
+        <mat-option [value]="' '">DELETED_USER</mat-option>
+        <mat-option
+          *ngFor="let user of appUsers"
+          [value]="user._id"
+          >{{ user.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
 </form>

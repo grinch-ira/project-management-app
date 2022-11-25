@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Task } from '@core/models';
 import { BoardsService, UsersService } from '@shared/services';
 
@@ -7,18 +7,16 @@ import { BoardsService, UsersService } from '@shared/services';
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss'],
 })
-export class TaskItemComponent implements OnInit {
+export class TaskItemComponent {
   @Input() taskData!: Task;
 
   constructor(private usersService: UsersService, private boardsService: BoardsService) {}
-
-  ngOnInit(): void {}
 
   getTaskOwnerName(): string {
     return this.usersService.getName(this.taskData.userId as string);
   }
 
-  getBoardOwnerName(): string {
-    return this.boardsService.getOwnerName(this.taskData.boardId);
+  getBoardName(): string {
+    return this.boardsService.getName(this.taskData.boardId);
   }
 }
