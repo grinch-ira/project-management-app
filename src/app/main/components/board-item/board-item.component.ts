@@ -5,6 +5,7 @@ import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { BoardsService } from '@shared/services';
 import { of, switchMap, take } from 'rxjs';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-board-item',
@@ -13,6 +14,10 @@ import { of, switchMap, take } from 'rxjs';
 })
 export class BoardItemComponent {
   @Input() boardData!: Board;
+
+  options: AnimationOptions = {
+    path: `/assets/animations/${Math.round(Math.random() * 10)}.json`,
+  };
 
   constructor(
     private router: Router,

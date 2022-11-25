@@ -1,24 +1,25 @@
+@use '../../../../styles/animations' as animations;
+
 :host {
   display: block;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 400px;
+
   .board-item {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
 
-    transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.02);
-      box-shadow: 0px 2px 2px 1px rgb(0 0 0 / 15%), 0px 1px 1px 0px rgb(0 0 0 / 12%),
-        0px 1px 3px 0px rgb(0 0 0 / 10%);
-    }
+    @include animations.hover-scale(1.02);
 
     .mat-card-header {
       justify-content: center;
+    }
+
+    .board-item__button {
+      @include animations.hover-scale(1.1);
     }
   }
 }

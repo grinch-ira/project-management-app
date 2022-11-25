@@ -11,6 +11,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SearchCriteriaComponent } from './components';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 
+import { LottieModule } from 'ngx-lottie';
+
 @NgModule({
   declarations: [
     BoardsPageComponent,
@@ -27,6 +29,7 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
     HttpClientModule,
     SharedModule,
     TranslateModule,
+    LottieModule,
   ],
 })
 export class MainModule {}

@@ -26,6 +26,8 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "lottie-web": "^5.9.6",
+    "ngx-lottie": "^9.1.0",
     "rxjs": "~7.5.0",
     "stylelint-config-rational-order": "^0.0.4",
     "stylelint-config-standard": "^29.0.0",
