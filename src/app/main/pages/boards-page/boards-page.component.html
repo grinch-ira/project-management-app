@@ -3,7 +3,6 @@
   mat-align-tabs="center">
 
   <mat-tab label="Boards">
-    <h2 class="main__header">{{ 'mainPage.mainPageTitle' | translate }}</h2>
     <div class="main__boards">
       <app-board-item
         *ngFor="let board of boardItems"
@@ -13,7 +12,6 @@
   </mat-tab>
 
   <mat-tab label="Tasks">
-    <h2 class="main__header">Tasks</h2>
     <app-search-criteria></app-search-criteria>
     <div class="tasks__container">
       <app-task-item *ngFor="let task of taskItems" [taskData]="task"></app-task-item>
