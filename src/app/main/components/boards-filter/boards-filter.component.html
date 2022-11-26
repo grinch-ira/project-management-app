@@ -1,0 +1,30 @@
+<form
+  [formGroup]="boardsForm"
+  class="boards-form">
+  <fieldset>
+    <legend>Filters</legend>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Enter a title"
+        autocomplete="off"
+        name="title"
+        formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Board owner</mat-label>
+      <mat-select formControlName="owner">
+        <mat-option [value]="">-None-</mat-option>
+        <!-- TODO: Change keyword for deleted user -->
+        <mat-option [value]="' '">DELETED_USER</mat-option>
+        <mat-option
+          *ngFor="let user of appUsers"
+          [value]="user._id"
+          >{{ user.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+</form>

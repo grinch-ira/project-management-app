@@ -25,7 +25,7 @@ export class BoardsPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.boardsService.boards$.subscribe(boards => {
+    this.boardsService.boardsOnView$.subscribe(boards => {
       this.boardItems = boards;
     });
 
@@ -51,6 +51,7 @@ export class BoardsPageComponent implements OnInit {
         switchMap(res => {
           if (res instanceof Array) {
             this.boardsService.boards$.next(res);
+            this.boardsService.getFilterResults();
           }
           return this.boardsService.boards$;
         })
