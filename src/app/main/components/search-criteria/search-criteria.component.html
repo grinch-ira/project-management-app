@@ -2,26 +2,26 @@
   [formGroup]="tasksForm"
   class="search-criteria-form">
   <fieldset>
-    <legend>Search criteria</legend>
+    <legend>{{ 'mainPage.searchCriteria' | translate }}</legend>
     <mat-form-field appearance="outline">
-      <mat-label>Search request</mat-label>
+      <mat-label>{{ 'mainPage.searchRequest' | translate }}</mat-label>
       <input
         matInput
-        placeholder="Enter keywords"
+        placeholder="{{ 'mainPage.keywordsPlaceholder' | translate }}"
         autocomplete="off"
         name="keywords"
         formControlName="keywords" />
-      <mat-hint>A part of title or description</mat-hint>
+      <mat-hint>{{ 'mainPage.searchHint' | translate }}</mat-hint>
     </mat-form-field>
   </fieldset>
 
   <fieldset *ngIf="keywordsControl.value.trim()">
-    <legend>Filters</legend>
+    <legend>{{ 'mainPage.filters' | translate }}</legend>
 
     <mat-form-field appearance="outline">
-      <mat-label>Board</mat-label>
+      <mat-label>{{ 'mainPage.board' | translate }}</mat-label>
       <mat-select formControlName="board">
-        <mat-option [value]="">-None-</mat-option>
+        <mat-option [value]="">-{{ 'mainPage.none' | translate }}-</mat-option>
         <mat-option
           *ngFor="let board of boards"
           [value]="board._id"
@@ -31,9 +31,9 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Task owner</mat-label>
+      <mat-label>{{ 'mainPage.taskOwner' | translate }}</mat-label>
       <mat-select formControlName="owner">
-        <mat-option [value]="">-None-</mat-option>
+        <mat-option [value]="">-{{ 'mainPage.none' | translate }}-</mat-option>
         <!-- TODO: Change keyword for deleted user -->
         <mat-option [value]="'DELETED_USER'">DELETED_USER</mat-option>
         <mat-option

@@ -70,7 +70,18 @@
     "boardName":"Название",
     "boardSelectUser":"Пользователи",
     "createBoardButton":"Создать доску",
-    "enterBoardTitlePlaceholder":"Введите название доски"
+    "enterBoardTitlePlaceholder":"Введите название доски",
+    "filters": "Фильтры",
+    "title": "Заголовок",
+    "boardOwner": "Владелец доски",
+    "none": "Без выбора",
+    "searchCriteria": "Критерии поиска",
+    "searchRequest": "Поисковый запрос",
+    "searchHint": "Часть заголовка или описания",
+    "board": "Доска",
+    "taskOwner": "Владелец задачи",
+    "tasks": "Задачи",
+    "keywordsPlaceholder": "Введите запрос"
   },
   "boardPage": {
     "goToMain": "На главную",
