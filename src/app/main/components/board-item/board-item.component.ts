@@ -17,7 +17,7 @@ export class BoardItemComponent {
   @Input() boardData!: Board;
 
   options: AnimationOptions = {
-    path: `/assets/animations/${Math.round(Math.random() * 10)}.json`,
+    path: `/assets/animations/${this.boardsService.getRandomNumber()}.json`,
   };
 
   constructor(

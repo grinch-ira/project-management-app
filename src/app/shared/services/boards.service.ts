@@ -15,6 +15,8 @@ export class BoardsService {
 
   owner: string = '';
 
+  randomArr: number[] = [];
+
   constructor(private usersService: UsersService) {}
 
   addBoard(board: Board): void {
@@ -43,6 +45,14 @@ export class BoardsService {
     this.boardsOnView$.next(this.filterResults(this.boards$.getValue()));
   }
 
+  getRandomNumber(): number {
+    if (!this.randomArr.length) {
+      this.setRandomArr(11);
+    }
+
+    return this.randomArr.pop() as number;
+  }
+
   private filterResults(boards: Board[]): Board[] {
     return boards
       .filter(board => this.isIncludedTitle(board))
@@ -55,5 +65,12 @@ export class BoardsService {
 
   private isIncludedUser(board: Board): boolean {
     return this.owner ? board.owner === this.owner : true;
+  }
+
+  private setRandomArr(range: number): void {
+    this.randomArr = new Array(range)
+      .fill(null)
+      .map((_el, i) => i)
+      .sort(() => Math.random() - 0.5);
   }
 }
