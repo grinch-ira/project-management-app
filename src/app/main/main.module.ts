@@ -12,7 +12,7 @@ import { SearchCriteriaComponent } from './components';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 
 import { LottieModule } from 'ngx-lottie';
-import { BoardsFilterComponent } from './components/boards-filter/boards-filter.component';
+import { BoardsFilterComponent } from './components';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Board } from '@core/models';
 import { ModalWindowService } from '@core/services';
@@ -11,6 +11,7 @@ import { AnimationOptions } from 'ngx-lottie';
   selector: 'app-board-item',
   templateUrl: './board-item.component.html',
   styleUrls: ['./board-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardItemComponent {
   @Input() boardData!: Board;
