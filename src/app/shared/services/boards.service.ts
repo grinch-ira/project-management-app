@@ -64,6 +64,9 @@ export class BoardsService {
   }
 
   private isIncludedUser(board: Board): boolean {
+    if (this.owner === 'DELETED_USER') {
+      return this.usersService.isDeletedUser(board.owner);
+    }
     return this.owner ? board.owner === this.owner : true;
   }
 

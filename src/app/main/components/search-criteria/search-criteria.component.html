@@ -35,7 +35,7 @@
       <mat-select formControlName="owner">
         <mat-option [value]="">-None-</mat-option>
         <!-- TODO: Change keyword for deleted user -->
-        <mat-option [value]="' '">DELETED_USER</mat-option>
+        <mat-option [value]="'DELETED_USER'">DELETED_USER</mat-option>
         <mat-option
           *ngFor="let user of appUsers"
           [value]="user._id"

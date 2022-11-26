@@ -65,7 +65,7 @@ export class SearchCriteriaComponent implements OnInit, OnDestroy {
     });
 
     this.ownerControl.valueChanges.subscribe(owner => {
-      this.tasksService.owner = owner.trim();
+      this.tasksService.owner = owner;
       this.tasksService.getSearchResults();
     });
   }

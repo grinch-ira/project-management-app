@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '@core/models';
-import { BoardsService } from '@shared/services';
+import { BoardsService, UsersService } from '@shared/services';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class TasksService {
 
   tasksSet$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
 
-  constructor(private boardsService: BoardsService) {}
+  constructor(private boardsService: BoardsService, private usersService: UsersService) {}
 
   getSearchResults(): void {
     this.tasks$.next(this.filterResults(this.tasksSet$.getValue()));
@@ -36,6 +36,9 @@ export class TasksService {
   }
 
   private isIncludedUser(task: Task): boolean {
+    if (this.owner === 'DELETED_USER') {
+      return this.usersService.isDeletedUser(task.userId as string);
+    }
     return this.owner
       ? task.userId === this.owner || task.users.includes(this.owner)
       : true;

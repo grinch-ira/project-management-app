@@ -40,7 +40,7 @@ export class BoardsFilterComponent implements OnInit, OnDestroy {
       });
 
     this.ownerControl.valueChanges.subscribe(owner => {
-      this.boardsService.owner = owner.trim();
+      this.boardsService.owner = owner;
       this.boardsService.getFilterResults();
     });
   }
