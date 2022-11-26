@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { IsOwnerMarkDirective } from './directives/is-owner-mark.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [IsOwnerMarkDirective],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -17,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
+    IsOwnerMarkDirective,
   ],
 })
 export class SharedModule {}
