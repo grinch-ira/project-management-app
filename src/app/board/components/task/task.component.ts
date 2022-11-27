@@ -55,7 +55,7 @@ export class TaskComponent {
           }
         }),
         switchMap(res =>
-          '_id' in res
+          '_id' in res && this.boardService.hasTasks(this.taskData.columnId)
             ? this.apiService.updateSetOfTasks(
                 this.boardService.getNewTaskOrders(this.columnId)
               )

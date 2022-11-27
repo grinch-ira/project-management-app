@@ -145,7 +145,7 @@ export class ColumnComponent implements OnInit {
         }),
         //Update column order on server
         switchMap(res =>
-          '_id' in res
+          '_id' in res && this.boardService.hasColumns()
             ? this.apiService.updateSetOfColumns(this.boardService.getNewColumnOrders())
             : EMPTY
         )

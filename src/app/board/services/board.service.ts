@@ -102,4 +102,12 @@ export class BoardService {
       return { ...e, order: i };
     });
   }
+
+  hasColumns(): boolean {
+    return !!this.columns.getValue().length;
+  }
+
+  hasTasks(colId: string): boolean {
+    return !!this.tasks[colId].getValue().length;
+  }
 }
