@@ -81,15 +81,17 @@ export class ColumnComponent implements OnInit {
     ];
 
     if (event.previousContainer === event.container) {
-      moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
-      this.boardService.updateTasksIndexes(columnId);
-      this.apiService
-        .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
-        .subscribe(res => {
-          if (typeof res === 'number') {
-            this.boardService.tasks[this.columnData._id].next(taskSetCopy);
-          }
-        });
+      if (event.previousIndex !== event.currentIndex) {
+        moveItemInArray<Task>(this.tasksData, event.previousIndex, event.currentIndex);
+        this.boardService.updateTasksIndexes(columnId);
+        this.apiService
+          .updateSetOfTasks(this.boardService.getNewTaskOrders(this.columnData._id))
+          .subscribe(res => {
+            if (typeof res === 'number') {
+              this.boardService.tasks[this.columnData._id].next(taskSetCopy);
+            }
+          });
+      }
     } else {
       transferArrayItem<Task>(
         event.previousContainer.data,
@@ -145,7 +147,7 @@ export class ColumnComponent implements OnInit {
         }),
         //Update column order on server
         switchMap(res =>
-          '_id' in res
+          '_id' in res && this.boardService.hasColumns()
             ? this.apiService.updateSetOfColumns(this.boardService.getNewColumnOrders())
             : EMPTY
         )
