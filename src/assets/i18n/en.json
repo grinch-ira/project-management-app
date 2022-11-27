@@ -70,7 +70,18 @@
     "boardName": "Name",
     "boardSelectUser": "User",
     "createBoardButton": "Create board",
-    "enterBoardTitlePlaceholder": "Enter the board title"
+    "enterBoardTitlePlaceholder": "Enter the board title",
+    "filters": "Filters",
+    "title": "Title",
+    "boardOwner": "Board owner",
+    "none": "None",
+    "searchCriteria": "Search criteria",
+    "searchRequest": "Search request",
+    "searchHint": "A part of title or description",
+    "board": "Board",
+    "taskOwner": "Task owner",
+    "tasks": "Tasks",
+    "keywordsPlaceholder": "Enter keywords"
   },
   "boardPage": {
     "goToMain": "Go to main",

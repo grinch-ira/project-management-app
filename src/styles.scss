@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use './variables.scss';
+@use './variables.scss' as vars;
 @use './styles/layout';
+@use 'sass:color';
 
 html,
 body {
@@ -16,4 +17,8 @@ app-root {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.owner-mark {
+  background-color: color.scale(vars.$blue, $alpha: -50%);
 }

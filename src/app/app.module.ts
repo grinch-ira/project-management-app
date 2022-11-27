@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '@core/core.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LottieModule } from 'ngx-lottie';
+import { LottieModule, LottieCacheModule } from 'ngx-lottie';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,6 +42,7 @@ export function playerFactory() {
       defaultLanguage: 'en',
     }),
     LottieModule.forRoot({ player: playerFactory }),
+    LottieCacheModule.forRoot(),
   ],
   providers: [HttpResponseService],
   bootstrap: [AppComponent],

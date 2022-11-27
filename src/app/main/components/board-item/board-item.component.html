@@ -1,5 +1,6 @@
 <mat-card
   class="board-item"
+  [appIsOwnerMark]="boardData.owner"
   (click)="navigate()">
   <mat-card-header>
     <mat-card-title>
@@ -8,7 +9,11 @@
   </mat-card-header>
 
   <mat-card-content class="board-item__animation">
-    <ng-lottie [options]="options" [width]="'276'" [height]="'276'"></ng-lottie>
+    <ng-lottie
+      [options]="options"
+      [width]="'276'"
+      [height]="'276'">
+    </ng-lottie>
   </mat-card-content>
 
   <mat-card-actions align="end">
