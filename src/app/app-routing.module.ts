@@ -12,12 +12,12 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'board',
     loadChildren: () => import('./board/board.module').then(m => m.BoardModule),
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
