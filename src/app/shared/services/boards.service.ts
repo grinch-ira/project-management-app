@@ -23,11 +23,13 @@ export class BoardsService {
     const boards = this.boards$.getValue();
     boards.push(board);
     this.boards$.next(boards);
+    this.getFilterResults();
   }
 
   deleteBoard(id: string): void {
     const boards = this.boards$.getValue();
     this.boards$.next(boards.filter(board => board._id !== id));
+    this.getFilterResults();
   }
 
   getName(boardId: string): string {
