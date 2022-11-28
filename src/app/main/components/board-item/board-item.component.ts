@@ -4,7 +4,7 @@ import { Board } from '@core/models';
 import { ModalWindowService } from '@core/services';
 import { HttpResponseService } from '@core/services/http-response.service';
 import { BoardsService } from '@shared/services';
-import { of, switchMap, take } from 'rxjs';
+import { EMPTY, switchMap, take } from 'rxjs';
 import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
@@ -48,12 +48,13 @@ export class BoardItemComponent {
         take(1),
         switchMap(result => {
           if (result === 'confirm') {
-            this.boardsService.deleteBoard(this.boardData._id);
             return this.apiService.deleteBoard(this.boardData._id);
           }
-          return of(result);
+          return EMPTY;
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.boardsService.deleteBoard(this.boardData._id);
+      });
   }
 }
