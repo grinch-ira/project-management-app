@@ -81,7 +81,9 @@
     "board": "Доска",
     "taskOwner": "Владелец задачи",
     "tasks": "Задачи",
-    "keywordsPlaceholder": "Введите запрос"
+    "keywordsPlaceholder": "Введите запрос",
+    "messagePart1": "Доска",
+    "messagePart2": "была создана"
   },
   "boardPage": {
     "goToMain": "На главную",

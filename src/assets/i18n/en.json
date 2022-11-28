@@ -81,7 +81,9 @@
     "board": "Board",
     "taskOwner": "Task owner",
     "tasks": "Tasks",
-    "keywordsPlaceholder": "Enter keywords"
+    "keywordsPlaceholder": "Enter keywords",
+    "messagePart1": "The board",
+    "messagePart2": "has been created"
   },
   "boardPage": {
     "goToMain": "Go to main",
