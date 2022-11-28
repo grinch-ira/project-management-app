@@ -1,0 +1,27 @@
+@use '../../../../variables.scss';
+
+form {
+  width: 280px;
+  margin: 20px auto 0;
+  padding: 5%;
+  background-color: variables.$light;
+  border-radius: 5px;
+}
+
+.mat-form-field {
+  width: 280px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 38px auto 10px;
+}
+
+mat-error {
+  font-size: 10px;
+}

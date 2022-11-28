@@ -1,0 +1,133 @@
+{
+  "welcomepage": {
+    "welcomeTitle": "Enjoy your project management",
+    "welcomeDescription": "Competent planning is an integral part of our life. Whether it is an apartment renovation, a birthday party or a project at work, it is always important to have a clear structure of the workflow for a more successful implementation of any event. That is why the task manager is an indispensable tool for daily task planning. Why do I need a task manager? It will simplify the workflow, make it more transparent, and help plan and monitor the implementation of projects from a variety of professional fields.",
+    "startplanningbutton": "Start planning!",
+    "buttonsTitle": "How does it work?",
+    "createBoards": "Create boards",
+    "createColumns": "Create columns",
+    "createTasks": "Create tasks",
+    "developers": {
+      "developersTitle": "ABOUT DEVELOPERS",
+      "iraDevName": "Iryna",
+      "iraDevDesc": "I've been learning Front-end for a year. Before that I was far from coding, but I am aimed at switching my career. I am sure that I will manage.",
+      "yuliaDevName": "Yulia",
+      "yuliaDevDesc": "Hello! I'm Yulia - a Frontend Developer with almost 1 year of practical experience. Interested in working with inspirational people, creating new contemporary projects, learning IT technologies. Find out more about me on",
+      "pavelDevName": "Pavel",
+      "pavelDevDesc": ""
+    }
+  },
+  "footer": {
+    "creators": "Creators",
+    "Ira": "Iryna Hryniuk",
+    "Yulia": "Yuliya Shulgan",
+    "Pasha": "Pavel Burdavitsyn"
+  },
+  "header": {
+    "settingsTitle": "Settings",
+    "addBoard": "Add Board",
+    "translation": "Language",
+    "logInSignUp": "Login/Sign Up",
+    "logOut": "Logout"
+  },
+  "authorization": {
+    "logIn": "Log In",
+    "login": "Login",
+    "password": "Password",
+    "dontHaveAccount": "Don't have an account yet? Sing Up!"
+  },
+  "registration": {
+    "name": "Name",
+    "signUp": "Sign Up",
+    "haveAccount": "Already have an account? Log In!"
+  },
+  "user": {
+    "title": "Your settings",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "delete": "Delete user",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "errors": {
+    "enterLoginEmail": "*please enter a login email",
+    "invalidLoginEmail": "*the login email is invalid",
+    "enterPassword": "*please enter a password",
+    "longerThanEight": "*your password should be longer than 8",
+    "usedUpperLowerNumberSpecial": "*your password should include uppercase and lowercase letters, numbers, special character",
+    "enterName": "*please enter a name",
+    "longerThanThree": "*your name should be longer than 3",
+    "noLongerThanTwentyName": "*your name should be no longer than 20",
+    "onlySmallOrNumbers": "*should use only small letters or numbers",
+    "noLongerThanTwentyPassword": "*your password should be no longer than 20",
+    "enterBoardTitle": "*please, enter board title",
+    "enterColumnTitle": "*please, enter column title"
+  },
+  "mainPage": {
+    "mainPageTitle": "Boards",
+    "boardsFormTitle": "Create board",
+    "boardName": "Name",
+    "boardSelectUser": "User",
+    "createBoardButton": "Create board",
+    "enterBoardTitlePlaceholder": "Enter the board title",
+    "filters": "Filters",
+    "title": "Title",
+    "boardOwner": "Board owner",
+    "none": "None",
+    "searchCriteria": "Search criteria",
+    "searchRequest": "Search request",
+    "searchHint": "A part of title or description",
+    "board": "Board",
+    "taskOwner": "Task owner",
+    "tasks": "Tasks",
+    "keywordsPlaceholder": "Enter keywords",
+    "messagePart1": "The board",
+    "messagePart2": "has been created"
+  },
+  "boardPage": {
+    "goToMain": "Go to main",
+    "createColumn": "Create column",
+    "createTask": "Create task",
+    "columnTitle": "Column title",
+    "enterColumnTitlePlaceholder": "Enter column title",
+    "taskTitle": "Task title",
+    "enterTaskTitlePlaceholder": "Enter task title",
+    "taskDescription": "Task description",
+    "enterTaskDescriptionPlaceholder": "Enter task description",
+    "cancel": "Cancel"
+  },
+  "windowData": {
+    "deleteBoard": {
+      "title": "Delete Board",
+      "description": "Do you really want to delete the board?"
+    },
+    "deleteColumn": {
+      "title": "Delete Column",
+      "description": "Do you really want to delete the column?"
+    },
+    "deleteTask": {
+      "title": "Delete Task",
+      "description": "Do you really want to delete the task?"
+    },
+    "deleteUser": {
+      "title": "Delete User",
+      "description": "Do you really want to delete the User?"
+    },
+    "logOut": {
+      "title": "Log Out",
+      "description": "Do you really want to log out?"
+    },
+    "save": {
+      "title": "Successful!",
+      "description": "Your settings have been saved"
+    },
+    "errorHTTP": {
+      "title": "HTTP Error",
+      "description": ""
+    }
+  },
+  "modalWindowYes":"Yes",
+  "modalWindowNo":"No",
+  "modalWindowOk":"Ok"
+}

@@ -1,0 +1,16 @@
+:host {
+  box-sizing: border-box;
+
+  .task {
+    &__card {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__content {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@use '../../../../styles/layout' as layout;
+
+:host {
+  @include layout.align-center(24px);
+
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  max-width: 400px;
+
+  .boards-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

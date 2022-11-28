@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="header-wrapper">
+    <div class="header-container">
+      <div class="header-title">
+        <a [routerLink]="!isLogIn ? '/welcome' : '/main'">PMA</a>
+      </div>
+      <div>
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.settingsTitle' | translate}}" mat-button (click)="openDialogUser()">
+          <mat-icon>
+            person
+          </mat-icon>
+        </button>
+        <button [disabled]="!isLogIn" color="primary" mat-raised-button title="{{ 'header.addBoard' | translate}}" (click)="openDialogBoard()">
+          <mat-icon>
+            add_box
+          </mat-icon>
+        </button>
+        <button [matMenuTriggerFor]="languageMenu" color="primary" mat-raised-button title="{{ 'header.translation' | translate}}" >
+          <mat-icon>g_translate</mat-icon>
+            <mat-menu #languageMenu="matMenu">
+              <button mat-menu-item (click)="saveToLocal('en')">en</button>
+              <button mat-menu-item (click)="saveToLocal('ru')">ru</button>
+            </mat-menu>
+        </button>
+        <button *ngIf="!isLogIn" color="primary" mat-raised-button routerLink="/login" title="{{ 'header.logInSignUp' | translate}}">
+          <mat-icon>
+            login
+          </mat-icon>
+        </button>
+        <button *ngIf="isLogIn" color="primary" mat-raised-button title="{{ 'header.logOut' | translate}}" (click)="logOut()">
+          <mat-icon>
+            logout
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

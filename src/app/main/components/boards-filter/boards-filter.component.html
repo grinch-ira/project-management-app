@@ -1,0 +1,29 @@
+<form
+  [formGroup]="boardsForm"
+  class="boards-form">
+  <fieldset>
+    <legend>{{ 'mainPage.filters' | translate }}</legend>
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'mainPage.title' | translate }}</mat-label>
+      <input
+        matInput
+        placeholder="{{ 'mainPage.enterBoardTitlePlaceholder' | translate }}"
+        autocomplete="off"
+        name="title"
+        formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'mainPage.boardOwner' | translate }}</mat-label>
+      <mat-select formControlName="owner">
+        <mat-option [value]="">-{{ 'mainPage.none' | translate }}-</mat-option>
+        <mat-option [value]="'DELETED_USER'">DELETED_USER</mat-option>
+        <mat-option
+          *ngFor="let user of appUsers"
+          [value]="user._id"
+          >{{ user.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+</form>

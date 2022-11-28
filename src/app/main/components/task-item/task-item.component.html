@@ -1,0 +1,16 @@
+<mat-card
+  class="task__card"
+  [appIsOwnerMark]="taskData.userId">
+  <mat-card-header>
+    <mat-card-title>{{ taskData.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ 'mainPage.board' | translate }}: {{ getBoardName() }}
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      {{ 'mainPage.taskOwner' | translate }}: {{ getTaskOwnerName() }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="task__content">
+    {{ taskData.description }}
+  </mat-card-content>
+</mat-card>

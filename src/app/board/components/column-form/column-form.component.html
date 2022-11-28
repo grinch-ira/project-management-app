@@ -1,0 +1,32 @@
+<h3 class="column-form__header">{{'boardPage.createColumn' | translate}}</h3>
+
+<form
+  [formGroup]="columnForm"
+  class="column-form">
+  <mat-form-field appearance="outline">
+    <mat-label>{{'boardPage.columnTitle' | translate}}</mat-label>
+    <input
+      matInput
+      placeholder="{{'boardPage.enterColumnTitlePlaceholder' | translate}}"
+      autocomplete="off"
+      name="title"
+      formControlName="title" />
+
+    <mat-error *ngIf="columnForm.get('title')?.errors?.['required']">
+      {{'errors.enterColumnTitle' | translate}}
+    </mat-error>
+  </mat-form-field>
+
+  <div class="column-form__actions">
+    <button
+      type="button"
+      class="column-form__login-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="columnForm.invalid"
+      [mat-dialog-close]="true"
+      (click)="createColumn()">
+      {{'boardPage.createColumn' | translate}}
+    </button>
+  </div>
+</form>

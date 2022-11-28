@@ -1,0 +1,27 @@
+@use '../../../../styles/animations' as animations;
+
+:host {
+  display: block;
+  box-sizing: border-box;
+
+  .board-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    @include animations.hover-scale(1.02);
+
+    .mat-card-header {
+      justify-content: center;
+    }
+
+    .board-item {
+      &__button {
+        @include animations.hover-scale(1.1);
+      }
+    }
+  }
+}

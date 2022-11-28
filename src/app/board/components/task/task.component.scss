@@ -1,0 +1,38 @@
+@use '../../../../variables.scss' as vars;
+@use 'sass:color';
+
+:host {
+  display: block;
+  flex: none;
+  width: 100%;
+  height: 160px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  text-overflow: ellipsis;
+  background-color: color.scale(vars.$light-grey, $alpha: -50%);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+
+  .task {
+    &__header {
+      height: 20px;
+    }
+
+    &__description {
+      margin: 10px;
+    }
+  }
+}
+
+.task-header {
+  display: block;
+  width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}

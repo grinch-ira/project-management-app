@@ -1,0 +1,21 @@
+@use '../../../../styles/layout' as layout;
+
+:host {
+  @include layout.align-center(24px);
+
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 1440px;
+
+  .tasks {
+    &__container {
+      @include layout.responsive-grid;
+    }
+  }
+
+  .main {
+    &__boards {
+      @include layout.responsive-grid;
+    }
+  }
+}

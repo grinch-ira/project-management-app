@@ -1,0 +1,54 @@
+<h3 class="boards-form__header">{{'mainPage.boardsFormTitle' | translate}}</h3>
+
+<form
+  [formGroup]="boardForm"
+  class="boards-form">
+  <mat-form-field appearance="outline">
+    <mat-label>{{'mainPage.boardName' | translate}}</mat-label>
+    <input
+      matInput
+      placeholder= "{{'mainPage.enterBoardTitlePlaceholder' | translate}}"
+      autocomplete="off"
+      name="title"
+      formControlName="title" />
+
+    <mat-error *ngIf="boardForm.get('title')?.errors?.['required']">
+      {{'errors.enterBoardTitle' | translate}}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>{{'mainPage.boardSelectUser' | translate}}</mat-label>
+    <mat-select
+      formControlName="users"
+      multiple>
+      <mat-select-trigger>
+        {{ getFirstUser() || '' }}
+        <span
+          *ngIf="(boardForm.get('users')?.value?.length || 0) > 1"
+          class="example-additional-selection">
+          (+{{ (boardForm.get('users')?.value?.length || 0) - 1 }}
+          {{ boardForm.get('users')?.value?.length === 2 ? 'other' : 'others' }})
+        </span>
+      </mat-select-trigger>
+      <mat-option
+        *ngFor="let user of appUsers"
+        [value]="user._id"
+        >{{ user.name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <div class="login-form__actions">
+    <button
+      type="button"
+      class="login-form__login-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="boardForm.invalid"
+      [mat-dialog-close]="true"
+      (click)="createBoard()">
+      {{'mainPage.createBoardButton' | translate}}
+    </button>
+  </div>
+</form>
